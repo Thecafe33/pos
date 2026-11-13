@@ -272,20 +272,39 @@ const TTS = {
     };
     next();
   },
-  speak(text, { rate, el } = {}) {
-    if (!this.ok) { toast('Trình duyệt này không hỗ trợ đọc. Hãy thử Chrome hoặc Safari.'); return; }
-    this.tok++;
-    const u = this.utter(text, rate);
-    $$('.speaking').forEach(e => e.classList.remove('speaking'));
-    if (el) { el.classList.add('speaking'); u.onend = u.onerror = () => el.classList.remove('speaking'); }
-    speechSynthesis.cancel();
-    speechSynthesis.speak(u);
-    if (!this.v && !this.warned && this.voices.length === 0 && speechSynthesis.getVoices().length > 0) {
-      this.warned = true;
-      toast('Máy chưa có giọng tiếng Trung — xem hướng dẫn cài trong <b>Cài đặt</b>.', 4500);
-    }
+  // Phát bằng file âm thanh online (dự phòng khi máy không có giọng Trung / Web Speech lỗi)
+  audio: null,
+  online(text, rate, el) {
+    const t = cleanSay(text).slice(0, 180);
+    const url = 'https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=zh-CN&q=' + encodeURIComponent(t);
+    try { this.audio?.pause(); } catch (e) {}
+    const a = this.audio = new Audio(url);
+    a.playbackRate = Math.max(0.5, Math.min(1.5, rate ?? S.settings.rate));
+    if (el) { el.classList.add('speaking'); a.onended = a.onerror = () => el.classList.remove('speaking'); }
+    return a.play().then(() => true).catch(() => { el?.classList.remove('speaking'); return false; });
   },
-  stop() { this.tok++; if (this.ok) speechSynthesis.cancel(); }
+  speak(text, { rate, el } = {}) {
+    this.tok++;
+    $$('.speaking').forEach(e => e.classList.remove('speaking'));
+    const mode = S.settings.audio || 'auto';           // auto | device | online
+    const noVoice = this.ok && this.voices.length === 0 && speechSynthesis.getVoices().length > 0;
+    if (!this.ok || mode === 'online' || (mode === 'auto' && noVoice)) {
+      this.online(text, rate, el).then(ok => { if (!ok) toast('🔇 Không phát được âm thanh. Kiểm tra: âm lượng, nút gạt im lặng (iPhone), kết nối mạng.', 5000); });
+      return;
+    }
+    const u = this.utter(text, rate);
+    let started = false;
+    u.onstart = () => { started = true; };
+    if (el) { el.classList.add('speaking'); }
+    u.onend = () => el?.classList.remove('speaking');
+    u.onerror = e => { el?.classList.remove('speaking'); if (mode === 'auto' && e.error !== 'interrupted' && e.error !== 'canceled') this.online(text, rate, el); };
+    const go = () => { try { speechSynthesis.resume(); } catch (e) {} speechSynthesis.speak(u); };
+    // Lỗi Chrome: gọi speak() ngay sau cancel() đôi khi im lặng → chỉ cancel khi đang đọc, rồi chờ một chút
+    if (speechSynthesis.speaking || speechSynthesis.pending) { speechSynthesis.cancel(); setTimeout(go, 80); } else go();
+    // Sau 1,5 giây vẫn chưa phát (giọng hỏng / bị chặn) → chuyển sang âm thanh online
+    if (mode === 'auto') { const tok = this.tok; setTimeout(() => { if (!started && tok === this.tok) { speechSynthesis.cancel(); this.online(text, rate, el); } }, 1500); }
+  },
+  stop() { this.tok++; if (this.ok) speechSynthesis.cancel(); try { this.audio?.pause(); } catch (e) {} }
 };
 
 /* ============ Nhận giọng nói (chấm phát âm gần đúng) ============ */
@@ -1229,6 +1248,11 @@ function settingsView() {
       ${TTS.ok ? (vs.length ? `<label class="field">Giọng đọc<select id="voiceSel">${vs.map(v => `<option value="${esc(v.name)}" ${TTS.v && TTS.v.name === v.name ? 'selected' : ''}>${esc(v.name)} (${esc(v.lang)})</option>`).join('')}</select></label>`
         : `<div class="warn">Chưa thấy giọng tiếng Trung trên máy. App vẫn thử đọc bằng giọng mặc định, nhưng nên cài thêm:<ul><li><b>iPhone/iPad:</b> Cài đặt → Trợ năng → Nội dung được đọc → Giọng nói → <b>Tiếng Trung (Trung Quốc đại lục)</b> → tải giọng (vd: Tingting / Lilian).</li><li><b>Android:</b> Cài đặt → Quản lý chung → Ngôn ngữ → Chuyển văn bản thành giọng nói → Google → cài <b>Tiếng Trung (Quan thoại)</b>.</li><li><b>Máy tính:</b> dùng Chrome hoặc Edge (có sẵn giọng Trung online).</li></ul></div>`)
         : '<div class="warn">Trình duyệt không hỗ trợ đọc văn bản.</div>'}
+      <label class="field">Nguồn âm thanh<select id="audioMode">
+        <option value="auto" ${(s.audio || 'auto') === 'auto' ? 'selected' : ''}>Tự động (giọng máy, lỗi thì dùng online)</option>
+        <option value="device" ${s.audio === 'device' ? 'selected' : ''}>Chỉ giọng đọc của máy (không cần mạng)</option>
+        <option value="online" ${s.audio === 'online' ? 'selected' : ''}>Online (cần mạng, nghe ổn định nhất)</option></select></label>
+      <p class="muted small">🔇 Không nghe gì? iPhone: tắt nút gạt im lặng ở cạnh máy và tăng âm lượng. Hoặc chọn "Online" ở trên.</p>
       <label class="field">Tốc độ đọc: <b id="rateV">${s.rate.toFixed(2)}×</b><input type="range" id="rate" min="0.5" max="1.2" step="0.05" value="${s.rate}"></label>
       <button class="btn ghost" data-say="你好！我是小步。今天也要加油哦！">${I.vol} Nghe thử</button>
     </section>
@@ -1262,6 +1286,7 @@ function settingsView() {
     <p class="muted small center">Xiǎobù 小步 · Nét chữ: Hanzi Writer · Phát âm: giọng đọc của thiết bị</p>
   </div>`;
   const sel = $('#voiceSel'); if (sel) sel.onchange = () => { s.voice = sel.value; TTS.pick(); save(); TTS.speak('你好'); };
+  $('#audioMode').onchange = e => { s.audio = e.target.value; save(); TTS.speak('你好'); };
   $('#rate').oninput = e => { s.rate = +e.target.value; $('#rateV').textContent = s.rate.toFixed(2) + '×'; save(); };
   $('#tPy').onchange = e => { s.pinyin = e.target.checked; save(); applySettings(); };
   $('#tHv').onchange = e => { s.hv = e.target.checked; save(); applySettings(); };
