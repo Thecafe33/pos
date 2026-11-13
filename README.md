@@ -9,8 +9,8 @@ Web tĩnh (HTML/CSS/JS thuần), không cần build, chạy miễn phí trên **
 |---|---|---|---|
 | **Gói 1** | Tháng 1–3 | Nền tảng + chuyên đề phim (50 bài, ~570 từ) | ✅ có sẵn |
 | **Gói 2** | Tháng 4–6 | Ngữ pháp cốt lõi & từ thông dụng (41 bài, ~540 từ, 41 điểm ngữ pháp) | ✅ có sẵn, tải khi xong Gói 1 |
-| Gói 3 | Tháng 7–9 | Giao tiếp chủ động (đóng vai, kể chuyện) | 🛠️ đang soạn |
-| Gói 4 | Tháng 10–12 | Nghe phim tốc độ thật | 🛠️ đang soạn |
+| Gói 3 | Tháng 7–9 | Giao tiếp chủ động (đóng vai, kể chuyện) | ✅ 30 bài |
+| Gói 4 | Tháng 10–12 | Nghe phim tốc độ thật | ✅ 24 bài |
 
 - Lần đầu mở web, app chỉ tải **Gói 1**. Gói 2 nằm ở file riêng (`packs/goi-2.js`) và **chỉ được tải về khi bạn đã xong toàn bộ Gói 1**, hoặc đạt từ 80% bài **Kiểm tra vượt gói**. Nhờ vậy web mở nhanh và tốn ít dữ liệu hơn.
 - Khi Gói 2 đã mở, từ vựng của cả 2 gói vẫn được ôn chung trong phần Ôn tập.

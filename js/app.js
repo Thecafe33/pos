@@ -33,6 +33,8 @@ function buildCourse() {
         l.W = l.words.map(w => ({ t: 'w', hz: w[0], py: w[1], vi: w[2], hv: w[3] || '', say: w[4] || w[0], lesson: l }));
         l.P = (l.phrases || []).map(p => ({ t: 'p', hz: p[0], py: p[1], vi: p[2], note: p[3] || '', say: p[4] || p[0], lesson: l }));
         l.G = (l.gram?.ex || []).map(e => ({ t: 'g', hz: e[0], py: e[1], vi: e[2], note: '📐 ' + l.gram.t, say: e[0], lesson: l }));
+        l.R = (l.rp || []).map(r => ({ npc: { hz: r[0], py: r[1], vi: r[2] }, ans: { t: 'r', hz: r[3], py: r[4], vi: r[5], say: r[3], note: '🎭 ' + r[2], lesson: l } }));
+        l.S = (l.scene?.l || []).filter(x => hasHan(x[1])).map(x => ({ t: 's', hz: x[1], py: x[2], vi: x[3], note: '🎬 ' + x[0], say: x[1], lesson: l }));
         l.C = (l.chars || '').split('|').filter(Boolean).map(s => { const [c, py, vi] = s.split(':'); return { c, py, vi }; });
       }
       LESSONS.push(l);
@@ -40,7 +42,7 @@ function buildCourse() {
   });
   ALL_W = LESSONS.flatMap(l => l.W); ALL_P = LESSONS.flatMap(l => l.P);
   ITEM = new Map();
-  [...ALL_W, ...ALL_P, ...LESSONS.flatMap(l => l.G)].forEach(it => { if (!ITEM.has(it.hz)) ITEM.set(it.hz, it); });
+  [...ALL_W, ...ALL_P, ...LESSONS.flatMap(l => l.G), ...LESSONS.flatMap(l => l.R.map(r => r.ans)), ...LESSONS.flatMap(l => l.S)].forEach(it => { if (!ITEM.has(it.hz)) ITEM.set(it.hz, it); });
   ALL_CHARS = [];
   const seen = new Set(); LESSONS.forEach(l => l.C.forEach(c => { if (!seen.has(c.c)) { seen.add(c.c); ALL_CHARS.push({ ...c, lesson: l }); } }));
 }
@@ -683,7 +685,7 @@ function completeStep(l, i, silent) {
   const p = lp(l.id);
   if (!p.s[i]) { p.s[i] = 1; addXP(10); if (!silent) toast(`✅ Xong bước <b>${STEPS[i].name}</b> · +10 XP`); }
   if (i === 0) srsAdd([...l.W, ...l.G]);
-  if (i === 1) srsAdd(l.P);
+  if (i === 1) srsAdd([...l.P, ...l.R.map(r => r.ans)]);
   save();
 }
 function nextStepHref(l, i) {
@@ -771,8 +773,15 @@ function stepPhrases(l, box) {
     ${sceneHtml(l.scene)}
     <div class="hint">💡 <b>Shadowing:</b> nghe → nói đè theo 2–3 lần mỗi câu, bắt chước cả ngữ điệu. ${SR ? 'Bấm 🎤 để app chấm phát âm (gần đúng).' : ''}</div>
     <div class="phrases">${l.P.map(p => phraseCard(p)).join('')}</div>
+    ${l.R.length ? `<section class="rp card-pad"><b>🎭 Đóng vai</b><p class="muted small">Người kia nói — bạn chọn câu đáp rồi bấm 🎤 nói to câu đó. ${l.R.length} lượt.</p><div id="rpBox"><button class="btn" id="rpStart">▶ Bắt đầu đóng vai</button></div></section>` : ''}
     <div class="step-actions"><button class="btn big" id="doneStep">Đã luyện xong ✓</button></div>`;
   bindScene(box, l.scene);
+  const rpS = $('#rpStart', box);
+  if (rpS) rpS.onclick = function startRp() {
+    const rb = $('#rpBox', box);
+    runQuiz(rb, l.R.map(r => QT.rp(r, l)), { intro: '🎭 Nghe câu hỏi, chọn câu đáp phù hợp, rồi nói to.',
+      onDone: (sc, tot) => { rb.innerHTML = `<p>✅ Xong đóng vai: <b>${sc}/${tot}</b> lượt đúng.</p><button class="btn ghost" id="rpStart">↻ Đóng vai lại</button>`; $('#rpStart', rb).onclick = startRp; } });
+  };
   $('#doneStep', box).onclick = () => { completeStep(l, 1); go(nextStepHref(l, 1)); };
 }
 
@@ -914,6 +923,17 @@ const QT = {
     opts: shuffle([it.py, ...v]).map(s => ({ html: `<span class="py-opt">${esc(s)}</span>`, ok: s === it.py })), sayOnAnswer: true }; },
   ph2vi: (it, pool) => ({ item: it, prompt: `<div class="qlabel">Câu này nghĩa là gì?</div><button class="qph" data-say="${esc(it.say)}">${zh(it.hz)}</button>${pyH(it.py)}`,
     opts: pickOpts(it, pool, 4, x => x.vi).map(x => ({ html: esc(x.vi), ok: x === it })) }),
+  rp: (r, l) => {
+    const others = shuffle([...l.R, ...l.stage.lessons.flatMap(x => x.R)].map(x => x.ans).filter(a => a.hz !== r.ans.hz));
+    const opts = pickOpts(r.ans, others, 3, x => x.hz);
+    return { item: r.ans, auto: r.npc.hz,
+      prompt: `<div class="qlabel">🎭 Bạn đáp thế nào?</div><div class="rp-npc"><button class="qph" data-say="${esc(r.npc.hz)}">🗣 ${zh(r.npc.hz)}</button>${pyH(r.npc.py)}<div class="qvi small">${esc(r.npc.vi)}</div></div>`,
+      opts: opts.map(x => ({ html: `${zh(x.hz)}${pyH(x.py)}`, ok: x === r.ans })),
+      extra: SR ? `<div class="card-pad rp-say"><span class="muted small">Giờ nói to câu đáp:</span> ${micBtn(r.ans.say)}<div class="mic-out"></div></div>` : '' };
+  },
+  dict: it => { const h = hanOnly(it.hz), toks = []; for (let k = 0; k < h.length; k += 2) toks.push(h.slice(k, k + 2).join(''));
+    return { item: it, type: 'build', toks, auto: it.say, rate: 1, sayOnAnswer: true,
+      prompt: `<div class="spiral">✍️ Nghe – chép · tốc độ thật</div>` + listenPrompt(it, 'Nghe rồi xếp lại đúng câu') + `<div class="qvi small muted">Gợi ý: ${esc(it.vi)}</div>` }; },
   build: it => { const toks = hanOnly(it.hz); return { item: it, type: 'build', toks, prompt: `<div class="qlabel">Sắp xếp thành câu đúng</div><div class="qvi">${esc(it.vi)}</div>` }; }
 };
 const buildable = p => { const n = hanOnly(p.hz).length; return n >= 3 && n <= 9 && hasHan(p.hz); };
@@ -931,6 +951,13 @@ function compose(plan) {
 function buildListen(l) {
   const pw = poolFor(l, 'w'), pp = poolFor(l, 'p');
   if (l.kind === 'pinyin') return compose(Array(6).fill(0).map(() => ['lis2py', l.W, pw, canPy]));
+  if (l.S.length >= 4) {  // 🎬 nghe thoại phim tốc độ thật
+    const ps = [...shuffle(l.S), ...pp];
+    const qs = compose([['lis2vi', l.S, ps], ['lis2vi', l.S, ps], ['lis2vi', l.S, ps], ['lis2hz', l.W, pw], ['lis2vi', l.W, pw]]).map(q => (q.item.t === 's' && (q.rate = 1.05), q));
+    const d = shuffle(l.S.filter(x => hanOnly(x.hz).length >= 4 && hanOnly(x.hz).length <= 14));
+    d.slice(0, 2).forEach(x => qs.push(QT.dict(x)));
+    return qs;
+  }
   return shuffle(compose([['lis2hz', l.W, pw], ['lis2hz', l.W, pw], ['lis2vi', l.W, pw], ['lis2vi', l.W, pw], ['lis2vi', l.P, pp], ['lis2vi', l.P, pp]]));
 }
 function buildTest(l) {
@@ -944,6 +971,9 @@ function buildTest(l) {
   if (gb.length) { const q = QT.build(shuffle(gb)[0]); q.prompt = `<div class="spiral gram-tag">📐 ${esc(l.gram.t)}</div>` + q.prompt; qs.push(q); }
   if (hasBuild) qs.push(QT.build(shuffle(l.P.filter(buildable))[0]));
   else if (!gb.length) qs.push(...compose([['hz2vi', l.W, pw]]));
+  shuffle(l.R).slice(0, 2).forEach(r => qs.push(QT.rp(r, l)));
+  const dS = shuffle(l.S.filter(x => l.stage.pack >= 4 && hanOnly(x.hz).length >= 4 && hanOnly(x.hz).length <= 14));
+  if (dS.length) qs.push(QT.dict(dS[0]));
   // 🔁 ôn xen kẽ: 2 câu từ các bài đã học trước đó (chống quên bài cũ)
   const old = shuffle(learnedItems().filter(it => it.lesson !== l && it.t === 'w'));
   old.slice(0, 2).forEach((it, k) => {
@@ -966,7 +996,7 @@ function runQuiz(box, qs, { intro, onDone }) {
         : `<div class="qopts ${q.zhOpts ? 'zh-opts' : ''}">${q.opts.map((o, k) => `<button class="opt" data-k="${k}">${o.html}</button>`).join('')}</div>`}
       <div class="qfb" id="qfb" hidden></div>
     </div>`;
-    if (q.auto) TTS.speak(q.auto);
+    if (q.auto) TTS.speak(q.auto, { rate: q.rate });
     if (q.type === 'build') return bindBuild(q);
     $$('.opt', box).forEach(b => b.onclick = () => answer(+b.dataset.k));
   };
@@ -974,7 +1004,7 @@ function runQuiz(box, qs, { intro, onDone }) {
     const q = qs[i], fb = $('#qfb', box);
     if (ok) { sc++; addXP(2); } else { wrong.push(q); const c = S.srs[q.item.hz]; if (c) { c.due = dayNum(); c.w = (c.w || 0) + 1; save(); } }
     fb.hidden = false; fb.className = 'qfb ' + (ok ? 'ok' : 'bad');
-    fb.innerHTML = `<div class="fb-title">${ok ? '✅ Chính xác!' : '❌ Chưa đúng'}</div>${explain(q.item)}${q.item.note ? `<div class="muted small">💬 ${esc(q.item.note)}</div>` : ''}${ok ? '' : memoHtml(q.item.hz, 2)}<button class="btn big" id="qNext">${i === qs.length - 1 ? 'Xem kết quả' : 'Tiếp →'}</button>`;
+    fb.innerHTML = `<div class="fb-title">${ok ? '✅ Chính xác!' : '❌ Chưa đúng'}</div>${explain(q.item)}${q.item.note ? `<div class="muted small">💬 ${esc(q.item.note)}</div>` : ''}${ok ? '' : memoHtml(q.item.hz, 2)}${q.extra || ''}<button class="btn big" id="qNext">${i === qs.length - 1 ? 'Xem kết quả' : 'Tiếp →'}</button>`;
     $('#qNext', box).onclick = () => { i++; render(); };
     if (!q.auto || q.sayOnAnswer || !ok) TTS.speak(q.item.say);
     fb.scrollIntoView({ behavior: 'smooth', block: 'nearest' });

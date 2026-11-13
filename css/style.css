@@ -623,3 +623,4 @@ input[type=time]{font-size:18px;padding:10px 14px;border-radius:14px;border:1.5p
   .py-table{grid-template-columns:repeat(2,1fr)}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.rp{margin-top:14px}.rp-npc{background:var(--soft,#f3f0ff);border-radius:14px;padding:10px 12px;margin-top:6px}.rp-say{margin-top:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}.rp .opt .py,.qopts .opt [data-py]{font-size:.8em}

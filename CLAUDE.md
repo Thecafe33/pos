@@ -11,8 +11,9 @@ Repo này chỉ chứa app học tiếng Trung (app POS cũ đã xóa theo yêu 
 ## Lộ trình 1 năm = 4 gói (mỗi gói ~3 tháng)
 - **Gói 1** (tháng 1–3, có sẵn): `js/data.js` (lộ trình chính: Pinyin, Sinh tồn, Đời sống, Đọc chữ, Nâng cao) + `js/data-phim.js` (chuyên đề: Thoại phim, Tiên hiệp, Cổ trang, Ngôn tình, Douyin, Phim ngắn). 50 bài.
 - **Gói 2** (tháng 4–6, xong): `packs/goi-2.js` — ngữ pháp cốt lõi, 41 bài, mỗi bài có `gram`. Chỉ tải khi xong Gói 1 hoặc đạt ≥80% "Kiểm tra vượt gói".
-- **Gói 3** (tháng 7–9, **CẦN LÀM TIẾP**): Giao tiếp chủ động — bài đóng vai (app hỏi, người học nói trả lời bằng nhận giọng nói / chọn câu đáp), kể chuyện về bản thân, nghe tốc độ thật. ~40 bài, ~500 từ mới (không trùng Gói 1–2).
-- **Gói 4** (tháng 10–12): Nghe phim tốc độ thật — thoại dài, nghe-chép, chuyên đề phim nâng cao. Mục tiêu ~2000 từ tổng (≈HSK 3).
+- **Gói 3** (tháng 7–9, xong): `packs/goi-3.js` — giao tiếp chủ động, stage k1–k6, 30 bài, mỗi bài có `rp` (đóng vai: `[[câu NPC, py, nghĩa, câu đáp, py, nghĩa]]`) → mục "🎭 Đóng vai" ở bước Nói thật + 2 câu trong bài kiểm tra (QT.rp, có nút 🎤).
+- **Gói 4** (tháng 10–12, xong): `packs/goi-4.js` — nghe phim tốc độ thật, stage h1–h6, 24 bài, mỗi bài có `scene` dài → bước Nghe dùng câu thoại (l.S) ở tốc độ 1.05 + nghe–chép (QT.dict); kiểm tra có 1 câu nghe–chép. Tổng ~1720 từ.
+- Ý tưởng tiếp theo nếu người dùng muốn: Gói 5 (HSK 4), ôn tập tổng hợp cả năm.
 - Danh sách gói: `js/packs.js` (đặt `ready:true`, `file`, `strokes`, `size` khi gói xong).
 
 ## Cấu trúc & quy ước
@@ -20,7 +21,7 @@ Repo này chỉ chứa app học tiếng Trung (app POS cũ đã xóa theo yêu 
 - Định dạng bài: `words:[chữ, pinyin, nghĩa, Hán Việt, (câu đọc)]`, `phrases:[câu, pinyin, nghĩa, ghi chú]`, `scene:{t, l:[[vai,câu,pinyin,nghĩa]]}`, `gram:{t,f,d,ex}`, `chars:'字:pīnyīn:nghĩa|…'`.
 - Stage gói mới: `{ id, pack:N, zh, name, short, color, track:'main', requires:'stage trước', lessons:[…] }`, file gói `window.COURSE.push(...)` + `Object.assign(window.MEMO, {...})` cho mẹo nhớ chữ.
 - **Không trùng từ** giữa các bài/gói (kiểm tra bằng script node trước khi chốt). Pinyin có dấu, ghi biến điệu thực tế của 不/一. Hán Việt chỉ ghi khi chắc chắn.
-- Dữ liệu nét chữ: `data/strokes.json` (gói 1), `data/strokes-2.json` (gói 2) — tạo từ npm `hanzi-writer-data`, chỉ chứa chữ chưa có ở file trước.
-- **Mỗi lần sửa code phải tăng `VERSION` trong `sw.js`** (hiện `xiaobu-v5`).
+- Dữ liệu nét chữ: `data/strokes.json` (gói 1), `data/strokes-2.json` (gói 2), `strokes-3.json`, `strokes-4.json` — tạo từ npm `hanzi-writer-data`, chỉ chứa chữ chưa có ở file trước.
+- **Mỗi lần sửa code phải tăng `VERSION` trong `sw.js`** (hiện `xiaobu-v6`).
 - Thiết kế chống quên: buổi học = ôn thẻ cũ trước rồi bài mới; học 4 từ → kiểm tra ngay; mẹo nhớ chữ; ôn xen kẽ bài cũ trong bài kiểm tra; "Từ hay quên".
 - Kiểm thử bằng Playwright + Chrome ở cỡ 390×844 (mobile) và 1440×1000.
