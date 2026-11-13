@@ -272,16 +272,29 @@ const TTS = {
     };
     next();
   },
-  // Phát bằng file âm thanh online (dự phòng khi máy không có giọng Trung / Web Speech lỗi)
+  // Phát bằng file âm thanh online (dự phòng) — thử lần lượt nhiều nguồn
   audio: null,
-  online(text, rate, el) {
+  srcs: [
+    t => 'https://dict.youdao.com/dictvoice?le=zh&type=2&audio=' + encodeURIComponent(t),
+    t => 'https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=zh-CN&q=' + encodeURIComponent(t)
+  ],
+  async online(text, rate, el) {
     const t = cleanSay(text).slice(0, 180);
-    const url = 'https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=zh-CN&q=' + encodeURIComponent(t);
-    try { this.audio?.pause(); } catch (e) {}
-    const a = this.audio = new Audio(url);
-    a.playbackRate = Math.max(0.5, Math.min(1.5, rate ?? S.settings.rate));
-    if (el) { el.classList.add('speaking'); a.onended = a.onerror = () => el.classList.remove('speaking'); }
-    return a.play().then(() => true).catch(() => { el?.classList.remove('speaking'); return false; });
+    for (const mk of this.srcs) {
+      try { this.audio?.pause(); } catch (e) {}
+      const a = this.audio = new Audio();
+      a.preload = 'auto'; a.src = mk(t);
+      a.playbackRate = Math.max(0.5, Math.min(1.5, rate ?? S.settings.rate));
+      if (el) { el.classList.add('speaking'); a.onended = () => el.classList.remove('speaking'); }
+      const ok = await new Promise(res => {
+        let done = false; const fin = v => { if (!done) { done = true; res(v); } };
+        a.onplaying = () => fin(true); a.onerror = () => fin(false);
+        a.play().catch(() => fin(false)); setTimeout(() => fin(!a.paused && a.currentTime > 0), 4000);
+      });
+      if (ok) return true;
+    }
+    el?.classList.remove('speaking');
+    return false;
   },
   speak(text, { rate, el } = {}) {
     this.tok++;
@@ -294,9 +307,11 @@ const TTS = {
     }
     const u = this.utter(text, rate);
     let started = false;
-    u.onstart = () => { started = true; };
+    let t0 = 0;
+    u.onstart = () => { started = true; t0 = Date.now(); };
     if (el) { el.classList.add('speaking'); }
-    u.onend = () => el?.classList.remove('speaking');
+    // Android: thiếu dữ liệu giọng Trung thì "đọc" xong ngay mà không ra tiếng → dùng online
+    u.onend = () => { el?.classList.remove('speaking'); if (mode === 'auto' && t0 && Date.now() - t0 < 250 && hanOnly(text).length) this.online(text, rate, el); };
     u.onerror = e => { el?.classList.remove('speaking'); if (mode === 'auto' && e.error !== 'interrupted' && e.error !== 'canceled') this.online(text, rate, el); };
     const go = () => { try { speechSynthesis.resume(); } catch (e) {} speechSynthesis.speak(u); };
     // Lỗi Chrome: gọi speak() ngay sau cancel() đôi khi im lặng → chỉ cancel khi đang đọc, rồi chờ một chút
@@ -1252,6 +1267,7 @@ function settingsView() {
         <option value="auto" ${(s.audio || 'auto') === 'auto' ? 'selected' : ''}>Tự động (giọng máy, lỗi thì dùng online)</option>
         <option value="device" ${s.audio === 'device' ? 'selected' : ''}>Chỉ giọng đọc của máy (không cần mạng)</option>
         <option value="online" ${s.audio === 'online' ? 'selected' : ''}>Online (cần mạng, nghe ổn định nhất)</option></select></label>
+      <button class="btn ghost" id="diag">🔧 Chẩn đoán âm thanh</button><pre id="diagOut" class="diag" hidden></pre>
       <p class="muted small">🔇 Không nghe gì? iPhone: tắt nút gạt im lặng ở cạnh máy và tăng âm lượng. Hoặc chọn "Online" ở trên.</p>
       <label class="field">Tốc độ đọc: <b id="rateV">${s.rate.toFixed(2)}×</b><input type="range" id="rate" min="0.5" max="1.2" step="0.05" value="${s.rate}"></label>
       <button class="btn ghost" data-say="你好！我是小步。今天也要加油哦！">${I.vol} Nghe thử</button>
@@ -1286,6 +1302,28 @@ function settingsView() {
     <p class="muted small center">Xiǎobù 小步 · Nét chữ: Hanzi Writer · Phát âm: giọng đọc của thiết bị</p>
   </div>`;
   const sel = $('#voiceSel'); if (sel) sel.onchange = () => { s.voice = sel.value; TTS.pick(); save(); TTS.speak('你好'); };
+  $('#diag').onclick = async () => {
+    const out = $('#diagOut'); out.hidden = false; const log = m => { out.textContent += m + '\n'; };
+    out.textContent = '';
+    log('Trình duyệt: ' + navigator.userAgent.replace(/.*\) /, '').slice(0, 60));
+    log('Hỗ trợ giọng đọc: ' + (TTS.ok ? 'có' : 'KHÔNG'));
+    if (TTS.ok) {
+      const all = speechSynthesis.getVoices(), zhv = all.filter(v => /^(zh|cmn)/i.test(v.lang.replace('_', '-')));
+      log('Số giọng trên máy: ' + all.length + ' · giọng Trung: ' + zhv.length + (zhv.length ? ' (' + zhv.slice(0, 3).map(v => v.name).join(', ') + ')' : ''));
+      log('Thử giọng máy…');
+      await new Promise(res => {
+        const u = TTS.utter('你好'); let t0 = 0; speechSynthesis.cancel();
+        u.onstart = () => { t0 = Date.now(); log(' → bắt đầu đọc'); };
+        u.onend = () => { log(' → xong sau ' + (t0 ? Date.now() - t0 : '?') + ' ms' + (t0 && Date.now() - t0 < 250 ? ' (QUÁ NHANH = không có tiếng)' : '')); res(); };
+        u.onerror = e => { log(' → LỖI: ' + e.error); res(); };
+        speechSynthesis.speak(u); setTimeout(() => { if (!t0) log(' → không phản hồi sau 3 giây'); res(); }, 3000);
+      });
+    }
+    log('Thử âm thanh online…');
+    const ok = await TTS.online('你好');
+    log(ok ? ' → phát được ✅ (nếu vẫn không nghe: tăng âm lượng media)' : ' → KHÔNG phát được ❌ (kiểm tra mạng)');
+    log('Chụp màn hình phần này gửi cho người hỗ trợ nếu vẫn lỗi.');
+  };
   $('#audioMode').onchange = e => { s.audio = e.target.value; save(); TTS.speak('你好'); };
   $('#rate').oninput = e => { s.rate = +e.target.value; $('#rateV').textContent = s.rate.toFixed(2) + '×'; save(); };
   $('#tPy').onchange = e => { s.pinyin = e.target.checked; save(); applySettings(); };

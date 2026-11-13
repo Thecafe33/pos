@@ -21,6 +21,6 @@ Repo này chỉ chứa app học tiếng Trung (app POS cũ đã xóa theo yêu 
 - Stage gói mới: `{ id, pack:N, zh, name, short, color, track:'main', requires:'stage trước', lessons:[…] }`, file gói `window.COURSE.push(...)` + `Object.assign(window.MEMO, {...})` cho mẹo nhớ chữ.
 - **Không trùng từ** giữa các bài/gói (kiểm tra bằng script node trước khi chốt). Pinyin có dấu, ghi biến điệu thực tế của 不/一. Hán Việt chỉ ghi khi chắc chắn.
 - Dữ liệu nét chữ: `data/strokes.json` (gói 1), `data/strokes-2.json` (gói 2) — tạo từ npm `hanzi-writer-data`, chỉ chứa chữ chưa có ở file trước.
-- **Mỗi lần sửa code phải tăng `VERSION` trong `sw.js`** (hiện `xiaobu-v4`).
+- **Mỗi lần sửa code phải tăng `VERSION` trong `sw.js`** (hiện `xiaobu-v5`).
 - Thiết kế chống quên: buổi học = ôn thẻ cũ trước rồi bài mới; học 4 từ → kiểm tra ngay; mẹo nhớ chữ; ôn xen kẽ bài cũ trong bài kiểm tra; "Từ hay quên".
 - Kiểm thử bằng Playwright + Chrome ở cỡ 390×844 (mobile) và 1440×1000.
