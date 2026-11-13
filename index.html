@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0c0c0e">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Xiǎobù">
+<meta name="description" content="Học tiếng Trung giản thể 15 phút mỗi ngày: xem phim, giao tiếp, đọc chữ đời thường.">
+<title>Xiǎobù 小步 · Tiếng Trung 15 phút mỗi ngày</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <a class="brand" href="#/" aria-label="Trang chủ">
+      <span class="mascot" id="brandMascot"></span>
+      <span class="brand-name">Xiǎobù <span class="zh" lang="zh-CN">小步</span></span>
+    </a>
+    <nav class="nav" id="nav"></nav>
+    <div class="hud">
+      <span class="streak" title="Chuỗi ngày học"><span>🔥</span><b id="streakN">0</b></span>
+      <div class="ring" id="ring"></div>
+      <div class="lvl"><b id="lvlN">Cấp 1</b><small id="minN">0/15 phút hôm nay</small></div>
+    </div>
+  </header>
+  <main class="panel" id="panel">
+    <svg class="notch" id="notch" viewBox="0 0 260 30" aria-hidden="true"><path d="M0 0H260C226 0 214 28 182 28H78C46 28 34 0 0 0Z"/></svg>
+    <div id="view"></div>
+  </main>
+</div>
+<nav class="dock" id="dock" aria-label="Thanh công cụ"></nav>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/vendor/hanzi-writer.min.js" defer></script>
+<script src="js/packs.js" defer></script>
+<script src="js/data.js" defer></script>
+<script src="js/data-phim.js" defer></script>
+<script src="js/memo.js" defer></script>
+<script src="js/app.js" defer></script>
+</body>
+</html>
