@@ -1,0 +1,25 @@
+/* 🧩 NGHĨA CÁC BỘ PHẬN CHỮ — mẹo nhớ tự hiện "thành phần = nghĩa" để không có bộ phận nào bị bỏ trống nghĩa. */
+window.COMP = {
+  '亻':'người (bộ nhân đứng)','氵':'nước (3 chấm thủy)','忄':'tim, lòng (tâm đứng)','扌':'tay (thủ)','讠':'lời nói (ngôn)','钅':'kim loại','饣':'ăn (thực)',
+  '纟':'sợi tơ (mịch)','礻':'cúng bái, thần (thị)','衤':'áo (y)','艹':'cỏ (thảo)','⺮':'tre (trúc)','宀':'mái nhà (miên)','冖':'cái che, khăn trùm',
+  '辶':'đi, bước đi (sước)','阝':'gò đất / thành ấp','刂':'dao (đao đứng)','灬':'lửa (4 chấm hỏa)','冫':'băng, lạnh (2 chấm)','疒':'bệnh tật (nạch)','攵':'tay cầm roi, hành động (phộc)',
+  '彡':'lông, nét vẽ (sam)','爫':'bàn tay úp (trảo)','⻊':'chân (túc)','囗':'vòng bao quanh (vi)','凵':'cái hố, khung há miệng','乂':'nhát chém chéo','彐':'đầu con heo / bàn tay (kệ)','廾':'hai tay chắp',
+  '日':'mặt trời, ngày (nhật)','月':'mặt trăng; thịt (nguyệt)','木':'cây, gỗ (mộc)','山':'núi (sơn)','田':'ruộng (điền)','力':'sức (lực)','目':'mắt (mục)','石':'đá (thạch)','土':'đất (thổ)',
+  '火':'lửa (hỏa)','水':'nước (thủy)','口':'miệng (khẩu)','心':'tim (tâm)','女':'nữ, phụ nữ','子':'con, đứa trẻ (tử)','人':'người (nhân)','大':'to, lớn (đại)','王':'vua; ngọc (vương)','玉':'ngọc (ngọc)',
+  '工':'thợ, công việc (công)','门':'cửa (môn)','贝':'vỏ sò = tiền xưa (bối)','车':'xe','马':'ngựa (mã)','鬼':'quỷ','羊':'con dê (dương)','犬':'con chó (khuyển)','豕':'con lợn (thỉ)','龙':'rồng (long)',
+  '隹':'chim đuôi ngắn (chuy)','兔':'con thỏ (thố)','舟':'thuyền (chu)','刀':'dao (đao)','弓':'cây cung (cung)','戈':'giáo mác (qua)','刃':'lưỡi dao (nhận)','寸':'tấc; bàn tay (thốn)','爪':'móng vuốt (trảo)',
+  '耳':'tai (nhĩ)','舌':'lưỡi (thiệt)','牙':'răng (nha)','页':'đầu, trang (hiệt)','皮':'da (bì)','衣':'áo (y)','食':'ăn (thực)','米':'gạo (mễ)','禾':'cây lúa (hòa)','酉':'bình rượu (dậu)','雨':'mưa (vũ)',
+  '风':'gió (phong)','云':'mây (vân)','穴':'hang, lỗ (huyệt)','户':'cửa một cánh, hộ','尸':'thân người nằm (thi)','井':'cái giếng (tỉnh)','册':'quyển sách tre (sách)','夕':'buổi tối (tịch)','色':'màu sắc (sắc)',
+  '尔':'ngươi, anh (nhĩ – cách gọi "người kia" thời xưa)','也':'cũng (dã) – ở đây chỉ để gợi âm "tā"','吕':'chuỗi phòng nối nhau (lữ)','友':'bạn (hữu)','青':'xanh; trẻ (thanh)','見':'thấy (phồn thể của 见)',
+  '乞':'xin (khất)','夭':'người nghiêng đầu; non trẻ (yêu)','申':'tia chớp; trình bày (thân)','麻':'cây gai (ma) – gợi âm "ma"','歹':'xương tàn, điều xấu (ngạt)','匕':'cái thìa (chủy)','令':'ra lệnh (lệnh)',
+  '東':'phía đông (phồn thể của 东)','化':'biến hóa (hóa)','反':'ngược lại (phản)','昏':'hoàng hôn, mờ tối (hôn)','取':'lấy (thủ)','甘':'ngọt (cam)','昔':'ngày xưa (tích)','危':'nguy hiểm (nguy)',
+  '仓':'kho (thương)','止':'dừng (chỉ)','冬':'mùa đông (đông)','畐':'đầy (phúc) – gợi âm "fú"','吴':'họ Ngô (ngô) – gợi âm "wù"','射':'bắn (xạ) – gợi âm "xiè"','亦':'cũng (diệc)','親':'thân (phồn thể của 亲)',
+  '變':'biến (phồn thể của 变)','董':'quản lý (đổng) – gợi âm "dǒng"','未':'chưa (vị)','占':'chiếm; bói (chiêm)','己':'bản thân (kỷ)','後':'sau (phồn thể của 后)','介':'ở giữa (giới)','主':'chủ (chủ)',
+  '垂':'rủ xuống (thùy)','故':'cũ, cớ (cố)','方':'vuông; phương hướng (phương)','昌':'thịnh vượng (xương)','贯':'xâu tiền (quán)','衣':'áo (y)','羊':'con dê (dương)','丁':'người, cái đinh (đinh)',
+  '巴':'mong ngóng; dính (ba) – gợi âm "bā"','奴':'nô lệ (nô)','呆':'ngây ra (ngốc)','般':'loại, kiểu (ban)','象':'con voi; hình dạng (tượng)','果':'quả (quả)','公':'chung, công (công)','每':'mỗi (mỗi)',
+  '京':'kinh đô (kinh)','艮':'cứng, dừng lại (cấn)','氐':'gốc, thấp (đê)','君':'vua, quân tử (quân)','并':'gộp lại (tịnh)','兄':'anh (huynh)','朝':'buổi sáng; triều đình (triều)','丸':'viên tròn (hoàn)',
+  '空':'trống rỗng (không)','圭':'ngọc khuê (khuê)','采':'hái (thải)','辰':'thìn; thời khắc (thần)','乔':'cao (kiều)','九':'số 9 (cửu)','十':'số 10 (thập)','一':'số 1 (nhất)','几':'cái bàn nhỏ; mấy (kỷ)',
+  '约':'hẹn, ước (ước)','白':'trắng (bạch)','中':'giữa (trung)','长':'dài (trường)','卖':'bán (mại)','上':'trên (thượng)','不':'không (bất)','古':'xưa (cổ)','包':'bao, gói (bao)','干':'khô (can)',
+  '安':'yên (an)','民':'dân (dân)','良':'tốt (lương)','才':'tài; mới (tài)','交':'giao (giao)','只':'chỉ (chỉ)','次':'lần (thứ)','半':'một nửa (bán)','亡':'mất (vong)','音':'âm thanh (âm)','咸':'mặn; đều (hàm)',
+  '买':'mua (mãi)','家':'nhà (gia)','查':'tra xét (tra)','星':'ngôi sao (tinh)','感':'cảm (cảm)','色':'màu sắc (sắc)','发':'phát; tóc (phát)','万':'vạn'
+};

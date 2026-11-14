@@ -25,16 +25,16 @@ window.COURSE = [
 <li><b>Thanh nhẹ (a)</b> – ngắn, nhẹ, không dấu.</li>
 </ul><p>Chạm vào chữ để nghe. Xem thêm biểu đồ thanh ở mục <b>拼</b> trên thanh công cụ.</p>`,
     words:[
-      ['妈','mā','mẹ','ma'],['麻','má','tê; vừng','ma'],['马','mǎ','con ngựa','mã'],['骂','mà','mắng, chửi','mạ'],
-      ['吗','ma','(trợ từ để hỏi)',''],['八','bā','số 8','bát'],['爸','bà','bố',''],
+      ['妈妈','māma','mẹ',''],['爸爸','bàba','bố',''],['马','mǎ','con ngựa','mã'],['骂','mà','mắng, chửi','mạ'],
+      ['吗','ma','(cuối câu → thành câu hỏi)',''],['八','bā','số 8','bát'],['谢谢','xièxie','cảm ơn','tạ tạ'],
       ['好','hǎo','tốt, khỏe','hảo'],['你','nǐ','bạn, anh, chị','nễ'],['我','wǒ','tôi, mình','ngã']],
     phrases:[
       ['你好！','Nǐ hǎo!','Xin chào!','Câu chào chuẩn. Bạn bè thân thì người Trung hay gọi tên luôn hoặc nói "嗨" (hāi).'],
       ['谢谢！','Xièxie!','Cảm ơn!','Chữ thứ hai đọc thanh nhẹ: xiè-xie.'],
       ['不客气。','Bú kèqi.','Không có gì.','Đời thường hay nói gọn: "没事" (méi shì) hoặc "不用谢".'],
-      ['妈妈，我饿了！','Māma, wǒ è le!','Mẹ ơi, con đói rồi!',''],
+      ['妈妈，你好吗？','Māma, nǐ hǎo ma?','Mẹ ơi, mẹ khỏe không?','Ghép 3 từ vừa học: 妈妈 + 你好 + 吗 (thêm 吗 cuối câu là thành câu hỏi).'],
       ['好的。','Hǎo de.','Được / OK.','Cực phổ biến khi đồng ý. Nhắn tin hay viết "好滴" hoặc "OK".']],
-    chars:'妈:mā:mẹ|马:mǎ:ngựa|好:hǎo:tốt|你:nǐ:bạn' },
+    chars:'妈:mā:mẹ (妈妈)|马:mǎ:ngựa|好:hǎo:tốt|你:nǐ:bạn' },
 
   { id:'p2', zh:'发音', title:'Âm khó', sub:'zh ch sh r · j q x · ü', kind:'pinyin',
     desc:'Uốn lưỡi, bật hơi và âm ü — so sánh với tiếng Việt.',
@@ -187,7 +187,7 @@ window.COURSE = [
   { id:'c1', zh:'家人', title:'Bản thân & gia đình', sub:'你是做什么的？',
     desc:'Hỏi tuổi, nghề nghiệp, quê quán — kể cả câu "có người yêu chưa".',
     words:[
-      ['家','jiā','nhà, gia đình','gia'],['爸爸','bàba','bố',''],['妈妈','māma','mẹ',''],['哥哥','gēge','anh trai','ca ca'],
+      ['家','jiā','nhà, gia đình','gia'],['父母','fùmǔ','bố mẹ','phụ mẫu'],['孩子','háizi','con, đứa trẻ',''],['哥哥','gēge','anh trai','ca ca'],
       ['姐姐','jiějie','chị gái','tỷ tỷ'],['弟弟','dìdi','em trai','đệ đệ'],['妹妹','mèimei','em gái','muội muội'],['工作','gōngzuò','công việc; làm việc','công tác'],
       ['学生','xuésheng','học sinh, sinh viên','học sinh'],['结婚','jiéhūn','kết hôn','kết hôn'],['对象','duìxiàng','người yêu, đối tượng','đối tượng'],['老家','lǎojiā','quê','lão gia']],
     phrases:[

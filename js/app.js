@@ -19,7 +19,7 @@ const go = h => { if (location.hash === h) route(); else location.hash = h; };
 /* ============ course (dựng lại mỗi khi tải thêm gói) ============ */
 const MEMO = window.MEMO = window.MEMO || {};
 const PACKS = window.PACKS || [{ id: 1, name: 'Gói 1', builtin: true }];
-let COURSE = [], LESSONS = [], ALL_W = [], ALL_P = [], ITEM = new Map(), ALL_CHARS = [];
+let COURSE = [], LESSONS = [], ALL_W = [], ALL_P = [], ITEM = new Map(), ALL_CHARS = [], SEG = new Map(), ONE = new Map();
 const packOf = st => st.pack || 1;
 function buildCourse() {
   COURSE = (window.COURSE || []).map((s, i) => ({ s, i }))
@@ -44,6 +44,9 @@ function buildCourse() {
   ITEM = new Map();
   [...ALL_W, ...ALL_P, ...LESSONS.flatMap(l => l.G), ...LESSONS.flatMap(l => l.R.map(r => r.ans)), ...LESSONS.flatMap(l => l.S)].forEach(it => { if (!ITEM.has(it.hz)) ITEM.set(it.hz, it); });
   ALL_CHARS = [];
+  SEG = new Map(); ONE = new Map();
+  LESSONS.forEach(l => l.W.forEach(w => { const k = hanOnly(w.hz).join(''); if (k && !SEG.has(k)) SEG.set(k, w); if (k.length === 1 && !ONE.has(k)) ONE.set(k, w.vi); }));
+  Object.entries(window.GLOSS || {}).forEach(([k, v]) => { if (!SEG.has(k)) SEG.set(k, { t: 'x', hz: k, py: v[0], vi: v[1], say: k }); if (k.length === 1 && !ONE.has(k)) ONE.set(k, v[1]); });
   const seen = new Set(); LESSONS.forEach(l => l.C.forEach(c => { if (!seen.has(c.c)) { seen.add(c.c); ALL_CHARS.push({ ...c, lesson: l }); } }));
 }
 buildCourse();
@@ -52,7 +55,7 @@ buildCourse();
 const KEY = 'xiaobu.v1';
 const DEF = () => ({
   v: 1, lessons: {}, srs: {}, packs: {}, xp: 0, xpDay: {}, secDay: {}, stageTests: {}, written: {}, tone: { best: 0, plays: 0 },
-  settings: { pinyin: true, hv: true, rate: 0.9, voice: '', unlockAll: false, goal: 15, zhScale: 1 },
+  settings: { pinyin: false, hv: true, rate: 0.9, voice: '', unlockAll: false, goal: 15, zhScale: 1 },
   last: null, created: Date.now()
 });
 function load() {
@@ -63,6 +66,7 @@ function load() {
   return DEF();
 }
 let S = load();
+if (!S.hzFirst) { S.hzFirst = 1; S.settings.pinyin = false; }  // v7: mặc định học bằng mặt chữ, pinyin ẩn (chạm để xem)
 let saveFail = false;
 function save() {
   try { localStorage.setItem(KEY, JSON.stringify(S)); }
@@ -280,12 +284,23 @@ const TTS = {
     t => 'https://dict.youdao.com/dictvoice?le=zh&type=2&audio=' + encodeURIComponent(t),
     t => 'https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=zh-CN&q=' + encodeURIComponent(t)
   ],
+  cache: new Map(), good: 0,
+  // tải trước âm thanh của bài đang học → bấm là phát ngay (khi máy dùng âm thanh online)
+  preload(texts) {
+    if (!this.useOnline()) return;
+    texts.slice(0, 40).forEach(x => { const t = cleanSay(x).slice(0, 180); if (!t || this.cache.has(t)) return;
+      const a = new Audio(); a.preload = 'auto'; a.src = this.srcs[this.good](t); this.cache.set(t, a); });
+  },
+  useOnline() { const m = S.settings.audio || 'auto'; return m === 'online' || (m === 'auto' && (S.audioPath === 'online' || !this.ok)); },
   async online(text, rate, el) {
     const t = cleanSay(text).slice(0, 180);
-    for (const mk of this.srcs) {
+    const order = [this.good, ...this.srcs.keys()].filter((v, i, a) => a.indexOf(v) === i);
+    for (const si of order) {
+      const mk = this.srcs[si];
       try { this.audio?.pause(); } catch (e) {}
-      const a = this.audio = new Audio();
-      a.preload = 'auto'; a.src = mk(t);
+      let a = si === this.good && this.cache.get(t);
+      if (a) { try { a.currentTime = 0; } catch (e) {} } else { a = new Audio(); a.preload = 'auto'; a.src = mk(t); }
+      this.audio = a;
       a.playbackRate = Math.max(0.5, Math.min(1.5, rate ?? S.settings.rate));
       if (el) { el.classList.add('speaking'); a.onended = () => el.classList.remove('speaking'); }
       const ok = await new Promise(res => {
@@ -293,7 +308,8 @@ const TTS = {
         a.onplaying = () => fin(true); a.onerror = () => fin(false);
         a.play().catch(() => fin(false)); setTimeout(() => fin(!a.paused && a.currentTime > 0), 4000);
       });
-      if (ok) return true;
+      if (ok) { this.good = si; this.cache.set(t, a); if (this.cache.size > 120) this.cache.delete(this.cache.keys().next().value); return true; }
+      this.cache.delete(t);
     }
     el?.classList.remove('speaking');
     return false;
@@ -303,7 +319,8 @@ const TTS = {
     $$('.speaking').forEach(e => e.classList.remove('speaking'));
     const mode = S.settings.audio || 'auto';           // auto | device | online
     const noVoice = this.ok && this.voices.length === 0 && speechSynthesis.getVoices().length > 0;
-    if (!this.ok || mode === 'online' || (mode === 'auto' && noVoice)) {
+    // máy này đã từng phải dùng âm thanh online → đi thẳng online, khỏi chờ giọng máy (đỡ trễ 1–2 giây)
+    if (!this.ok || mode === 'online' || (mode === 'auto' && (noVoice || S.audioPath === 'online'))) {
       this.online(text, rate, el).then(ok => { if (!ok) toast('🔇 Không phát được âm thanh. Kiểm tra: âm lượng, nút gạt im lặng (iPhone), kết nối mạng.', 5000); });
       return;
     }
@@ -311,15 +328,16 @@ const TTS = {
     let started = false;
     let t0 = 0;
     u.onstart = () => { started = true; t0 = Date.now(); };
+    const fallback = () => { if (mode === 'auto' && S.audioPath !== 'online') { S.audioPath = 'online'; save(); } return this.online(text, rate, el); };
     if (el) { el.classList.add('speaking'); }
     // Android: thiếu dữ liệu giọng Trung thì "đọc" xong ngay mà không ra tiếng → dùng online
-    u.onend = () => { el?.classList.remove('speaking'); if (mode === 'auto' && t0 && Date.now() - t0 < 250 && hanOnly(text).length) this.online(text, rate, el); };
-    u.onerror = e => { el?.classList.remove('speaking'); if (mode === 'auto' && e.error !== 'interrupted' && e.error !== 'canceled') this.online(text, rate, el); };
+    u.onend = () => { el?.classList.remove('speaking'); if (mode === 'auto' && t0 && Date.now() - t0 < 250 && hanOnly(text).length) fallback(); };
+    u.onerror = e => { el?.classList.remove('speaking'); if (mode === 'auto' && e.error !== 'interrupted' && e.error !== 'canceled') fallback(); };
     const go = () => { try { speechSynthesis.resume(); } catch (e) {} speechSynthesis.speak(u); };
     // Lỗi Chrome: gọi speak() ngay sau cancel() đôi khi im lặng → chỉ cancel khi đang đọc, rồi chờ một chút
     if (speechSynthesis.speaking || speechSynthesis.pending) { speechSynthesis.cancel(); setTimeout(go, 80); } else go();
     // Sau 1,5 giây vẫn chưa phát (giọng hỏng / bị chặn) → chuyển sang âm thanh online
-    if (mode === 'auto') { const tok = this.tok; setTimeout(() => { if (!started && tok === this.tok) { speechSynthesis.cancel(); this.online(text, rate, el); } }, 1500); }
+    if (mode === 'auto') { const tok = this.tok; setTimeout(() => { if (!started && tok === this.tok) { speechSynthesis.cancel(); fallback(); } }, 900); }
   },
   stop() { this.tok++; if (this.ok) speechSynthesis.cancel(); try { this.audio?.pause(); } catch (e) {} }
 };
@@ -367,25 +385,47 @@ const wordRow = w => `<div class="wrow"><button class="wrow-hz" data-say="${esc(
 function memoHtml(hz, max = 3) {
   const cs = [...new Set(hanOnly(hz))].filter(c => MEMO[c]).slice(0, max);
   if (!cs.length) return '';
-  return `<div class="memo"><b>🧠 Mẹo nhớ</b>${cs.map(c => `<div><span class="zh memo-c">${c}</span> ${esc(MEMO[c])}</div>`).join('')}</div>`;
+  const parts = c => [...new Set((MEMO[c].split('→')[0].match(/[\u2e80-\u2fdf\u31c0-\u31ef\u3400-\u9fff]/g) || []))].filter(x => x !== c)
+    .map(x => [x, (window.COMP || {})[x] || ONE.get(x)]).filter(x => x[1]);
+  return `<div class="memo"><b>🧠 Mẹo nhớ</b>${cs.map(c => `<div class="memo-i"><span class="zh memo-c">${c}</span> ${esc(MEMO[c])}${parts(c).length ? `<div class="memo-parts">${parts(c).map(([x, m]) => `<span><b class="zh">${x}</b> = ${esc(m)}</span>`).join('')}</div>` : ''}</div>`).join('')}</div>`;
+}
+// 🔍 tách câu thành từ (dài nhất trước) — mỗi từ đều có nghĩa, đánh dấu từ chưa học
+function segment(text) {
+  const out = [];
+  for (const run of String(text).split(/[^\u3400-\u9fff]+/).filter(Boolean)) {
+    let i = 0;
+    while (i < run.length) {
+      let n = Math.min(8, run.length - i), hit = null;
+      for (; n > 0; n--) { hit = SEG.get(run.substr(i, n)); if (hit) break; }
+      if (!hit) { n = 1; hit = { t: 'x', hz: run[i], py: '', vi: '', say: run[i] }; }
+      out.push(hit); i += n;
+    }
+  }
+  return out;
+}
+function wordsHtml(text, l) {
+  const seg = segment(text); if (seg.length < 2) return '';
+  const cut = l ? l.idx : Infinity;
+  return `<div class="wib">${seg.map(w => { const isNew = w.t === 'x' || !w.lesson || w.lesson.idx > cut;
+    return `<button class="wi ${isNew ? 'new' : ''}" data-say="${esc(w.hz)}"><b class="zh">${esc(w.hz)}</b><small>${esc(w.vi || '…')}</small></button>`; }).join('')}</div>`;
 }
 // 📐 khối ngữ pháp
 function gramHtml(l) {
   const g = l.gram; if (!g) return '';
   return `<details class="gram" ${lp(l.id).s[0] ? '' : 'open'}><summary>📐 Ngữ pháp: ${esc(g.t)}</summary>
     <div class="gram-body"><div class="gram-f">${esc(g.f)}</div><div class="gram-d">${g.d}</div>
-    <div class="gram-ex">${l.G.map(e => `<div class="gx"><button class="gx-zh" data-say="${esc(e.say)}">${zh(e.hz)}</button>${pyH(e.py)}<div class="gx-vi">${esc(e.vi)}</div></div>`).join('')}</div>
+    <div class="gram-ex">${l.G.map(e => `<div class="gx"><button class="gx-zh" data-say="${esc(e.say)}">${zh(e.hz)}</button>${pyH(e.py)}<div class="gx-vi">${esc(e.vi)}</div>${wordsHtml(e.hz, l)}</div>`).join('')}</div>
     <p class="muted small">Chạm câu để nghe · đọc to theo từng câu ví dụ. Bài kiểm tra cuối bài sẽ có câu sắp xếp theo mẫu này.</p></div></details>`;
 }
 // 🎬 cảnh hội thoại
-function sceneHtml(sc) {
+function sceneHtml(sc, l) {
   if (!sc) return '';
   return `<section class="scene card-pad">
     <div class="scene-head"><div><b>🎬 Cảnh: ${esc(sc.t)}</b><small class="muted">Nghe cả cảnh trước, đoán nghĩa, rồi mới xem dịch</small></div>
       <button class="btn" data-scene-play>▶ Nghe cả cảnh</button></div>
     <div class="scene-lines hide-vi">${sc.l.map((ln, i) => `<div class="sl" data-i="${i}">
       <span class="sl-who">${esc(ln[0])}</span>
-      <div class="sl-main"><button class="sl-zh" data-say="${esc(ln[1])}">${zh(ln[1])}</button>${pyH(ln[2])}<div class="sl-vi">${esc(ln[3])}</div></div></div>`).join('')}</div>
+      <div class="sl-main"><button class="sl-zh" data-say="${esc(ln[1])}">${zh(ln[1])}</button>${pyH(ln[2])}<div class="sl-vi">${esc(ln[3])}${wordsHtml(ln[1], l)}</div></div></div>`).join('')}</div>
     <button class="btn ghost small-btn" data-scene-vi>👁 Hiện nghĩa tiếng Việt</button>
   </section>`;
 }
@@ -410,6 +450,7 @@ function phraseCard(p, showLesson = false) {
     <button class="pc-zh" data-say="${esc(p.say)}">${zh(p.hz)}</button>
     ${pyH(p.py)}
     <div class="pc-vi">${esc(p.vi)}</div>
+    ${wordsHtml(p.hz, p.lesson)}
     ${p.note ? `<div class="pc-note">💬 ${esc(p.note)}</div>` : ''}
     <div class="pc-act">${sayBtns(p.say)}${micBtn(p.say)}</div>
     <div class="mic-out"></div>
@@ -669,6 +710,7 @@ function lessonView(id, stepStr) {
   if (!isUnlocked(l)) { toast('🔒 Bài này chưa mở — học xong bài trước nhé (hoặc bật "Mở khóa tất cả" trong Cài đặt).'); return go('#/'); }
   const p = lp(id), step = stepStr != null ? Math.min(4, +stepStr) : firstIncomplete(p);
   S.last = id; S.focus = l.stage.id; save();
+  TTS.preload([...l.W.map(w => w.say), ...l.P.map(x => x.say), ...l.R.map(r => r.npc.hz), ...l.S.map(x => x.say)]);
   document.body.classList.add('in-lesson');
   view().innerHTML = `<div class="lesson c-${l.stage.color}">
     <div class="lesson-top">
@@ -770,7 +812,7 @@ function stepVocab(l, box) {
 /* Step 2: câu nói thật */
 function stepPhrases(l, box) {
   box.innerHTML = `
-    ${sceneHtml(l.scene)}
+    ${sceneHtml(l.scene, l)}
     <div class="hint">💡 <b>Shadowing:</b> nghe → nói đè theo 2–3 lần mỗi câu, bắt chước cả ngữ điệu. ${SR ? 'Bấm 🎤 để app chấm phát âm (gần đúng).' : ''}</div>
     <div class="phrases">${l.P.map(p => phraseCard(p)).join('')}</div>
     ${l.R.length ? `<section class="rp card-pad"><b>🎭 Đóng vai</b><p class="muted small">Người kia nói — bạn chọn câu đáp rồi bấm 🎤 nói to câu đó. ${l.R.length} lượt.</p><div id="rpBox"><button class="btn" id="rpStart">▶ Bắt đầu đóng vai</button></div></section>` : ''}
@@ -804,14 +846,18 @@ let writers = [];
 function stepWrite(l, box) {
   const C = l.C.length ? l.C : hanOnly(l.W[0].hz).slice(0, 2).map(c => ({ c, py: '', vi: '' }));
   box.innerHTML = `
-    <div class="hint">✍️ Xem thứ tự nét, rồi bấm <b>Tập viết</b> và vẽ bằng ngón tay. Sai 2 lần app sẽ gợi ý nét.</div>
-    <div class="ctabs">${C.map((c, i) => `<button class="ctab ${i ? '' : 'active'}" data-i="${i}">${zh(c.c)}</button>`).join('')}</div>
-    <div id="wArea"></div>
-    <div class="step-actions"><button class="btn big" id="doneStep">Xong bước này ✓</button></div>`;
+    <div class="hint">✍️ Từng chữ một: xem nét chạy → tự vẽ bằng ngón tay ngay trong ô. Sai 2 lần app sẽ gợi ý nét.</div>
+    <div class="qtop"><div class="qbar"><i id="wBar"></i></div><span class="qcount" id="wCnt"></span></div>
+    <div id="wArea"></div>`;
   const area = $('#wArea', box);
-  $$('.ctab', box).forEach(b => b.onclick = () => { $$('.ctab', box).forEach(x => x.classList.remove('active')); b.classList.add('active'); renderWriter(area, C[+b.dataset.i]); });
-  renderWriter(area, C[0]);
-  $('#doneStep', box).onclick = () => { completeStep(l, 3); go(nextStepHref(l, 3)); };
+  const show = i => {
+    $('#wBar', box).style.width = (i / C.length * 100) + '%';
+    $('#wCnt', box).textContent = `${i + 1}/${C.length}`;
+    const last = i === C.length - 1;
+    const next = () => { if (last) { completeStep(l, 3); go(nextStepHref(l, 3)); } else { show(i + 1); area.scrollIntoView({ block: 'start', behavior: 'smooth' }); } };
+    renderWriter(area, C[i], { next, nextLabel: last ? 'Xong bước Viết ✓' : `Chữ tiếp: ${C[i + 1].c} →` });
+  };
+  show(0);
 }
 // Dữ liệu nét: ưu tiên file trong repo (data/strokes.json), không có thì lấy từ CDN
 const strokeCache = {};
@@ -822,14 +868,16 @@ async function loadCharData(c, onLoad, onError) {
   fetch(`https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0/${encodeURIComponent(c)}.json`)
     .then(r => { if (!r.ok) throw 0; return r.json(); }).then(onLoad).catch(onError);
 }
-function renderWriter(area, ch) {
+function renderWriter(area, ch, flow) {
   writers = [];
   area.innerHTML = `<div class="writer-wrap card-pad">
     <div class="writer-grid" id="hw"></div>
     <div class="w-info"><button class="w-big" data-say="${esc(ch.c)}">${zh(ch.c)}</button>${ch.py ? pyH(ch.py) : ''}<div class="w-vi">${esc(ch.vi || '')}</div>${memoHtml(ch.c, 1)}
       <div class="w-btns"><button class="btn ghost" id="wAnim">▶ Xem nét</button><button class="btn" id="wQuiz">✍️ Tập viết</button><button class="ibtn" data-say="${esc(ch.c)}" aria-label="Nghe">${I.vol}</button></div>
       <div id="wMsg" class="w-msg muted">${S.written[ch.c] ? `Đã viết ${S.written[ch.c]} lần` : ''}</div>
+      ${flow ? `<div class="w-next"><button class="btn big" id="wNext" hidden>${esc(flow.nextLabel)}</button><button class="linkbtn" id="wSkip">Bỏ qua chữ này</button></div>` : ''}
     </div></div>`;
+  if (flow) { $('#wNext', area).onclick = flow.next; $('#wSkip', area).onclick = flow.next; }
   const hw = $('#hw', area), msg = $('#wMsg', area);
   const size = Math.max(200, Math.min(280, (area.clientWidth || 320) - 40));
   hw.style.width = hw.style.height = size + 'px';
@@ -841,9 +889,7 @@ function renderWriter(area, ch) {
     onLoadCharDataError: () => { hw.innerHTML = `<div class="fallback-char">${zh(ch.c)}</div>`; msg.textContent = 'Không tải được nét chữ (kiểm tra mạng).'; }
   });
   writers.push(w);
-  setTimeout(() => w.animateCharacter(), 250);
-  $('#wAnim', area).onclick = () => { try { w.cancelQuiz(); } catch (e) {} w.showCharacter(); w.animateCharacter(); };
-  $('#wQuiz', area).onclick = () => {
+  const startQuiz = () => {
     msg.textContent = 'Vẽ từng nét theo đúng thứ tự…';
     w.quiz({
       onMistake: () => { msg.textContent = 'Chưa đúng nét, thử lại nhé'; },
@@ -852,9 +898,14 @@ function renderWriter(area, ch) {
         S.written[ch.c] = (S.written[ch.c] || 0) + 1; addXP(3);
         msg.innerHTML = `<b>🎉 Hoàn thành!</b> Sai ${s.totalMistakes} nét · đã viết ${S.written[ch.c]} lần`;
         TTS.speak(ch.c);
+        if (flow) { $('#wNext', area).hidden = false; $('#wSkip', area).hidden = true; }
       }
     });
   };
+  // xem nét chạy 1 lần rồi tự chuyển sang tập viết
+  setTimeout(() => { msg.textContent = '👀 Xem thứ tự nét…'; w.animateCharacter({ onComplete: () => { if (writers[0] === w) startQuiz(); } }); }, 250);
+  $('#wAnim', area).onclick = () => { try { w.cancelQuiz(); } catch (e) {} w.showCharacter(); w.animateCharacter({ onComplete: startQuiz }); };
+  $('#wQuiz', area).onclick = startQuiz;
 }
 
 /* Step 5: kiểm tra bài */
@@ -927,16 +978,16 @@ const QT = {
     const others = shuffle([...l.R, ...l.stage.lessons.flatMap(x => x.R)].map(x => x.ans).filter(a => a.hz !== r.ans.hz));
     const opts = pickOpts(r.ans, others, 3, x => x.hz);
     return { item: r.ans, auto: r.npc.hz,
-      prompt: `<div class="qlabel">🎭 Bạn đáp thế nào?</div><div class="rp-npc"><button class="qph" data-say="${esc(r.npc.hz)}">🗣 ${zh(r.npc.hz)}</button>${pyH(r.npc.py)}<div class="qvi small">${esc(r.npc.vi)}</div></div>`,
+      prompt: `<div class="qlabel">🎭 Bạn đáp thế nào?</div><div class="rp-npc"><button class="qph" data-say="${esc(r.npc.hz)}">🗣 ${zh(r.npc.hz)}</button>${pyH(r.npc.py)}<div class="qvi small">${esc(r.npc.vi)}</div>${wordsHtml(r.npc.hz, l)}</div>`,
       opts: opts.map(x => ({ html: `${zh(x.hz)}${pyH(x.py)}`, ok: x === r.ans })),
       extra: SR ? `<div class="card-pad rp-say"><span class="muted small">Giờ nói to câu đáp:</span> ${micBtn(r.ans.say)}<div class="mic-out"></div></div>` : '' };
   },
-  dict: it => { const h = hanOnly(it.hz), toks = []; for (let k = 0; k < h.length; k += 2) toks.push(h.slice(k, k + 2).join(''));
+  dict: it => { const toks = segment(it.hz).map(w => w.hz);
     return { item: it, type: 'build', toks, auto: it.say, rate: 1, sayOnAnswer: true,
       prompt: `<div class="spiral">✍️ Nghe – chép · tốc độ thật</div>` + listenPrompt(it, 'Nghe rồi xếp lại đúng câu') + `<div class="qvi small muted">Gợi ý: ${esc(it.vi)}</div>` }; },
-  build: it => { const toks = hanOnly(it.hz); return { item: it, type: 'build', toks, prompt: `<div class="qlabel">Sắp xếp thành câu đúng</div><div class="qvi">${esc(it.vi)}</div>` }; }
+  build: it => { const toks = segment(it.hz).map(w => w.hz); return { item: it, type: 'build', toks, prompt: `<div class="qlabel">Sắp xếp thành câu đúng</div><div class="qvi">${esc(it.vi)}</div>` }; }
 };
-const buildable = p => { const n = hanOnly(p.hz).length; return n >= 3 && n <= 9 && hasHan(p.hz); };
+const buildable = p => { const n = segment(p.hz).length; return n >= 3 && n <= 9 && hasHan(p.hz); };
 function compose(plan) {
   // plan: [[type, items[], pool], ...] — chọn item khác nhau cho mỗi câu
   const used = new Set(), qs = [];
@@ -950,7 +1001,7 @@ function compose(plan) {
 }
 function buildListen(l) {
   const pw = poolFor(l, 'w'), pp = poolFor(l, 'p');
-  if (l.kind === 'pinyin') return compose(Array(6).fill(0).map(() => ['lis2py', l.W, pw, canPy]));
+  if (l.kind === 'pinyin') return shuffle(compose([['lis2py', l.W, pw, canPy], ['lis2py', l.W, pw, canPy], ['lis2py', l.W, pw, canPy], ['lis2hz', l.W, pw], ['lis2hz', l.W, pw], ['lis2hz', l.W, pw]]));
   if (l.S.length >= 4) {  // 🎬 nghe thoại phim tốc độ thật
     const ps = [...shuffle(l.S), ...pp];
     const qs = compose([['lis2vi', l.S, ps], ['lis2vi', l.S, ps], ['lis2vi', l.S, ps], ['lis2hz', l.W, pw], ['lis2vi', l.W, pw]]).map(q => (q.item.t === 's' && (q.rate = 1.05), q));
@@ -964,8 +1015,8 @@ function buildTest(l) {
   const pw = poolFor(l, 'w'), pp = poolFor(l, 'p');
   const hasBuild = l.P.some(buildable);
   const plan = l.kind === 'pinyin'
-    ? [['lis2py', l.W, pw, canPy], ['lis2py', l.W, pw, canPy], ['lis2py', l.W, pw, canPy], ['lis2py', l.W, pw, canPy], ['hz2vi', l.W, pw], ['hz2vi', l.W, pw], ['hz2vi', l.W, pw], ['hz2py', l.W, pw, canPy], ['hz2py', l.W, pw, canPy], ['ph2vi', l.P, pp]]
-    : [['hz2vi', l.W, pw], ['hz2vi', l.W, pw], ['hz2vi', l.W, pw], ['vi2hz', l.W, pw, x => hasHan(x.hz)], ['vi2hz', l.W, pw, x => hasHan(x.hz)], ['lis2hz', l.W, pw, x => hasHan(x.hz)], ['hz2py', l.W, pw, canPy], ['ph2vi', l.P, pp], ['lis2vi', l.P, pp]];
+    ? [['lis2py', l.W, pw, canPy], ['lis2py', l.W, pw, canPy], ['lis2hz', l.W, pw, x => hasHan(x.hz)], ['lis2hz', l.W, pw, x => hasHan(x.hz)], ['hz2vi', l.W, pw], ['hz2vi', l.W, pw], ['vi2hz', l.W, pw, x => hasHan(x.hz)], ['vi2hz', l.W, pw, x => hasHan(x.hz)], ['ph2vi', l.P, pp]]
+    : [['hz2vi', l.W, pw], ['hz2vi', l.W, pw], ['hz2vi', l.W, pw], ['vi2hz', l.W, pw, x => hasHan(x.hz)], ['vi2hz', l.W, pw, x => hasHan(x.hz)], ['lis2hz', l.W, pw, x => hasHan(x.hz)], ['lis2hz', l.W, pw, x => hasHan(x.hz)], ['ph2vi', l.P, pp], ['lis2vi', l.P, pp]];
   const qs = shuffle(compose(plan));
   const gb = l.G.filter(buildable);
   if (gb.length) { const q = QT.build(shuffle(gb)[0]); q.prompt = `<div class="spiral gram-tag">📐 ${esc(l.gram.t)}</div>` + q.prompt; qs.push(q); }
@@ -1004,7 +1055,7 @@ function runQuiz(box, qs, { intro, onDone }) {
     const q = qs[i], fb = $('#qfb', box);
     if (ok) { sc++; addXP(2); } else { wrong.push(q); const c = S.srs[q.item.hz]; if (c) { c.due = dayNum(); c.w = (c.w || 0) + 1; save(); } }
     fb.hidden = false; fb.className = 'qfb ' + (ok ? 'ok' : 'bad');
-    fb.innerHTML = `<div class="fb-title">${ok ? '✅ Chính xác!' : '❌ Chưa đúng'}</div>${explain(q.item)}${q.item.note ? `<div class="muted small">💬 ${esc(q.item.note)}</div>` : ''}${ok ? '' : memoHtml(q.item.hz, 2)}${q.extra || ''}<button class="btn big" id="qNext">${i === qs.length - 1 ? 'Xem kết quả' : 'Tiếp →'}</button>`;
+    fb.innerHTML = `<div class="fb-title">${ok ? '✅ Chính xác!' : '❌ Chưa đúng'}</div>${explain(q.item)}${q.item.t !== 'w' ? wordsHtml(q.item.hz, q.item.lesson) : ''}${q.item.note ? `<div class="muted small">💬 ${esc(q.item.note)}</div>` : ''}${ok ? '' : memoHtml(q.item.hz, 2)}${q.extra || ''}<button class="btn big" id="qNext">${i === qs.length - 1 ? 'Xem kết quả' : 'Tiếp →'}</button>`;
     $('#qNext', box).onclick = () => { i++; render(); };
     if (!q.auto || q.sayOnAnswer || !ok) TTS.speak(q.item.say);
     fb.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -1056,7 +1107,7 @@ function stageTestView(sid) {
     const plan = [
       ...Array(4).fill(['hz2vi', W, pw]), ...Array(3).fill(['vi2hz', W, pw, x => hasHan(x.hz)]),
       ...Array(3).fill(isPy ? ['lis2py', W, pw, canPy] : ['lis2hz', W, pw, x => hasHan(x.hz)]),
-      ...Array(2).fill(['hz2py', W, pw, canPy]), ...Array(2).fill(['ph2vi', P, pp])];
+      ...Array(2).fill(['lis2vi', W, pw]), ...Array(2).fill(['ph2vi', P, pp])];
     const qs = shuffle(compose(plan));
     const b = P.filter(buildable); if (b.length) qs.push(QT.build(shuffle(b)[0]));
     runQuiz($('#stepBody'), qs, {
@@ -1153,7 +1204,7 @@ function packTestView(id) {
   const pw = [...shuffle(W), ...shuffle(ALL_W)], pp = [...shuffle(P), ...shuffle(ALL_P)];
   const run = () => {
     const plan = [...Array(6).fill(['hz2vi', W, pw]), ...Array(4).fill(['vi2hz', W, pw, x => hasHan(x.hz)]),
-      ...Array(4).fill(['lis2hz', W, pw, x => hasHan(x.hz)]), ...Array(3).fill(['hz2py', W, pw, canPy]), ...Array(3).fill(['ph2vi', P, pp])];
+      ...Array(4).fill(['lis2hz', W, pw, x => hasHan(x.hz)]), ...Array(3).fill(['vi2hz', W, pw, x => hasHan(x.hz)]), ...Array(3).fill(['ph2vi', P, pp])];
     const qs = shuffle(compose(plan));
     runQuiz($('#stepBody'), qs, {
       intro: `📝 Kiểm tra <b>${esc(pk.name)}</b> — ${qs.length} câu lấy ngẫu nhiên từ cả gói. Đạt ≥ 80% là mở được gói tiếp theo.`,
@@ -1354,7 +1405,7 @@ function settingsView() {
     log(ok ? ' → phát được ✅ (nếu vẫn không nghe: tăng âm lượng media)' : ' → KHÔNG phát được ❌ (kiểm tra mạng)');
     log('Chụp màn hình phần này gửi cho người hỗ trợ nếu vẫn lỗi.');
   };
-  $('#audioMode').onchange = e => { s.audio = e.target.value; save(); TTS.speak('你好'); };
+  $('#audioMode').onchange = e => { s.audio = e.target.value; delete S.audioPath; save(); TTS.speak('你好'); };
   $('#rate').oninput = e => { s.rate = +e.target.value; $('#rateV').textContent = s.rate.toFixed(2) + '×'; save(); };
   $('#tPy').onchange = e => { s.pinyin = e.target.checked; save(); applySettings(); };
   $('#tHv').onchange = e => { s.hv = e.target.checked; save(); applySettings(); };

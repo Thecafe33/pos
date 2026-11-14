@@ -624,3 +624,18 @@ input[type=time]{font-size:18px;padding:10px 14px;border-radius:14px;border:1.5p
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 .rp{margin-top:14px}.rp-npc{background:var(--soft,#f3f0ff);border-radius:14px;padding:10px 12px;margin-top:6px}.rp-say{margin-top:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}.rp .opt .py,.qopts .opt [data-py]{font-size:.8em}
+/* v7 — Hán tự trước, giãn nút, từ trong câu */
+.fc-actions,.pc-act,.w-btns{gap:16px!important;margin-top:14px}
+.fc-actions .ibtn,.pc-act .ibtn,.w-btns .ibtn{width:48px;height:48px}
+.qopts{gap:12px}.btn-row{gap:12px;flex-wrap:wrap}
+.fc-nav{gap:14px;margin-top:16px}
+.wib{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.wi{border:1px solid #e6e6ec;background:#fafafb;border-radius:10px;padding:5px 9px;display:flex;flex-direction:column;align-items:center;cursor:pointer;min-width:44px;font:inherit;color:inherit}
+.wi b{font-size:1.15em;font-weight:500}.wi small{font-size:.72em;color:#6b6b75;line-height:1.2;max-width:110px;text-align:center}
+.wi.new{border-color:#f0b24a;background:#fff7e8}.wi.new small::before{content:'mới · ';color:#c47a00;font-weight:600}
+.memo-i{margin-top:6px}.memo-parts{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:4px;font-size:.85em;color:#555}
+.memo-parts b{font-size:1.15em;color:#8e5bd6;margin-right:2px}
+.w-next{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:16px}
+.linkbtn{background:none;border:0;color:#8a8a93;text-decoration:underline;font:inherit;font-size:.9em;padding:8px;cursor:pointer}
+.step-actions{margin-top:28px}
+[hidden]{display:none!important}

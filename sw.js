@@ -2,8 +2,8 @@
    - Mã nguồn (html/js/css): lấy bản mới từ mạng trước, mạng chậm/mất thì dùng bản đã lưu.
    - Dữ liệu nặng (font, nét chữ, gói bài, icon): dùng bản đã lưu ngay, cập nhật ngầm.
    Khi sửa app, tăng số VERSION để xóa bộ nhớ đệm cũ. */
-const VERSION = 'xiaobu-v6';
-const CORE = ['./', 'index.html', 'css/style.css', 'js/packs.js', 'js/data.js', 'js/data-phim.js', 'js/memo.js', 'js/app.js',
+const VERSION = 'xiaobu-v7';
+const CORE = ['./', 'index.html', 'css/style.css', 'js/packs.js', 'js/data.js', 'js/data-phim.js', 'js/memo.js', 'js/comp.js', 'js/gloss.js', 'js/app.js',
   'js/vendor/hanzi-writer.min.js', 'manifest.webmanifest', 'icons/icon-192.png'];
 
 self.addEventListener('install', e => {

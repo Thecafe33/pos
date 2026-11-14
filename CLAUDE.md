@@ -22,6 +22,14 @@ Repo này chỉ chứa app học tiếng Trung (app POS cũ đã xóa theo yêu 
 - Stage gói mới: `{ id, pack:N, zh, name, short, color, track:'main', requires:'stage trước', lessons:[…] }`, file gói `window.COURSE.push(...)` + `Object.assign(window.MEMO, {...})` cho mẹo nhớ chữ.
 - **Không trùng từ** giữa các bài/gói (kiểm tra bằng script node trước khi chốt). Pinyin có dấu, ghi biến điệu thực tế của 不/一. Hán Việt chỉ ghi khi chắc chắn.
 - Dữ liệu nét chữ: `data/strokes.json` (gói 1), `data/strokes-2.json` (gói 2), `strokes-3.json`, `strokes-4.json` — tạo từ npm `hanzi-writer-data`, chỉ chứa chữ chưa có ở file trước.
-- **Mỗi lần sửa code phải tăng `VERSION` trong `sw.js`** (hiện `xiaobu-v6`).
+- **Mỗi lần sửa code phải tăng `VERSION` trong `sw.js`** (hiện `xiaobu-v7`).
 - Thiết kế chống quên: buổi học = ôn thẻ cũ trước rồi bài mới; học 4 từ → kiểm tra ngay; mẹo nhớ chữ; ôn xen kẽ bài cũ trong bài kiểm tra; "Từ hay quên".
 - Kiểm thử bằng Playwright + Chrome ở cỡ 390×844 (mobile) và 1440×1000.
+
+## Góp ý người dùng (v7) — giữ nguyên các nguyên tắc này
+- **Hán tự trước, pinyin sau**: pinyin mặc định ẩn (chạm để xem); bài thường không hỏi "chọn pinyin". Người dùng muốn nhớ mặt chữ, phản xạ bằng chữ Hán.
+- **Không để chữ nào "lạ không nghĩa"**: mọi câu có "🔍 Từ trong câu" (segment() dùng từ các bài + `js/gloss.js`), từ chưa học gắn nhãn "mới". Thêm câu mới → chạy script tách từ, bổ sung gloss nếu thiếu.
+- **Mẹo nhớ phải có nghĩa từng bộ phận**: memoHtml tự hiện "bộ phận = nghĩa" từ `js/comp.js` (+ từ 1 chữ). Mẹo mới dùng bộ phận lạ → thêm vào comp.js.
+- Dạy từ đúng dạng dùng trong câu (dạy 妈妈 chứ không dạy 妈 rồi bắt ghép 妈+妈). Câu ghép (build) xếp theo **từ**, không theo chữ.
+- Bước Viết đi tuần tự từng chữ (xem nét → tự viết → "Chữ tiếp"), không có nút "xong" dễ bấm nhầm.
+- Âm thanh: máy nào phải dùng online thì nhớ lại (`S.audioPath`) và tải trước âm thanh của bài.

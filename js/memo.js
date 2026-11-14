@@ -15,7 +15,7 @@ window.MEMO = {
   '吗':'口 (miệng) + 马 (âm "ma") → từ để hỏi "ma".',
   '骂':'Hai cái 口 trên con 马 → hai miệng la hét → mắng.',
   '码':'石 (đá) + 马 (âm "mǎ") → mã số (密码 = mật mã).',
-  '你':'亻(người) + 尔 → "người kia" → bạn.',
+  '你':'亻(người) + 尔 (ngươi – cách gọi người đối diện thời xưa) → người đang đứng trước mặt mình → bạn.',
   '他':'亻(người) + 也 → anh ấy. Thay 亻 bằng 女 → 她 (cô ấy).',
   '她':'女 (nữ) + 也 → cô ấy.',
   '们':'亻(người) + 门 (âm "mén") → số nhiều: 我们, 你们.',
