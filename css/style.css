@@ -639,3 +639,15 @@ input[type=time]{font-size:18px;padding:10px 14px;border-radius:14px;border:1.5p
 .linkbtn{background:none;border:0;color:#8a8a93;text-decoration:underline;font:inherit;font-size:.9em;padding:8px;cursor:pointer}
 .step-actions{margin-top:28px}
 [hidden]{display:none!important}
+/* v9 — họ hàng chữ, mẹo của tôi, sổ câu phim */
+.fam{margin-top:12px;text-align:left;font-size:.88em;background:rgba(255,255,255,.6);border-radius:12px;padding:8px 10px}
+.fam-r{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:6px}
+.fam-r>b{font-size:1.2em;color:#8e5bd6}.wi.known{border-color:#9fdf9c;background:#effaee}
+.memo-my{background:#fff7e0;border-radius:8px;padding:6px 8px;margin-bottom:4px}
+.memo-edit{background:none;border:0;color:#8e5bd6;font:inherit;font-size:.82em;padding:6px 4px;cursor:pointer;display:block;margin-top:2px}
+.memo-form{margin-top:8px;display:flex;flex-direction:column;gap:8px}
+.memo-form textarea,.mine-form textarea,.mine-form input{width:100%;box-sizing:border-box;border:1px solid #ddd;border-radius:10px;padding:10px;font:inherit;font-size:16px}
+.mine-form textarea{font-family:"Noto Sans SC",sans-serif;font-size:20px}
+.mine-form{display:flex;flex-direction:column;gap:12px}
+.mine-form .field{display:flex;flex-direction:column;gap:6px;font-weight:600;font-size:.9em}
+.memo-empty{padding:6px 10px}

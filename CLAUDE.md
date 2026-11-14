@@ -22,7 +22,7 @@ Repo này chỉ chứa app học tiếng Trung (app POS cũ đã xóa theo yêu 
 - Stage gói mới: `{ id, pack:N, zh, name, short, color, track:'main', requires:'stage trước', lessons:[…] }`, file gói `window.COURSE.push(...)` + `Object.assign(window.MEMO, {...})` cho mẹo nhớ chữ.
 - **Không trùng từ** giữa các bài/gói (kiểm tra bằng script node trước khi chốt). Pinyin có dấu, ghi biến điệu thực tế của 不/一. Hán Việt chỉ ghi khi chắc chắn.
 - Dữ liệu nét chữ: `data/strokes.json` (gói 1), `data/strokes-2.json` (gói 2), `strokes-3.json`, `strokes-4.json` — tạo từ npm `hanzi-writer-data`, chỉ chứa chữ chưa có ở file trước.
-- **Mỗi lần sửa code phải tăng `VERSION` trong `sw.js`** (hiện `xiaobu-v8`).
+- **Mỗi lần sửa code phải tăng `VERSION` trong `sw.js`** (hiện `xiaobu-v9`).
 - Thiết kế chống quên: buổi học = ôn thẻ cũ trước rồi bài mới; học 4 từ → kiểm tra ngay; mẹo nhớ chữ; ôn xen kẽ bài cũ trong bài kiểm tra; "Từ hay quên".
 - Kiểm thử bằng Playwright + Chrome ở cỡ 390×844 (mobile) và 1440×1000.
 
@@ -34,3 +34,4 @@ Repo này chỉ chứa app học tiếng Trung (app POS cũ đã xóa theo yêu 
 - Bước Viết đi tuần tự từng chữ (xem nét → tự viết → "Chữ tiếp"), không có nút "xong" dễ bấm nhầm.
 - Âm thanh: máy nào phải dùng online thì nhớ lại (`S.audioPath`) và tải trước âm thanh của bài.
 - v8: đã chạy rà toàn bộ (script /tmp/fixall.js-kiểu): từ xuất hiện trong câu mà chưa dạy → dời từ bài sau lên bài dùng đầu tiên (không dời từ khóa ngữ pháp) hoặc thêm từ gloss; số "từ mới" chưa dạy trong câu giảm 1673 → ~290 (mỗi bài tối đa 18 từ). chars (bước Viết) luôn lấy từ chữ có trong words của bài. Sửa nội dung xong phải tạo lại data/strokes*.json.
+- v9 (từ mẹo trên mạng): **📒 Sổ câu phim** `#/mine` (S.mine: câu người dùng dán từ phim → tách từ, vào SRS, item t:'m', lesson MINE_L); **🧬 Họ hàng của chữ** familyHtml() (CHW: chữ → các từ chứa nó) trên thẻ từ, bước Viết, thẻ ôn; **⭐ Mẹo của tôi** (S.myMemo, nút ✏️ trong khối mẹo). Chưa làm: câu hỏi đoán chữ qua phần gợi âm (cần dữ liệu thanh phù).

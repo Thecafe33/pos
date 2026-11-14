@@ -19,7 +19,7 @@ const go = h => { if (location.hash === h) route(); else location.hash = h; };
 /* ============ course (dựng lại mỗi khi tải thêm gói) ============ */
 const MEMO = window.MEMO = window.MEMO || {};
 const PACKS = window.PACKS || [{ id: 1, name: 'Gói 1', builtin: true }];
-let COURSE = [], LESSONS = [], ALL_W = [], ALL_P = [], ITEM = new Map(), ALL_CHARS = [], SEG = new Map(), ONE = new Map();
+let COURSE = [], LESSONS = [], ALL_W = [], ALL_P = [], ITEM = new Map(), ALL_CHARS = [], SEG = new Map(), ONE = new Map(), CHW = new Map();
 const packOf = st => st.pack || 1;
 function buildCourse() {
   COURSE = (window.COURSE || []).map((s, i) => ({ s, i }))
@@ -44,11 +44,16 @@ function buildCourse() {
   ITEM = new Map();
   [...ALL_W, ...ALL_P, ...LESSONS.flatMap(l => l.G), ...LESSONS.flatMap(l => l.R.map(r => r.ans)), ...LESSONS.flatMap(l => l.S)].forEach(it => { if (!ITEM.has(it.hz)) ITEM.set(it.hz, it); });
   ALL_CHARS = [];
-  SEG = new Map(); ONE = new Map();
+  SEG = new Map(); ONE = new Map(); CHW = new Map();
+  LESSONS.forEach(l => l.W.forEach(w => { for (const c of new Set(hanOnly(w.hz))) { if (!CHW.has(c)) CHW.set(c, []); CHW.get(c).push(w); } }));
   LESSONS.forEach(l => l.W.forEach(w => { const k = hanOnly(w.hz).join(''); if (k && !SEG.has(k)) SEG.set(k, w); if (k.length === 1 && !ONE.has(k)) ONE.set(k, w.vi); }));
   Object.entries(window.GLOSS || {}).forEach(([k, v]) => { if (!SEG.has(k)) SEG.set(k, { t: 'x', hz: k, py: v[0], vi: v[1], say: k }); if (k.length === 1 && !ONE.has(k)) ONE.set(k, v[1]); });
+  mineItems().forEach(it => { if (!ITEM.has(it.hz)) ITEM.set(it.hz, it); });
   const seen = new Set(); LESSONS.forEach(l => l.C.forEach(c => { if (!seen.has(c.c)) { seen.add(c.c); ALL_CHARS.push({ ...c, lesson: l }); } }));
 }
+const MINE_L = { id: 'mine', title: 'Sổ câu phim', idx: 1e9, stage: { color: 'peach', lessons: [] } };
+const rawMine = () => { let m = []; try { m = S.mine || []; } catch (e) { /* S chưa tải */ } return m; };
+const mineItems = () => rawMine().map(m => ({ t: 'm', hz: m.hz, py: segment(m.hz).map(w => w.py).filter(Boolean).join(' '), vi: m.vi || '(chưa ghi nghĩa)', note: m.note ? '🎬 ' + m.note : '', say: m.hz, lesson: MINE_L }));
 buildCourse();
 
 /* ============ state (localStorage) ============ */
@@ -66,6 +71,7 @@ function load() {
   return DEF();
 }
 let S = load();
+buildCourse();  // nạp thêm câu trong Sổ câu phim (cần S)
 if (!S.hzFirst) { S.hzFirst = 1; S.settings.pinyin = false; }  // v7: mặc định học bằng mặt chữ, pinyin ẩn (chạm để xem)
 let saveFail = false;
 function save() {
@@ -383,11 +389,24 @@ const micBtn = say => SR ? `<button class="ibtn mic" data-mic="${esc(say)}" aria
 const wordRow = w => `<div class="wrow"><button class="wrow-hz" data-say="${esc(w.say)}">${zh(w.hz)}</button><div class="wrow-info">${pyH(w.py)}<div class="wrow-vi">${esc(w.vi)}${w.hv ? ` <span class="hv-inline">${esc(w.hv)}</span>` : ''}</div></div><button class="ibtn" data-say="${esc(w.say)}" aria-label="Nghe">${I.vol}</button></div>`;
 // 🧠 mẹo nhớ cho từng chữ trong từ (nếu có)
 function memoHtml(hz, max = 3) {
-  const cs = [...new Set(hanOnly(hz))].filter(c => MEMO[c]).slice(0, max);
-  if (!cs.length) return '';
-  const parts = c => [...new Set((MEMO[c].split('→')[0].match(/[\u2e80-\u2fdf\u31c0-\u31ef\u3400-\u9fff]/g) || []))].filter(x => x !== c)
+  const my = S.myMemo || {};
+  const all = [...new Set(hanOnly(hz))];
+  const cs = all.filter(c => MEMO[c] || my[c]).slice(0, max);
+  if (!cs.length) return all.length ? `<div class="memo memo-empty"><button class="linkbtn" data-memo-edit="${all[0]}">✏️ Tự đặt mẹo nhớ cho ${all[0]}</button></div>` : '';
+  const parts = c => [...new Set(((MEMO[c] || '').split('→')[0].match(/[\u2e80-\u2fdf\u31c0-\u31ef\u3400-\u9fff]/g) || []))].filter(x => x !== c)
     .map(x => [x, (window.COMP || {})[x] || ONE.get(x)]).filter(x => x[1]);
-  return `<div class="memo"><b>🧠 Mẹo nhớ</b>${cs.map(c => `<div class="memo-i"><span class="zh memo-c">${c}</span> ${esc(MEMO[c])}${parts(c).length ? `<div class="memo-parts">${parts(c).map(([x, m]) => `<span><b class="zh">${x}</b> = ${esc(m)}</span>`).join('')}</div>` : ''}</div>`).join('')}</div>`;
+  return `<div class="memo"><b>🧠 Mẹo nhớ</b>${cs.map(c => `<div class="memo-i">${my[c] ? `<div class="memo-my"><span class="zh memo-c">${c}</span> ⭐ <b>Mẹo của tôi:</b> ${esc(my[c])}</div>` : ''}${MEMO[c] ? `<span class="zh memo-c">${c}</span> ${esc(MEMO[c])}` : ''}<button class="memo-edit" data-memo-edit="${c}" aria-label="Sửa mẹo của tôi">✏️ ${my[c] ? 'Sửa' : 'Mẹo của tôi'}</button>${MEMO[c] && parts(c).length ? `<div class="memo-parts">${parts(c).map(([x, m]) => `<span><b class="zh">${x}</b> = ${esc(m)}</span>`).join('')}</div>` : ''}</div>`).join('')}</div>`;
+}
+// 🧬 "Chữ X còn có trong…" — gặp một chữ trong nhiều từ để nhớ theo họ hàng
+function familyHtml(hz, max = 2) {
+  const rows = [...new Set(hanOnly(hz))].slice(0, max).map(c => {
+    const ws = (CHW.get(c) || []).filter(w => w.hz !== hz);
+    if (!ws.length) return '';
+    const known = ws.filter(w => S.srs[w.hz]), rest = ws.filter(w => !S.srs[w.hz]);
+    const pick = [...known, ...rest].slice(0, 6);
+    return `<div class="fam-r"><b class="zh">${c}</b> còn có trong: ${pick.map(w => `<button class="wi ${S.srs[w.hz] ? 'known' : ''}" data-say="${esc(w.say)}"><b class="zh">${esc(w.hz)}</b><small>${esc(w.vi)}</small></button>`).join('')}</div>`;
+  }).filter(Boolean);
+  return rows.length ? `<div class="fam"><b>🧬 Họ hàng của chữ</b>${rows.join('')}</div>` : '';
 }
 // 🔍 tách câu thành từ (dài nhất trước) — mỗi từ đều có nghĩa, đánh dấu từ chưa học
 function segment(text) {
@@ -464,6 +483,17 @@ document.addEventListener('click', e => {
   const t = e.target;
   const mic = t.closest('[data-mic]');
   if (mic) { listenAndScore(mic.dataset.mic, mic, mic.closest('.pcard, .fc-card, .card-pad')?.querySelector('.mic-out')); return; }
+  const me = t.closest('[data-memo-edit]');
+  if (me) {
+    const c = me.dataset.memoEdit, box = me.closest('.memo'), my = S.myMemo || (S.myMemo = {});
+    const f = document.createElement('div'); f.className = 'memo-form';
+    f.innerHTML = `<label class="small">Mẹo của riêng bạn cho <b class="zh">${c}</b> — càng buồn cười, càng có hình ảnh càng dễ nhớ:</label><textarea rows="2" maxlength="200" placeholder="VD: 骂 = hai cái miệng trên con ngựa đang la mắng">${esc(my[c] || '')}</textarea><div class="btn-row"><button class="btn small-btn" data-ok>Lưu</button>${my[c] ? '<button class="btn ghost small-btn" data-del>Xóa</button>' : ''}</div>`;
+    me.replaceWith(f); f.querySelector('textarea').focus();
+    const done = () => { const tmp = document.createElement('div'); tmp.innerHTML = memoHtml(c, 1); box.replaceWith(tmp.firstElementChild || tmp); };
+    f.querySelector('[data-ok]').onclick = () => { const v = f.querySelector('textarea').value.trim(); if (v) my[c] = v; else delete my[c]; save(); toast('⭐ Đã lưu mẹo của bạn'); done(); };
+    const d = f.querySelector('[data-del]'); if (d) d.onclick = () => { delete my[c]; save(); done(); };
+    return;
+  }
   const say = t.closest('[data-say]');
   if (say) { e.preventDefault(); TTS.speak(say.dataset.say, { rate: say.dataset.slow ? Math.max(0.45, S.settings.rate * 0.62) : undefined, el: say }); }
   const py = t.closest('[data-py]');
@@ -503,6 +533,7 @@ function buildChrome() {
     <button class="d c-pink zh" data-go="#/pinyin" aria-label="Pinyin & thanh điệu">拼</button>
     <button class="d c-yellow zh" data-go="#/write" aria-label="Tập viết chữ Hán">汉</button>
     <button class="d c-green" data-go="#/phrases" aria-label="Sổ tay câu nói">${I.doc}</button>
+    <button class="d c-peach" data-go="#/mine" aria-label="Sổ câu phim của tôi">📒</button>
     <button class="d c-lilac" data-go="#/settings" aria-label="Giọng đọc & cài đặt">${I.vol}</button>
     <span class="sep"></span>
     <button class="d c-dark" data-act="continue" aria-label="Bắt đầu buổi học hôm nay">${I.play}</button>`;
@@ -544,7 +575,7 @@ const ROUTES = [
   [/^#?\/?$/, homeView], [/^#\/path$/, pathView], [/^#\/lesson\/(\w+)(?:\/(\d))?$/, lessonView],
   [/^#\/review$/, reviewView], [/^#\/pinyin$/, pinyinView], [/^#\/write$/, writeView],
   [/^#\/phrases$/, phrasesView], [/^#\/search$/, searchView], [/^#\/settings(?:\/remind)?$/, settingsView], [/^#\/test\/(\w+)$/, stageTestView],
-  [/^#\/session$/, sessionView], [/^#\/packtest\/(\d+)$/, packTestView]
+  [/^#\/session$/, sessionView], [/^#\/mine$/, mineView], [/^#\/packtest\/(\d+)$/, packTestView]
 ];
 function route() {
   const h = location.hash || '#/';
@@ -767,6 +798,7 @@ function stepVocab(l, box) {
         <div class="fc-actions">${sayBtns(w.say)}${micBtn(w.say)}</div>
         <div class="mic-out"></div>
         ${memoHtml(w.hz)}
+        ${familyHtml(w.hz)}
         <div class="fc-tip muted">Chạm chữ để nghe · đọc to theo 2 lần</div>
       </div>`;
       $('#cnt', area).textContent = `Nhóm ${k + 1}/${chunks.length} · ${i + 1}/${words.length}`;
@@ -872,7 +904,7 @@ function renderWriter(area, ch, flow) {
   writers = [];
   area.innerHTML = `<div class="writer-wrap card-pad">
     <div class="writer-grid" id="hw"></div>
-    <div class="w-info"><button class="w-big" data-say="${esc(ch.c)}">${zh(ch.c)}</button>${ch.py ? pyH(ch.py) : ''}<div class="w-vi">${esc(ch.vi || '')}</div>${memoHtml(ch.c, 1)}
+    <div class="w-info"><button class="w-big" data-say="${esc(ch.c)}">${zh(ch.c)}</button>${ch.py ? pyH(ch.py) : ''}<div class="w-vi">${esc(ch.vi || '')}</div>${memoHtml(ch.c, 1)}${familyHtml(ch.c, 1)}
       <div class="w-btns"><button class="btn ghost" id="wAnim">▶ Xem nét</button><button class="btn" id="wQuiz">✍️ Tập viết</button><button class="ibtn" data-say="${esc(ch.c)}" aria-label="Nghe">${I.vol}</button></div>
       <div id="wMsg" class="w-msg muted">${S.written[ch.c] ? `Đã viết ${S.written[ch.c]} lần` : ''}</div>
       ${flow ? `<div class="w-next"><button class="btn big" id="wNext" hidden>${esc(flow.nextLabel)}</button><button class="linkbtn" id="wSkip">Bỏ qua chữ này</button></div>` : ''}
@@ -1132,6 +1164,35 @@ function stageTestView(sid) {
 
 /* ============ REVIEW (SRS) ============ */
 let reviewMode = 'see';
+/* ============ 📒 SỔ CÂU PHIM (sentence mining) ============ */
+function mineView() {
+  S.mine = S.mine || [];
+  const list = mineItems().slice().reverse();
+  view().innerHTML = `<div class="page">
+    <div class="page-head"><a class="back" href="#/">${I.back}</a><h1>📒 Sổ câu phim</h1></div>
+    <p class="muted">Nghe câu nào hay trong phim, Douyin, phim ngắn → dán vào đây. App tách từng từ kèm nghĩa, đọc to, rồi đưa vào <b>Ôn tập</b> hằng ngày. Học từ câu mình thích nhớ lâu hơn học từ lẻ.</p>
+    <div class="card-pad mine-form">
+      <label class="field">Câu tiếng Trung (chép từ phụ đề)<textarea id="mHz" rows="2" placeholder="VD: 你给我等着！"></textarea></label>
+      <div id="mPrev"></div>
+      <label class="field">Nghĩa tiếng Việt (lấy từ phụ đề Việt)<input id="mVi" placeholder="VD: Mày cứ đợi đấy!"></label>
+      <label class="field">Phim / tập (không bắt buộc)<input id="mNote" placeholder="VD: Trường Nguyệt Tẫn Minh · tập 5"></label>
+      <button class="btn big" id="mSave">＋ Lưu câu & thêm vào ôn tập</button>
+    </div>
+    <h3 class="sec">Câu đã lưu (${list.length})</h3>
+    <div class="phrases">${list.length ? list.map(it => `<div class="pcard"><button class="pc-zh" data-say="${esc(it.say)}">${zh(it.hz)}</button>${pyH(it.py)}<div class="pc-vi">${esc(it.vi)}</div>${wordsHtml(it.hz, null)}${it.note ? `<div class="pc-note">${esc(it.note)}</div>` : ''}<div class="pc-act">${sayBtns(it.say)}${micBtn(it.say)}<button class="ibtn" data-del="${esc(it.hz)}" aria-label="Xóa">🗑</button></div><div class="mic-out"></div></div>`).join('') : '<p class="muted">Chưa có câu nào. Thử lưu câu thoại đầu tiên bạn thích nhé!</p>'}</div>
+  </div>`;
+  const hz = $('#mHz'), prev = $('#mPrev');
+  hz.oninput = () => { const t = hz.value.trim(); prev.innerHTML = hasHan(t) ? `<div class="muted small">App hiểu câu này như sau (ô vàng = từ bạn chưa học trong app):</div>${wordsHtml(t, { idx: -1 }) || segment(t).map(w => `<span class="wi"><b class="zh">${esc(w.hz)}</b><small>${esc(w.vi || '…')}</small></span>`).join('')}<button class="linkbtn" data-say="${esc(t)}">🔊 Nghe thử</button>` : ''; };
+  $('#mSave').onclick = () => {
+    const t = hz.value.trim();
+    if (!hasHan(t)) return toast('Dán câu có chữ Hán vào nhé');
+    if (S.mine.some(m => m.hz === t)) return toast('Câu này đã có trong sổ rồi');
+    S.mine.push({ hz: t, vi: $('#mVi').value.trim(), note: $('#mNote').value.trim(), at: Date.now() });
+    buildCourse(); srsAdd([ITEM.get(t)]); save(); addXP(2);
+    toast('📒 Đã lưu — câu sẽ xuất hiện trong Ôn tập'); mineView();
+  };
+  $$('[data-del]').forEach(b => b.onclick = () => { const k = b.dataset.del; S.mine = S.mine.filter(m => m.hz !== k); delete S.srs[k]; save(); buildCourse(); mineView(); });
+}
 function reviewView() {
   const due = dueItems(), learned = learnedItems();
   const modes = [['see', 'Nhìn chữ'], ['listen', 'Nghe'], ['vi', 'Việt → Trung']];
@@ -1173,7 +1234,7 @@ function runCards(box, items, practice, onFinish) {
     box.innerHTML = `<div class="rc">
       <div class="qtop"><div class="qbar"><i style="width:${done / total * 100}%"></i></div><span class="qcount">${done}/${total}</span></div>
       <div class="rc-card c-${it.lesson.stage.color}">${front}
-        <div class="rc-back" hidden>${reviewMode !== 'see' ? `<button class="rc-hz sm" data-say="${esc(it.say)}">${zh(it.hz)}</button>` : ''}${pyH(it.py)}${hvH(it.hv)}<div class="rc-vi2">${esc(it.vi)}</div>${it.note ? `<div class="muted small">💬 ${esc(it.note)}</div>` : ''}${memoHtml(it.hz, 2)}</div>
+        <div class="rc-back" hidden>${reviewMode !== 'see' ? `<button class="rc-hz sm" data-say="${esc(it.say)}">${zh(it.hz)}</button>` : ''}${pyH(it.py)}${hvH(it.hv)}<div class="rc-vi2">${esc(it.vi)}</div>${it.note ? `<div class="muted small">💬 ${esc(it.note)}</div>` : ''}${it.t === 'w' ? '' : wordsHtml(it.hz, it.lesson)}${memoHtml(it.hz, 2)}${it.t === 'w' ? familyHtml(it.hz, 1) : ''}</div>
       </div>
       <div class="rc-btns" id="rcBtns"><button class="btn big" id="reveal">Lật thẻ</button></div>
     </div>`;
