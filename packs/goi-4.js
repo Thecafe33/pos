@@ -10,7 +10,11 @@ window.COURSE.push(
   lessons:[
   { id:'h11', zh:'渡劫', title:'Độ kiếp', sub:'雷劫 · 飞升 · 灰飞烟灭',
     desc:'Cảnh sư phụ độ thiên lôi kiếp để phi thăng.',
-    words:[['雷劫','léijié','lôi kiếp','lôi kiếp'],['天雷','tiānléi','thiên lôi','thiên lôi'],['护法','hùfǎ','hộ pháp','hộ pháp'],['撑住','chēngzhù','chống đỡ, gắng lên',''],['灰飞烟灭','huīfēi yānmiè','tan thành tro bụi','hôi phi yên diệt'],['道心','dàoxīn','đạo tâm','đạo tâm'],['九死一生','jiǔ sǐ yì shēng','thập tử nhất sinh','cửu tử nhất sinh'],['成败','chéngbài','thành bại','thành bại'],['在此一举','zài cǐ yì jǔ','ở lần này','tại thử nhất cử'],['退后','tuìhòu','lùi lại',''],['为师','wéi shī','ta (thầy tự xưng)','vi sư']],
+    words:[
+      ['雷劫','léijié','lôi kiếp','lôi kiếp'],['天雷','tiānléi','thiên lôi','thiên lôi'],['护法','hùfǎ','hộ pháp','hộ pháp'],['撑住','chēngzhù','chống đỡ, gắng lên',''],
+      ['灰飞烟灭','huīfēi yānmiè','tan thành tro bụi','hôi phi yên diệt'],['道心','dàoxīn','đạo tâm','đạo tâm'],['九死一生','jiǔ sǐ yì shēng','thập tử nhất sinh','cửu tử nhất sinh'],['成败','chéngbài','thành bại','thành bại'],
+      ['在此一举','zài cǐ yì jǔ','ở lần này','tại thử nhất cử'],['退后','tuìhòu','lùi lại',''],['为师','wéi shī','ta (thầy tự xưng)','vi sư'],['稳','wěn','vững',''],
+      ['心魔','xīnmó','tâm ma','tâm ma']],
     phrases:[['成败在此一举！','Chéngbài zài cǐ yì jǔ!','Thành bại là ở lần này!',''],
       ['师父，您一定要撑住啊！','Shīfu, nín yídìng yào chēngzhù a!','Sư phụ, người nhất định phải gắng lên!',''],
       ['稳住道心，莫被心魔所扰。','Wěnzhù dàoxīn, mò bèi xīnmó suǒ rǎo.','Giữ vững đạo tâm, đừng để tâm ma quấy nhiễu.','"莫" = đừng (văn cổ).']],
@@ -25,7 +29,10 @@ window.COURSE.push(
 
   { id:'h12', zh:'天道', title:'Thiên đạo & số mệnh', sub:'逆天 · 命数 · 违背',
     desc:'Nhân vật chống lại "thiên mệnh" — đề tài muôn thuở của tiên hiệp.',
-    words:[['逆天','nìtiān','nghịch thiên','nghịch thiên'],['改命','gǎimìng','đổi mệnh','cải mệnh'],['命数','mìngshù','số mệnh','mệnh số'],['注定','zhùdìng','định sẵn','chú định'],['违背','wéibèi','làm trái','vi bội'],['天谴','tiānqiǎn','trời phạt','thiên khiển'],['众生','zhòngshēng','chúng sinh','chúng sinh'],['苍天','cāngtiān','trời xanh','thương thiên'],['偏要','piān yào','cứ nhất quyết',''],['不服','bù fú','không phục','bất phục'],['仙尊','xiānzūn','tiên tôn','tiên tôn'],['付出','fùchū','bỏ ra, trả (giá)','phó xuất']],
+    words:[
+      ['改命','gǎimìng','đổi mệnh','cải mệnh'],['命数','mìngshù','số mệnh','mệnh số'],['注定','zhùdìng','định sẵn','chú định'],['违背','wéibèi','làm trái','vi bội'],
+      ['天谴','tiānqiǎn','trời phạt','thiên khiển'],['众生','zhòngshēng','chúng sinh','chúng sinh'],['苍天','cāngtiān','trời xanh','thương thiên'],['偏要','piān yào','cứ nhất quyết',''],
+      ['不服','bù fú','không phục','bất phục'],['仙尊','xiānzūn','tiên tôn','tiên tôn']],
     phrases:[['我命由我不由天！','Wǒ mìng yóu wǒ bù yóu tiān!','Mệnh ta do ta, không do trời!','Câu "quốc dân" của phim tiên hiệp / huyền huyễn.'],
       ['逆天改命，是要付出代价的。','Nìtiān gǎimìng, shì yào fùchū dàijià de.','Nghịch thiên đổi mệnh phải trả giá.',''],
       ['我偏要试一试！','Wǒ piān yào shì yi shì!','Ta cứ nhất quyết thử!','']],
@@ -36,11 +43,14 @@ window.COURSE.push(
       ['男主','那我就逆天改命！','Nà wǒ jiù nìtiān gǎimìng!','Vậy ta sẽ nghịch thiên đổi mệnh!'],
       ['仙尊','你可知道要付出什么代价？','Nǐ kě zhīdào yào fùchū shénme dàijià?','Ngươi có biết phải trả cái giá gì không?'],
       ['男主','不管什么代价，我偏要试一试。我命由我不由天！','Bùguǎn shénme dàijià, wǒ piān yào shì yi shì. Wǒ mìng yóu wǒ bù yóu tiān!','Bất kể cái giá nào, ta cứ phải thử. Mệnh ta do ta không do trời!']]},
-    chars:'逆:nì:nghịch|违:wéi:trái|苍:cāng:xanh' },
+    chars:'违:wéi:trái|苍:cāng:xanh|众:zhòng:mọi người' },
 
   { id:'h13', zh:'心魔', title:'Tâm ma & nhập ma', sub:'走火入魔 · 执念 · 醒醒',
     desc:'Cảnh nhân vật bị tâm ma khống chế, người thương gọi tỉnh.',
-    words:[['执念','zhíniàn','chấp niệm','chấp niệm'],['控制','kòngzhì','khống chế','khống chế'],['清醒','qīngxǐng','tỉnh táo','thanh tỉnh'],['醒醒','xǐngxing','tỉnh lại đi',''],['杀气','shāqì','sát khí','sát khí'],['失控','shīkòng','mất kiểm soát','thất khống'],['伤害','shānghài','làm tổn thương','thương hại'],['回头','huítóu','quay đầu','hồi đầu'],['黑暗','hēi\'àn','bóng tối','hắc ám'],['吞噬','tūnshì','nuốt chửng','thôn phệ'],['心魔','xīnmó','tâm ma','tâm ma'],['走开','zǒukāi','tránh ra','']],
+    words:[
+      ['执念','zhíniàn','chấp niệm','chấp niệm'],['控制','kòngzhì','khống chế','khống chế'],['清醒','qīngxǐng','tỉnh táo','thanh tỉnh'],['杀气','shāqì','sát khí','sát khí'],
+      ['失控','shīkòng','mất kiểm soát','thất khống'],['伤害','shānghài','làm tổn thương','thương hại'],['回头','huítóu','quay đầu','hồi đầu'],['黑暗','hēi\'àn','bóng tối','hắc ám'],
+      ['吞噬','tūnshì','nuốt chửng','thôn phệ'],['走开','zǒukāi','tránh ra',''],['岸','àn','bờ','']],
     phrases:[['放下执念吧。','Fàngxià zhíniàn ba.','Buông bỏ chấp niệm đi.',''],
       ['醒醒！你看看我是谁！','Xǐngxing! Nǐ kànkan wǒ shì shéi!','Tỉnh lại đi! Nhìn xem ta là ai!',''],
       ['回头是岸。','Huítóu shì àn.','Quay đầu là bờ.','Thành ngữ Phật giáo, rất hay gặp.']],
@@ -55,7 +65,10 @@ window.COURSE.push(
 
   { id:'h14', zh:'舍身', title:'Hy sinh & chia ly', sub:'来世 · 魂飞魄散 · 等我',
     desc:'Cảnh "ngược" kinh điển: một người hy sinh, hẹn kiếp sau.',
-    words:[['舍身','shěshēn','xả thân','xả thân'],['来世','láishì','kiếp sau','lai thế'],['魂飞魄散','hún fēi pò sàn','hồn phi phách tán','hồn phi phách tán'],['元神','yuánshén','nguyên thần','nguyên thần'],['不值得','bù zhíde','không đáng',''],['轮回','lúnhuí','luân hồi','luân hồi'],['魔神','móshén','ma thần','ma thần'],['使命','shǐmìng','sứ mệnh','sứ mệnh'],['桃花','táohuā','hoa đào','đào hoa'],['哪怕','nǎpà','dù cho','']],
+    words:[
+      ['舍身','shěshēn','xả thân','xả thân'],['来世','láishì','kiếp sau','lai thế'],['魂飞魄散','hún fēi pò sàn','hồn phi phách tán','hồn phi phách tán'],['元神','yuánshén','nguyên thần','nguyên thần'],
+      ['轮回','lúnhuí','luân hồi','luân hồi'],['魔神','móshén','ma thần','ma thần'],['使命','shǐmìng','sứ mệnh','sứ mệnh'],['桃花','táohuā','hoa đào','đào hoa'],
+      ['哪怕','nǎpà','dù cho','']],
     phrases:[['来世，我一定会找到你。','Láishì, wǒ yídìng huì zhǎodào nǐ.','Kiếp sau ta nhất định sẽ tìm thấy nàng.',''],
       ['傻瓜，为了我不值得。','Shǎguā, wèile wǒ bù zhíde.','Đồ ngốc, vì ta không đáng đâu.',''],
       ['我会永远守护你。','Wǒ huì yǒngyuǎn shǒuhù nǐ.','Ta sẽ mãi mãi bảo vệ nàng.','']],
@@ -66,7 +79,7 @@ window.COURSE.push(
       ['男主','傻瓜……你答应过我，要一起看桃花的。','Shǎguā…… nǐ dāying guo wǒ, yào yìqǐ kàn táohuā de.','Đồ ngốc… nàng từng hứa với ta cùng ngắm hoa đào mà.'],
       ['女主','对不起，这个承诺……我做不到了。','Duìbuqǐ, zhège chéngnuò…… wǒ zuò bú dào le.','Xin lỗi, lời hứa này… ta không làm được nữa rồi.'],
       ['男主','我等你。哪怕轮回千世，我也会找到你。','Wǒ děng nǐ. Nǎpà lúnhuí qiān shì, wǒ yě huì zhǎodào nǐ.','Ta đợi nàng. Dù luân hồi nghìn kiếp, ta cũng sẽ tìm thấy nàng.']]},
-    chars:'舍:shě:xả|魂:hún:hồn|永:yǒng:vĩnh' }
+    chars:'舍:shě:xả|魂:hún:hồn|花:huā:hoa' }
   ]},
 
 /* ───────────── THÁNG 10 (B) · CỔ TRANG CUNG ĐẤU ───────────── */
@@ -75,7 +88,10 @@ window.COURSE.push(
   lessons:[
   { id:'h21', zh:'请安', title:'Thỉnh an hoàng hậu', sub:'娘娘 · 臣妾 · 平身',
     desc:'Phi tần vào thỉnh an, lời nói ngọt mà ẩn dao.',
-    words:[['请安','qǐng\'ān','thỉnh an','thỉnh an'],['平身','píngshēn','bình thân','bình thân'],['赐座','cì zuò','ban ghế ngồi','tứ tọa'],['恩宠','ēnchǒng','ân sủng','ân sủng'],['规矩','guīju','quy củ','quy củ'],['本分','běnfèn','bổn phận','bổn phận'],['万福金安','wànfú jīn\'ān','vạn phúc kim an','vạn phúc kim an'],['托福','tuōfú','nhờ phúc','thác phúc'],['提醒','tíxǐng','nhắc nhở','đề tỉnh'],['得宠','déchǒng','được sủng ái','đắc sủng']],
+    words:[
+      ['请安','qǐng\'ān','thỉnh an','thỉnh an'],['赐座','cì zuò','ban ghế ngồi','tứ tọa'],['恩宠','ēnchǒng','ân sủng','ân sủng'],['规矩','guīju','quy củ','quy củ'],
+      ['本分','běnfèn','bổn phận','bổn phận'],['万福金安','wànfú jīn\'ān','vạn phúc kim an','vạn phúc kim an'],['托福','tuōfú','nhờ phúc','thác phúc'],['提醒','tíxǐng','nhắc nhở','đề tỉnh'],
+      ['得宠','déchǒng','được sủng ái','đắc sủng'],['宫','gōng','cung',''],['守','shǒu','giữ, canh',''],['明','míng','sáng; mai','']],
     phrases:[['臣妾给皇后娘娘请安。','Chénqiè gěi huánghòu niángniang qǐng\'ān.','Thần thiếp thỉnh an hoàng hậu nương nương.',''],
       ['妹妹最近很得皇上恩宠啊。','Mèimei zuìjìn hěn dé huángshang ēnchǒng a.','Muội muội dạo này được hoàng thượng sủng ái nhỉ.','Câu "khen mà đá xoáy".'],
       ['守好自己的本分。','Shǒu hǎo zìjǐ de běnfèn.','Giữ đúng bổn phận của mình.','']],
@@ -86,11 +102,14 @@ window.COURSE.push(
       ['贵妃','都是托姐姐的福。','Dōu shì tuō jiějie de fú.','Đều nhờ phúc của tỷ tỷ.'],
       ['皇后','宫里有宫里的规矩，妹妹要守好自己的本分。','Gōng lǐ yǒu gōng lǐ de guīju, mèimei yào shǒu hǎo zìjǐ de běnfèn.','Trong cung có quy củ của cung, muội muội phải giữ đúng bổn phận.'],
       ['贵妃','臣妾明白，多谢姐姐提醒。','Chénqiè míngbai, duōxiè jiějie tíxǐng.','Thần thiếp hiểu, đa tạ tỷ tỷ nhắc nhở.']]},
-    chars:'宫:gōng:cung|妾:qiè:thiếp|宠:chǒng:sủng' },
+    chars:'宫:gōng:cung|宠:chǒng:sủng|托:tuō:nhờ' },
 
   { id:'h22', zh:'陷害', title:'Hãm hại & vu oan', sub:'冤枉 · 证据 · 栽赃',
     desc:'Bị vu đầu độc, phải tự minh oan.',
-    words:[['栽赃','zāizāng','vu oan giá họa','tài tang'],['下毒','xià dú','hạ độc',''],['人证','rénzhèng','nhân chứng','nhân chứng'],['物证','wùzhèng','vật chứng','vật chứng'],['审问','shěnwèn','thẩm vấn','thẩm vấn'],['招供','zhāogòng','khai cung','chiêu cung'],['清白','qīngbái','trong sạch','thanh bạch'],['幕后','mùhòu','sau màn','mạc hậu'],['主使','zhǔshǐ','kẻ chủ mưu','chủ sử'],['收买','shōumǎi','mua chuộc','thu mãi'],['明察','míngchá','minh xét','minh sát']],
+    words:[
+      ['栽赃','zāizāng','vu oan giá họa','tài tang'],['下毒','xià dú','hạ độc',''],['人证','rénzhèng','nhân chứng','nhân chứng'],['物证','wùzhèng','vật chứng','vật chứng'],
+      ['审问','shěnwèn','thẩm vấn','thẩm vấn'],['招供','zhāogòng','khai cung','chiêu cung'],['清白','qīngbái','trong sạch','thanh bạch'],['幕后','mùhòu','sau màn','mạc hậu'],
+      ['主使','zhǔshǐ','kẻ chủ mưu','chủ sử'],['收买','shōumǎi','mua chuộc','thu mãi'],['明察','míngchá','minh xét','minh sát'],['俱在','jù zài','đều có đủ','']],
     phrases:[['臣妾冤枉啊！','Chénqiè yuānwang a!','Thần thiếp oan uổng!','Câu "kinh điển" của phim cung đấu.'],
       ['人证物证俱在，你还有什么话说？','Rénzhèng wùzhèng jù zài, nǐ hái yǒu shénme huà shuō?','Nhân chứng vật chứng đều có, ngươi còn gì để nói?',''],
       ['幕后主使另有其人。','Mùhòu zhǔshǐ lìng yǒu qí rén.','Kẻ chủ mưu sau màn là người khác.','']],
@@ -101,11 +120,15 @@ window.COURSE.push(
       ['女主','这是栽赃！那个宫女昨天才被收买。','Zhè shì zāizāng! Nàge gōngnǚ zuótiān cái bèi shōumǎi.','Đây là vu oan! Cung nữ đó hôm qua mới bị mua chuộc.'],
       ['皇上','来人，把宫女带下去审问！','Lái rén, bǎ gōngnǚ dài xiàqu shěnwèn!','Người đâu, đưa cung nữ đi thẩm vấn!'],
       ['女主','皇上，臣妾只求一个清白。','Huángshang, chénqiè zhǐ qiú yí ge qīngbái.','Hoàng thượng, thần thiếp chỉ cầu sự trong sạch.']]},
-    chars:'陷:xiàn:hãm|冤:yuān:oan|据:jù:cứ' },
+    chars:'证:zhèng:giấy chứng|买:mǎi:mua|白:bái:trắng' },
 
   { id:'h23', zh:'圣旨', title:'Thánh chỉ & triều đình', sub:'奉天承运 · 钦此 · 接旨',
     desc:'Nghe đọc thánh chỉ và tiếng triều đình.',
-    words:[['接旨','jiēzhǐ','tiếp chỉ','tiếp chỉ'],['钦此','qīncǐ','khâm thử (kết thánh chỉ)','khâm thử'],['册封','cèfēng','sắc phong','sách phong'],['赏赐','shǎngcì','ban thưởng','thưởng tứ'],['谢主隆恩','xiè zhǔ lóng\'ēn','tạ chủ long ân','tạ chủ long ân'],['朝廷','cháotíng','triều đình','triều đình'],['大臣','dàchén','đại thần','đại thần'],['丞相','chéngxiàng','thừa tướng','thừa tướng'],['边关','biānguān','biên ải','biên quan'],['传令','chuánlìng','truyền lệnh','truyền lệnh'],['即日','jírì','ngay hôm nay','tức nhật']],
+    words:[
+      ['接旨','jiēzhǐ','tiếp chỉ','tiếp chỉ'],['钦此','qīncǐ','khâm thử (kết thánh chỉ)','khâm thử'],['册封','cèfēng','sắc phong','sách phong'],['赏赐','shǎngcì','ban thưởng','thưởng tứ'],
+      ['谢主隆恩','xiè zhǔ lóng\'ēn','tạ chủ long ân','tạ chủ long ân'],['朝廷','cháotíng','triều đình','triều đình'],['大臣','dàchén','đại thần','đại thần'],['丞相','chéngxiàng','thừa tướng','thừa tướng'],
+      ['边关','biānguān','biên ải','biên quan'],['传令','chuánlìng','truyền lệnh','truyền lệnh'],['即日','jírì','ngay hôm nay','tức nhật'],['奉','fèng','phụng (theo lệnh)',''],
+      ['承运','chéngyùn','thừa vận',''],['皇帝','huángdì','hoàng đế',''],['诏曰','zhào yuē','chiếu viết (thánh chỉ)',''],['沈','Shěn','họ Thẩm','']],
     phrases:[['奉天承运，皇帝诏曰。','Fèngtiān chéngyùn, huángdì zhào yuē.','Phụng thiên thừa vận, hoàng đế chiếu viết.','Mở đầu thánh chỉ.'],
       ['谢主隆恩！','Xiè zhǔ lóng\'ēn!','Tạ chủ long ân!',''],
       ['即日启程，不得有误。','Jírì qǐchéng, bù dé yǒu wù.','Lên đường ngay hôm nay, không được sai sót.','']],
@@ -116,7 +139,7 @@ window.COURSE.push(
       ['女主','臣女接旨，谢主隆恩！','Chénnǚ jiēzhǐ, xiè zhǔ lóng\'ēn!','Thần nữ tiếp chỉ, tạ chủ long ân!'],
       ['父亲','女儿，进了宫，一切要小心。','Nǚ\'ér, jìn le gōng, yíqiè yào xiǎoxīn.','Con gái, vào cung rồi mọi sự phải cẩn thận.'],
       ['女主','爹爹放心，女儿明白。','Diēdie fàngxīn, nǚ\'ér míngbai.','Cha yên tâm, con hiểu.']]},
-    chars:'圣:shèng:thánh|旨:zhǐ:chỉ|赏:shǎng:thưởng' },
+    chars:'旨:zhǐ:chỉ|赏:shǎng:thưởng|接:jiē:đón' },
 
   { id:'h24', zh:'复仇', title:'Báo thù trong cung', sub:'血债血偿 · 隐忍 · 报应',
     desc:'Nữ chính nhẫn nhịn nhiều năm rồi lật kèo.',
@@ -131,7 +154,7 @@ window.COURSE.push(
       ['女主','真相终于大白了。','Zhēnxiàng zhōngyú dàbái le.','Chân tướng cuối cùng đã rõ.'],
       ['贵妃','我不后悔！只恨没有早点除掉你！','Wǒ bú hòuhuǐ! Zhǐ hèn méiyǒu zǎo diǎn chúdiào nǐ!','Ta không hối hận! Chỉ hận không sớm trừ khử ngươi!'],
       ['女主','血债血偿。这是你罪有应得的下场。','Xuèzhài xuècháng. Zhè shì nǐ zuì yǒu yīng dé de xiàchǎng.','Nợ máu trả bằng máu. Đây là kết cục ngươi đáng nhận.']]},
-    chars:'仇:chóu:thù|忍:rěn:nhẫn|悔:huǐ:hối' }
+    chars:'仇:chóu:thù|忍:rěn:nhẫn|亲:qīn:hôn' }
   ]},
 
 /* ───────────── THÁNG 11 (A) · NGÔN TÌNH HIỆN ĐẠI ───────────── */
@@ -151,11 +174,14 @@ window.COURSE.push(
       ['女主','你……你是认真的吗？','Nǐ…… nǐ shì rènzhēn de ma?','Anh… anh nghiêm túc à?'],
       ['男主','做我女朋友好不好？','Zuò wǒ nǚpéngyou hǎo bu hǎo?','Làm bạn gái anh nhé?'],
       ['女主','笨蛋，我等你这句话等了三年了。','Bèndàn, wǒ děng nǐ zhè jù huà děng le sān nián le.','Đồ ngốc, em đợi câu này ba năm rồi.']]},
-    chars:'暗:àn:tối|勇:yǒng:dũng|偷:tōu:lén' },
+    chars:'勇:yǒng:dũng|偷:tōu:lén|上:shàng:trên' },
 
   { id:'h32', zh:'吃醋', title:'Ghen tuông', sub:'吃醋 · 解释 · 只有你',
     desc:'Thấy người yêu đi với người khác, ghen ra mặt.',
-    words:[['偶遇','ǒuyù','tình cờ gặp','ngẫu ngộ'],['亲眼','qīnyǎn','tận mắt','thân nhãn'],['小心眼','xiǎoxīnyǎn','nhỏ nhen, hay ghen',''],['醋坛子','cù tánzi','"hũ giấm" (người hay ghen)',''],['有说有笑','yǒu shuō yǒu xiào','nói cười vui vẻ',''],['女的','nǚ de','cô gái, người nữ',''],['宴会','yànhuì','bữa tiệc','yến hội'],['男闺蜜','nán guīmì','bạn thân khác giới (nam)',''],['醋意','cùyì','sự ghen','thố ý']],
+    words:[
+      ['偶遇','ǒuyù','tình cờ gặp','ngẫu ngộ'],['亲眼','qīnyǎn','tận mắt','thân nhãn'],['小心眼','xiǎoxīnyǎn','nhỏ nhen, hay ghen',''],['醋坛子','cù tánzi','"hũ giấm" (người hay ghen)',''],
+      ['有说有笑','yǒu shuō yǒu xiào','nói cười vui vẻ',''],['女的','nǚ de','cô gái, người nữ',''],['宴会','yànhuì','bữa tiệc','yến hội'],['男闺蜜','nán guīmì','bạn thân khác giới (nam)',''],
+      ['醋意','cùyì','sự ghen','thố ý'],['心','xīn','tim, lòng','']],
     phrases:[['你吃醋了？','Nǐ chīcù le?','Em ghen à?',''],
       ['你听我解释！','Nǐ tīng wǒ jiěshì!','Em nghe anh giải thích!','Câu quen thuộc nhất phim ngôn tình 😂'],
       ['我心里只有你。','Wǒ xīnlǐ zhǐyǒu nǐ.','Trong lòng anh chỉ có em.','']],
@@ -166,7 +192,7 @@ window.COURSE.push(
       ['男主','你听我解释，我们只是偶遇。','Nǐ tīng wǒ jiěshì, wǒmen zhǐshì ǒuyù.','Em nghe anh giải thích, bọn anh chỉ tình cờ gặp.'],
       ['女主','哼，小心眼就小心眼，我就是在乎你。','Hēng, xiǎoxīnyǎn jiù xiǎoxīnyǎn, wǒ jiù shì zàihu nǐ.','Hừ, nhỏ nhen thì nhỏ nhen, em là để ý anh đấy.'],
       ['男主','小醋坛子，我心里只有你。','Xiǎo cù tánzi, wǒ xīnlǐ zhǐyǒu nǐ.','Hũ giấm nhỏ, trong lòng anh chỉ có em.']]},
-    chars:'醋:cù:giấm|释:shì:thích|偶:ǒu:ngẫu' },
+    chars:'醋:cù:giấm|偶:ǒu:ngẫu|说:shuō:nói' },
 
   { id:'h33', zh:'误会', title:'Hiểu lầm & chia tay', sub:'分手 · 骗 · 挽回',
     desc:'Cãi nhau to, nói lời chia tay rồi hối hận.',
@@ -181,11 +207,14 @@ window.COURSE.push(
       ['女主','我们分手吧。','Wǒmen fēnshǒu ba.','Chúng ta chia tay đi.'],
       ['男主','别离开我……再给我一次机会。','Bié líkāi wǒ…… zài gěi wǒ yí cì jīhuì.','Đừng rời xa anh… cho anh thêm một cơ hội.'],
       ['女主','对不起，我对你太失望了。','Duìbuqǐ, wǒ duì nǐ tài shīwàng le.','Xin lỗi, em quá thất vọng về anh.']]},
-    chars:'骗:piàn:lừa|挽:wǎn:níu|碎:suì:vỡ' },
+    chars:'挽:wǎn:níu|口:kǒu:miệng|了:le:rồi' },
 
   { id:'h34', zh:'求婚', title:'Cầu hôn', sub:'嫁给我 · 戒指 · 一辈子',
     desc:'Màn cầu hôn ngọt ngào, kết có hậu.',
-    words:[['嫁给','jià gěi','gả cho, lấy (chồng)','giá'],['跪','guì','quỳ','quỵ'],['照顾','zhàogù','chăm sóc','chiếu cố'],['新娘','xīnniáng','cô dâu','tân nương'],['新郎','xīnláng','chú rể','tân lang'],['白头偕老','báitóu xiélǎo','bạc đầu giai lão','bạch đầu giai lão'],['愿意','yuànyì','bằng lòng','nguyện ý'],['枚','méi','(lượng từ: chiếc nhẫn)','mai'],['单膝','dān xī','một gối (quỳ)','đơn tất'],['鲜花','xiānhuā','hoa tươi','tiên hoa'],['天长地久','tiān cháng dì jiǔ','thiên trường địa cửu','thiên trường địa cửu'],['晚霞','wǎnxiá','ráng chiều','vãn hà']],
+    words:[
+      ['跪','guì','quỳ','quỵ'],['新娘','xīnniáng','cô dâu','tân nương'],['新郎','xīnláng','chú rể','tân lang'],['白头偕老','báitóu xiélǎo','bạc đầu giai lão','bạch đầu giai lão'],
+      ['枚','méi','(lượng từ: chiếc nhẫn)','mai'],['单膝','dān xī','một gối (quỳ)','đơn tất'],['鲜花','xiānhuā','hoa tươi','tiên hoa'],['天长地久','tiān cháng dì jiǔ','thiên trường địa cửu','thiên trường địa cửu'],
+      ['晚霞','wǎnxiá','ráng chiều','vãn hà']],
     phrases:[['嫁给我好吗？','Jià gěi wǒ hǎo ma?','Lấy anh nhé?',''],
       ['我愿意！','Wǒ yuànyì!','Em đồng ý!',''],
       ['我会照顾你一辈子。','Wǒ huì zhàogù nǐ yíbèizi.','Anh sẽ chăm sóc em cả đời.','']],
@@ -196,7 +225,7 @@ window.COURSE.push(
       ['男主','我会照顾你一辈子。嫁给我好吗？','Wǒ huì zhàogù nǐ yíbèizi. Jià gěi wǒ hǎo ma?','Anh sẽ chăm sóc em cả đời. Lấy anh nhé?'],
       ['女主','我……我太感动了。我愿意！','Wǒ…… wǒ tài gǎndòng le. Wǒ yuànyì!','Em… em cảm động quá. Em đồng ý!'],
       ['男主','我们要白头偕老。','Wǒmen yào báitóu xiélǎo.','Chúng ta sẽ bạc đầu giai lão.']]},
-    chars:'婚:hūn:hôn|戒:jiè:giới|跪:guì:quỳ' }
+    chars:'跪:guì:quỳ|新:xīn:mới|枚:méi:' }
   ]},
 
 /* ───────────── THÁNG 11 (B) · PHIM NGẮN 短剧 ───────────── */
@@ -216,11 +245,14 @@ window.COURSE.push(
       ['女主','第三条：不许越界？你放心，我对你没兴趣。','Dì sān tiáo: bùxǔ yuèjiè? Nǐ fàngxīn, wǒ duì nǐ méi xìngqù.','Điều 3: không được vượt giới hạn? Anh yên tâm, tôi không có hứng thú với anh.'],
       ['总裁','最好如此。别忘了你的身份。','Zuìhǎo rúcǐ. Bié wàng le nǐ de shēnfèn.','Tốt nhất là vậy. Đừng quên thân phận của cô.'],
       ['总裁','明天早上八点，准时到。这是命令。','Míngtiān zǎoshang bā diǎn, zhǔnshí dào. Zhè shì mìnglìng.','8 giờ sáng mai, đến đúng giờ. Đây là mệnh lệnh.']]},
-    chars:'裁:cái:tài|签:qiān:ký|偿:cháng:đền' },
+    chars:'偿:cháng:đền|款:kuǎn:mẫu|理:lǐ:để ý' },
 
   { id:'h42', zh:'真假千金', title:'Thiên kim thật – giả', sub:'亲生 · 抱错 · 鸠占鹊巢',
     desc:'Con gái ruột bị trao nhầm trở về nhà giàu.',
-    words:[['亲生','qīnshēng','ruột (con đẻ)','thân sinh'],['抱错','bào cuò','bế nhầm',''],['养女','yǎngnǚ','con gái nuôi','dưỡng nữ'],['认亲','rènqīn','nhận người thân','nhận thân'],['亲子鉴定','qīnzǐ jiàndìng','xét nghiệm ADN','thân tử giám định'],['穷酸','qióngsuān','nghèo hèn',''],['装','zhuāng','giả vờ','trang'],['乡下','xiāngxia','nông thôn','hương hạ'],['收购','shōugòu','thu mua, mua lại','thu cấu'],['鉴定','jiàndìng','giám định','giám định']],
+    words:[
+      ['亲生','qīnshēng','ruột (con đẻ)','thân sinh'],['抱错','bào cuò','bế nhầm',''],['养女','yǎngnǚ','con gái nuôi','dưỡng nữ'],['认亲','rènqīn','nhận người thân','nhận thân'],
+      ['亲子鉴定','qīnzǐ jiàndìng','xét nghiệm ADN','thân tử giám định'],['穷酸','qióngsuān','nghèo hèn',''],['乡下','xiāngxia','nông thôn','hương hạ'],['收购','shōugòu','thu mua, mua lại','thu cấu'],
+      ['鉴定','jiàndìng','giám định','giám định']],
     phrases:[['你才是我们的亲生女儿！','Nǐ cái shì wǒmen de qīnshēng nǚ\'ér!','Con mới là con gái ruột của chúng ta!',''],
       ['乡下来的，也配进豪门？','Xiāngxia lái de, yě pèi jìn háomén?','Đứa nhà quê cũng xứng vào hào môn?','"配" = xứng đáng (giọng khinh thường).'],
       ['别装了。','Bié zhuāng le.','Đừng giả vờ nữa.','']],
@@ -231,11 +263,13 @@ window.COURSE.push(
       ['女主','你看不起乡下人？','Nǐ kànbuqǐ xiāngxia rén?','Cô coi thường người nông thôn?'],
       ['养女','穷酸就是穷酸！','Qióngsuān jiù shì qióngsuān!','Nghèo hèn thì vẫn là nghèo hèn!'],
       ['女主','别装了。这家公司，昨天我已经收购了。','Bié zhuāng le. Zhè jiā gōngsī, zuótiān wǒ yǐjīng shōugòu le.','Đừng giả vờ nữa. Công ty này hôm qua tôi đã mua lại rồi.']]},
-    chars:'亲:qīn:thân|豪:háo:hào|装:zhuāng:giả' },
+    chars:'亲:qīn:thân|女:nǚ:nữ|穷:qióng:nghèo' },
 
   { id:'h43', zh:'赘婿', title:'Chàng rể ở rể', sub:'废物 · 隐藏身份 · 跪下',
     desc:'Bị cả nhà vợ khinh, thật ra là đại gia ẩn thân.',
-    words:[['赘婿','zhuìxù','rể ở rể','chuế tế'],['岳父','yuèfù','bố vợ','nhạc phụ'],['岳母','yuèmǔ','mẹ vợ','nhạc mẫu'],['首富','shǒufù','người giàu nhất','thủ phú'],['离婚协议','líhūn xiéyì','thỏa thuận ly hôn',''],['恭敬','gōngjìng','cung kính','cung kính'],['吩咐','fēnfù','dặn dò, sai bảo','phân phó'],['像样','xiàngyàng','ra hồn, tử tế',''],['当众','dāngzhòng','trước mặt mọi người','đương chúng']],
+    words:[
+      ['赘婿','zhuìxù','rể ở rể','chuế tế'],['岳父','yuèfù','bố vợ','nhạc phụ'],['岳母','yuèmǔ','mẹ vợ','nhạc mẫu'],['首富','shǒufù','người giàu nhất','thủ phú'],
+      ['恭敬','gōngjìng','cung kính','cung kính'],['吩咐','fēnfù','dặn dò, sai bảo','phân phó'],['像样','xiàngyàng','ra hồn, tử tế',''],['当众','dāngzhòng','trước mặt mọi người','đương chúng']],
     phrases:[['你这个废物！','Nǐ zhège fèiwù!','Đồ vô dụng nhà mày!',''],
       ['你们有眼无珠！','Nǐmen yǒu yǎn wú zhū!','Các người có mắt không tròng!',''],
       ['董事长，您吩咐。','Dǒngshìzhǎng, nín fēnfù.','Chủ tịch, ngài cứ dặn.','Khoảnh khắc "lật mặt" kinh điển.']],
@@ -246,7 +280,7 @@ window.COURSE.push(
       ['助理','董事长！您吩咐的事，已经办好了。','Dǒngshìzhǎng! Nín fēnfù de shì, yǐjīng bàn hǎo le.','Chủ tịch! Việc ngài dặn đã làm xong.'],
       ['岳母','董事长？他……他是首富？','Dǒngshìzhǎng? Tā…… tā shì shǒufù?','Chủ tịch? Nó… nó là người giàu nhất?'],
       ['赘婿','你们有眼无珠。现在，跪下道歉。','Nǐmen yǒu yǎn wú zhū. Xiànzài, guìxià dàoqiàn.','Các người có mắt không tròng. Bây giờ, quỳ xuống xin lỗi.']]},
-    chars:'废:fèi:phế|岳:yuè:nhạc|藏:cáng:giấu' },
+    chars:'岳:yuè:nhạc|母:mǔ:mẹ|敬:jìng:mời' },
 
   { id:'h44', zh:'重生', title:'Trọng sinh trả thù', sub:'上辈子 · 重来 · 这一世',
     desc:'Sống lại trước ngày bị hại, lần này không dễ bị lừa.',
@@ -270,7 +304,10 @@ window.COURSE.push(
   lessons:[
   { id:'h51', zh:'带货', title:'Livestream bán hàng', sub:'上链接 · 库存 · 秒杀',
     desc:'Giọng streamer "chốt đơn" siêu tốc.',
-    words:[['带货','dàihuò','livestream bán hàng',''],['优惠券','yōuhuìquàn','phiếu giảm giá','ưu huệ khoán'],['手慢无','shǒu màn wú','chậm tay là hết',''],['倒计时','dàojìshí','đếm ngược','đảo kế thời'],['直播间','zhíbōjiān','phòng livestream','trực bá gian'],['面膜','miànmó','mặt nạ dưỡng da','diện mạc'],['扣','kòu','gõ (bình luận số)','khấu'],['主播','zhǔbō','streamer, người dẫn live','chủ bá'],['囤货','túnhuò','tích trữ hàng',''],['抢购','qiǎnggòu','tranh mua','thương cấu'],['福袋','fúdài','túi quà may mắn','phúc đại']],
+    words:[
+      ['带货','dàihuò','livestream bán hàng',''],['优惠券','yōuhuìquàn','phiếu giảm giá','ưu huệ khoán'],['手慢无','shǒu màn wú','chậm tay là hết',''],['倒计时','dàojìshí','đếm ngược','đảo kế thời'],
+      ['直播间','zhíbōjiān','phòng livestream','trực bá gian'],['面膜','miànmó','mặt nạ dưỡng da','diện mạc'],['扣','kòu','gõ (bình luận số)','khấu'],['主播','zhǔbō','streamer, người dẫn live','chủ bá'],
+      ['囤货','túnhuò','tích trữ hàng',''],['抢购','qiǎnggòu','tranh mua','thương cấu'],['福袋','fúdài','túi quà may mắn','phúc đại'],['全国','quánguó','toàn quốc','']],
     phrases:[['家人们，上链接！','Jiārénmen, shàng liànjiē!','Cả nhà ơi, lên link!','Câu "thương hiệu" của livestream Douyin.'],
       ['手慢无！','Shǒu màn wú!','Chậm tay là hết!',''],
       ['全国包邮！','Quánguó bāoyóu!','Miễn phí ship toàn quốc!','']],
@@ -281,11 +318,14 @@ window.COURSE.push(
       ['主播','倒计时五秒！五、四、三、二、一，上链接！','Dàojìshí wǔ miǎo! Wǔ, sì, sān, èr, yī, shàng liànjiē!','Đếm ngược 5 giây! 5, 4, 3, 2, 1, lên link!'],
       ['主播','宝宝们赶紧下单，全国包邮！','Bǎobaomen gǎnjǐn xiàdān, quánguó bāoyóu!','Các bé mau đặt hàng, miễn ship toàn quốc!'],
       ['主播','哇，秒杀完了！没抢到的扣个一！','Wā, miǎoshā wán le! Méi qiǎng dào de kòu ge yī!','Oa, flash sale hết rồi! Ai chưa giành được thì gõ số 1!']]},
-    chars:'链:liàn:xích|库:kù:kho|券:quàn:phiếu' },
+    chars:'券:quàn:phiếu|国:guó:nước|带:dài:mang theo' },
 
   { id:'h52', zh:'Vlog', title:'Vlog đời thường', sub:'记录 · 打卡 · 关注',
     desc:'Giọng vlogger kể chuyện một ngày, kêu gọi follow.',
-    words:[['记录','jìlù','ghi lại','ký lục'],['评论区','pínglùnqū','khu bình luận','bình luận khu'],['日常','rìcháng','thường ngày','nhật thường'],['宝藏','bǎozàng','"kho báu" (chỗ hay ít người biết)','bảo tàng'],['氛围感','fēnwéigǎn','cảm giác không khí, vibe',''],['出片','chūpiàn','lên ảnh đẹp',''],['拿铁','nátiě','latte',''],['强推','qiáng tuī','cực đề cử',''],['下期','xià qī','tập sau','hạ kỳ']],
+    words:[
+      ['记录','jìlù','ghi lại','ký lục'],['日常','rìcháng','thường ngày','nhật thường'],['宝藏','bǎozàng','"kho báu" (chỗ hay ít người biết)','bảo tàng'],['氛围感','fēnwéigǎn','cảm giác không khí, vibe',''],
+      ['出片','chūpiàn','lên ảnh đẹp',''],['拿铁','nátiě','latte',''],['强推','qiáng tuī','cực đề cử',''],['下期','xià qī','tập sau','hạ kỳ'],
+      ['级','jí','cấp',''],['绝了','jué le','đỉnh thật!','']],
     phrases:[['记得点赞关注哦！','Jìde diǎnzàn guānzhù o!','Nhớ like và follow nhé!',''],
       ['这家店超级出片！','Zhè jiā diàn chāojí chūpiàn!','Quán này chụp ảnh siêu đẹp!',''],
       ['评论区告诉我！','Pínglùnqū gàosu wǒ!','Nói cho mình biết ở phần bình luận!','']],
@@ -296,7 +336,7 @@ window.COURSE.push(
       ['博主','这杯拿铁……嗯，宝藏店铺，强推！','Zhè bēi nátiě…… èn, bǎozàng diànpù, qiáng tuī!','Ly latte này… ừm, quán "kho báu", cực đề cử!'],
       ['博主','你们周末都喜欢去哪儿？评论区告诉我！','Nǐmen zhōumò dōu xǐhuan qù nǎr? Pínglùnqū gàosu wǒ!','Cuối tuần các bạn thích đi đâu? Nói mình biết ở phần bình luận nhé!'],
       ['博主','记得点赞关注，我们下期见，拜拜！','Jìde diǎnzàn guānzhù, wǒmen xià qī jiàn, báibái!','Nhớ like và follow, hẹn gặp tập sau, bye bye!']]},
-    chars:'录:lù:lục|赞:zàn:khen|享:xiǎng:hưởng' },
+    chars:'录:lù:lục|宝:bǎo:cưng|拿:ná:cầm' },
 
   { id:'h53', zh:'探店', title:'Review quán ăn', sub:'踩雷 · 性价比 · 回购',
     desc:'Food blogger chê khen thẳng thắn.',
@@ -311,11 +351,14 @@ window.COURSE.push(
       ['博主','但是这个虾滑，口感一般，分量也太少了。','Dànshì zhège xiāhuá, kǒugǎn yìbān, fènliàng yě tài shǎo le.','Nhưng tôm viên này ăn bình thường, phần cũng ít quá.'],
       ['博主','总的来说，性价比还可以。','Zǒng de lái shuō, xìngjiàbǐ hái kěyǐ.','Nói chung, đáng tiền ở mức ổn.'],
       ['博主','牛肉绝绝子，会回购的！','Niúròu juéjuézǐ, huì huígòu de!','Thịt bò đỉnh của chóp, sẽ quay lại mua!']]},
-    chars:'踩:cǎi:giẫm|腻:nì:ngấy|均:jūn:đều' },
+    chars:'腻:nì:ngấy|均:jūn:đều|汤:tāng:canh' },
 
   { id:'h54', zh:'热搜', title:'Tin hot & drama mạng', sub:'热搜 · 官宣 · 塌房',
     desc:'Nghe kênh tin giải trí: idol công khai, "sập nhà", fan tranh cãi.',
-    words:[['塌房','tāfáng','"sập nhà" (idol bê bối)',''],['爆料','bàoliào','tung tin','bạo liệu'],['回应','huíyìng','phản hồi','hồi ứng'],['网友','wǎngyǒu','cư dân mạng','võng hữu'],['声明','shēngmíng','tuyên bố','thanh minh'],['恋情','liànqíng','chuyện tình','luyến tình'],['冲上','chōng shàng','leo lên (top)',''],['顶流','dǐngliú','idol hạng A','đỉnh lưu'],['工作室','gōngzuòshì','studio','công tác thất'],['女方','nǚfāng','phía nữ','nữ phương'],['炸','zhà','nổ','tạc']],
+    words:[
+      ['塌房','tāfáng','"sập nhà" (idol bê bối)',''],['爆料','bàoliào','tung tin','bạo liệu'],['回应','huíyìng','phản hồi','hồi ứng'],['网友','wǎngyǒu','cư dân mạng','võng hữu'],
+      ['声明','shēngmíng','tuyên bố','thanh minh'],['恋情','liànqíng','chuyện tình','luyến tình'],['冲上','chōng shàng','leo lên (top)',''],['顶流','dǐngliú','idol hạng A','đỉnh lưu'],
+      ['工作室','gōngzuòshì','studio','công tác thất'],['女方','nǚfāng','phía nữ','nữ phương'],['炸','zhà','nổ','tạc'],['众','zhòng','mọi người','']],
     phrases:[['又上热搜了！','Yòu shàng rèsōu le!','Lại lên top tìm kiếm rồi!',''],
       ['吃瓜群众','chīguā qúnzhòng','dân hóng drama','Cách tự gọi của người xem drama 🍉'],
       ['我的偶像塌房了。','Wǒ de ǒuxiàng tāfáng le.','Thần tượng của tôi "sập nhà" rồi.','']],
@@ -326,7 +369,7 @@ window.COURSE.push(
       ['主持人','工作室刚刚发了声明，回应说是正常朋友。','Gōngzuòshì gānggāng fā le shēngmíng, huíyìng shuō shì zhèngcháng péngyou.','Studio vừa ra tuyên bố, phản hồi rằng chỉ là bạn bè bình thường.'],
       ['主持人','但很快，女方直接官宣了！','Dàn hěn kuài, nǚfāng zhíjiē guānxuān le!','Nhưng rất nhanh, phía nữ đã công khai luôn!'],
       ['主持人','网友震惊，不少粉丝说：我的房子塌了。','Wǎngyǒu zhènjīng, bùshǎo fěnsī shuō: wǒ de fángzi tā le.','Cư dân mạng chấn động, nhiều fan nói: "nhà" tôi sập rồi.']]},
-    chars:'搜:sōu:tìm|粉:fěn:bột, fan|震:zhèn:chấn' }
+    chars:'塌:tā:sập|作:zuō:làm mình làm mẩy|炸:zhà:nổ' }
   ]},
 
 /* ───────────── THÁNG 12 (B) · ĐỜI THƯỜNG & TỐT NGHIỆP ───────────── */
@@ -346,11 +389,14 @@ window.COURSE.push(
       ['女儿','我知道您操劳了一辈子，可是我们有代沟。','Wǒ zhīdào nín cāoláo le yíbèizi, kěshì wǒmen yǒu dàigōu.','Con biết mẹ vất vả cả đời, nhưng giữa mẹ con mình có khoảng cách thế hệ.'],
       ['妈妈','还敢顶嘴？你翅膀硬了是吧？','Hái gǎn dǐngzuǐ? Nǐ chìbǎng yìng le shì ba?','Còn dám cãi? Con cứng cánh rồi phải không?'],
       ['女儿','妈，我希望您能理解，支持我的选择。','Mā, wǒ xīwàng nín néng lǐjiě, zhīchí wǒ de xuǎnzé.','Mẹ, con mong mẹ hiểu và ủng hộ lựa chọn của con.']]},
-    chars:'沟:gōu:rãnh|稳:wěn:vững|择:zé:chọn' },
+    chars:'沟:gōu:rãnh|稳:wěn:vững|碗:wǎn:bát' },
 
   { id:'h62', zh:'职场剧', title:'Phim văn phòng', sub:'背锅 · 抢功 · 实习生',
     desc:'Thực tập sinh bị đổ lỗi, sếp lớn phân xử.',
-    words:[['背锅','bēiguō','gánh tội thay',''],['抢功','qiǎnggōng','cướp công',''],['实习生','shíxíshēng','thực tập sinh','thực tập sinh'],['失误','shīwù','sai sót','thất ngộ'],['负责人','fùzérén','người phụ trách',''],['邮件记录','yóujiàn jìlù','lịch sử email',''],['公平','gōngpíng','công bằng','công bình'],['开除','kāichú','đuổi việc','khai trừ'],['升职加薪','shēngzhí jiāxīn','thăng chức tăng lương',''],['转正','zhuǎnzhèng','lên chính thức','chuyển chính']],
+    words:[
+      ['背锅','bēiguō','gánh tội thay',''],['抢功','qiǎnggōng','cướp công',''],['实习生','shíxíshēng','thực tập sinh','thực tập sinh'],['失误','shīwù','sai sót','thất ngộ'],
+      ['负责人','fùzérén','người phụ trách',''],['邮件记录','yóujiàn jìlù','lịch sử email',''],['公平','gōngpíng','công bằng','công bình'],['开除','kāichú','đuổi việc','khai trừ'],
+      ['升职加薪','shēngzhí jiāxīn','thăng chức tăng lương',''],['转正','zhuǎnzhèng','lên chính thức','chuyển chính'],['林','lín','rừng; họ Lâm','']],
     phrases:[['凭什么让我背锅？','Píng shénme ràng wǒ bēiguō?','Dựa vào đâu bắt tôi gánh tội?',''],
       ['我有邮件记录为证。','Wǒ yǒu yóujiàn jìlù wéi zhèng.','Tôi có lịch sử email làm chứng.',''],
       ['升职加薪！','Shēngzhí jiāxīn!','Thăng chức tăng lương!','Ước mơ của mọi "打工人".']],
@@ -365,7 +411,10 @@ window.COURSE.push(
 
   { id:'h63', zh:'青春', title:'Thanh xuân vườn trường', sub:'毕业 · 同桌 · 青春',
     desc:'Ngày tốt nghiệp, nói lời tạm biệt bạn cùng bàn.',
-    words:[['同桌','tóngzhuō','bạn cùng bàn','đồng trác'],['青春','qīngchūn','thanh xuân','thanh xuân'],['高考','gāokǎo','thi đại học','cao khảo'],['班主任','bānzhǔrèn','giáo viên chủ nhiệm','ban chủ nhiệm'],['操场','cāochǎng','sân trường','thao trường'],['留念','liúniàn','lưu niệm','lưu niệm'],['各奔东西','gè bèn dōngxī','mỗi người một ngả','các bôn đông tây'],['重逢','chóngféng','gặp lại','trùng phùng'],['罚','fá','phạt','phạt']],
+    words:[
+      ['同桌','tóngzhuō','bạn cùng bàn','đồng trác'],['青春','qīngchūn','thanh xuân','thanh xuân'],['高考','gāokǎo','thi đại học','cao khảo'],['班主任','bānzhǔrèn','giáo viên chủ nhiệm','ban chủ nhiệm'],
+      ['操场','cāochǎng','sân trường','thao trường'],['留念','liúniàn','lưu niệm','lưu niệm'],['各奔东西','gè bèn dōngxī','mỗi người một ngả','các bôn đông tây'],['重逢','chóngféng','gặp lại','trùng phùng'],
+      ['罚','fá','phạt','phạt'],['后','hòu','sau','']],
     phrases:[['舍不得你们。','Shěbude nǐmen.','Không nỡ xa các cậu.',''],
       ['青春没有遗憾。','Qīngchūn méiyǒu yíhàn.','Thanh xuân không hối tiếc.',''],
       ['十年后再重逢。','Shí nián hòu zài chóngféng.','Mười năm sau gặp lại nhé.','']],
@@ -376,11 +425,14 @@ window.COURSE.push(
       ['女主','哈哈，当时我们俩都迟到了。','Hāhā, dāngshí wǒmen liǎ dōu chídào le.','Haha, lúc đó cả hai đứa đều đi muộn.'],
       ['同桌','其实……我有一个遗憾，一直没告诉你。','Qíshí…… wǒ yǒu yí ge yíhàn, yìzhí méi gàosu nǐ.','Thật ra… tớ có một điều tiếc nuối, mãi chưa nói với cậu.'],
       ['女主','那就十年后重逢的时候再说吧。来，拍张照留念！','Nà jiù shí nián hòu chóngféng de shíhou zài shuō ba. Lái, pāi zhāng zhào liúniàn!','Thế để mười năm sau gặp lại rồi nói. Nào, chụp tấm ảnh lưu niệm!']]},
-    chars:'毕:bì:tất|桌:zhuō:bàn|憾:hàn:tiếc' },
+    chars:'桌:zhuō:bàn|高:gāo:cao|考:kǎo:thi' },
 
   { id:'h64', zh:'一年', title:'Tổng kết: Một năm học tiếng Trung', sub:'回顾 · 坚持 · 新的开始',
     desc:'Bài cuối cả lộ trình: nghe một đoạn độc thoại dài và tự kể lại năm của bạn.',
-    words:[['回顾','huígù','nhìn lại','hồi cố'],['收获','shōuhuò','thu hoạch, thành quả','thu hoạch'],['骄傲','jiāo\'ào','tự hào','kiêu ngạo'],['下一步','xià yí bù','bước tiếp theo',''],['胜利','shènglì','chiến thắng','thắng lợi'],['一半','yíbàn','một nửa','nhất bán'],['难记','nán jì','khó nhớ',''],['词汇量','cíhuìliàng','vốn từ vựng','từ vựng lượng'],['口语','kǒuyǔ','khẩu ngữ','khẩu ngữ'],['听力','tīnglì','kỹ năng nghe','thính lực'],['声调','shēngdiào','thanh điệu','thanh điệu'],['写字','xiězì','viết chữ','']],
+    words:[
+      ['回顾','huígù','nhìn lại','hồi cố'],['收获','shōuhuò','thu hoạch, thành quả','thu hoạch'],['骄傲','jiāo\'ào','tự hào','kiêu ngạo'],['下一步','xià yí bù','bước tiếp theo',''],
+      ['一半','yíbàn','một nửa','nhất bán'],['难记','nán jì','khó nhớ',''],['词汇量','cíhuìliàng','vốn từ vựng','từ vựng lượng'],['口语','kǒuyǔ','khẩu ngữ','khẩu ngữ'],
+      ['听力','tīnglì','kỹ năng nghe','thính lực'],['声调','shēngdiào','thanh điệu','thanh điệu'],['写字','xiězì','viết chữ','']],
     phrases:[['坚持就是胜利！','Jiānchí jiù shì shènglì!','Kiên trì là chiến thắng!',''],
       ['我为自己骄傲。','Wǒ wèi zìjǐ jiāo\'ào.','Mình tự hào về bản thân.',''],
       ['这不是结束，是新的开始。','Zhè bú shì jiéshù, shì xīn de kāishǐ.','Đây không phải kết thúc, mà là khởi đầu mới.','']],
@@ -391,7 +443,7 @@ window.COURSE.push(
       ['我','现在看中国剧，很多话不用字幕也能听懂了。','Xiànzài kàn Zhōngguó jù, hěn duō huà búyòng zìmù yě néng tīngdǒng le.','Giờ xem phim Trung, nhiều câu không cần phụ đề cũng nghe hiểu.'],
       ['我','我的目标实现了一半，我为自己骄傲。','Wǒ de mùbiāo shíxiàn le yíbàn, wǒ wèi zìjǐ jiāo\'ào.','Mục tiêu của mình đã thực hiện được một nửa, mình tự hào về bản thân.'],
       ['我','下一步，考HSK四级！这不是结束，是新的开始。','Xià yí bù, kǎo HSK sì jí! Zhè bú shì jiéshù, shì xīn de kāishǐ.','Bước tiếp theo: thi HSK 4! Đây không phải kết thúc, mà là khởi đầu mới.']]},
-    chars:'坚:jiān:kiên|获:huò:được|骄:jiāo:kiêu' }
+    chars:'获:huò:được|骄:jiāo:kiêu|字:zì:chữ' }
   ]}
 );
 

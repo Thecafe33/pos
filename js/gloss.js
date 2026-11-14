@@ -64,7 +64,7 @@ window.GLOSS = {
   '承运':['chéngyùn','thừa vận'],'黄金':['huángjīn','vàng'],'宫':['gōng','cung'],'爹爹':['diēdie','cha'],'笑话':['xiàohua','chuyện cười; cười nhạo'],'福':['fú','phúc'],'汤':['tāng','canh'],
   '全国':['quánguó','toàn quốc'],'款':['kuǎn','mẫu, kiểu (sản phẩm)'],'秒':['miǎo','giây'],'级':['jí','cấp'],'房子':['fángzi','nhà'],'星':['xīng','ngôi sao'],'夜':['yè','đêm'],
   '安':['ān','an'],'周':['zhōu','tuần'],'演':['yǎn','diễn'],'喜':['xǐ','vui, mừng'],'岁':['suì','tuổi'],'独生':['dúshēng','(con) một'],'恋爱':['liàn\'ài','yêu đương'],
-  '共':['gòng','tổng cộng'],'份':['fèn','phần, bản'],'单':['dān','đơn'],'别':['bié','đừng; khác'],'别的':['bié de','cái khác'],'离':['lí','cách (xa)'],'直':['zhí','thẳng; cứ'],'驾到':['jiàdào','giá lâm (vua đến)'],
+  '共':['gòng','tổng cộng'],'一共':['yígòng','tổng cộng'],'份':['fèn','phần, bản'],'单':['dān','đơn'],'别':['bié','đừng; khác'],'别的':['bié de','cái khác'],'离':['lí','cách (xa)'],'直':['zhí','thẳng; cứ'],'驾到':['jiàdào','giá lâm (vua đến)'],
   '免礼':['miǎnlǐ','miễn lễ'],'免':['miǎn','miễn'],'多谢':['duōxiè','đa tạ'],'谢':['xiè','cảm ơn'],'滑':['huá','trơn'],'全':['quán','toàn bộ'],
   '临':['lín','đến'],'民':['mín','dân'],'产':['chǎn','sản (xuất)'],'见过':['jiànguo','đã gặp; chào'],'定':['dìng','định'],'波':['bō','đợt'],'操作':['cāozuò','thao tác'],'操':['cāo','thao'],
   '动':['dòng','động'],'乐':['lè','vui'],'他的':['tā de','của anh ấy'],'知罪':['zhī zuì','biết tội'],'狡辩':['jiǎobiàn','ngụy biện'],'部':['bù','bộ (lượng từ phim)'],'足':['zú','đủ'],

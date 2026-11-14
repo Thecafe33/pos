@@ -26,8 +26,8 @@ window.COURSE = [
 </ul><p>Chạm vào chữ để nghe. Xem thêm biểu đồ thanh ở mục <b>拼</b> trên thanh công cụ.</p>`,
     words:[
       ['妈妈','māma','mẹ',''],['爸爸','bàba','bố',''],['马','mǎ','con ngựa','mã'],['骂','mà','mắng, chửi','mạ'],
-      ['吗','ma','(cuối câu → thành câu hỏi)',''],['八','bā','số 8','bát'],['谢谢','xièxie','cảm ơn','tạ tạ'],
-      ['好','hǎo','tốt, khỏe','hảo'],['你','nǐ','bạn, anh, chị','nễ'],['我','wǒ','tôi, mình','ngã']],
+      ['吗','ma','(cuối câu → thành câu hỏi)',''],['八','bā','số 8','bát'],['谢谢','xièxie','cảm ơn','tạ tạ'],['好','hǎo','tốt, khỏe','hảo'],
+      ['你','nǐ','bạn, anh, chị','nễ'],['我','wǒ','tôi, mình','ngã'],['好的','hǎo de','được, OK',''],['不客气','bú kèqi','không có gì (đáp lời cảm ơn)','']],
     phrases:[
       ['你好！','Nǐ hǎo!','Xin chào!','Câu chào chuẩn. Bạn bè thân thì người Trung hay gọi tên luôn hoặc nói "嗨" (hāi).'],
       ['谢谢！','Xièxie!','Cảm ơn!','Chữ thứ hai đọc thanh nhẹ: xiè-xie.'],
@@ -48,7 +48,9 @@ window.COURSE = [
     words:[
       ['知道','zhīdào','biết','tri đạo'],['吃','chī','ăn','ngật'],['是','shì','là, đúng','thị'],['热','rè','nóng','nhiệt'],
       ['字','zì','chữ','tự'],['菜','cài','món ăn; rau','thái'],['四','sì','số 4','tứ'],['十','shí','số 10','thập'],
-      ['去','qù','đi (đến)','khứ'],['鱼','yú','cá','ngư'],['谁','shéi','ai','thùy'],['人','rén','người','nhân']],
+      ['去','qù','đi (đến)','khứ'],['鱼','yú','cá','ngư'],['谁','shéi','ai','thùy'],['人','rén','người','nhân'],
+      ['什么','shénme','cái gì','thập ma'],['越南','Yuènán','Việt Nam','Việt Nam'],['还是','háishi','hay là; vẫn','hoàn thị'],['名字','míngzi','tên','danh tự'],
+      ['阿明','Ā Míng','Minh (tên)','']],
     phrases:[
       ['我是越南人。','Wǒ shì Yuènán rén.','Mình là người Việt Nam.',''],
       ['你叫什么名字？','Nǐ jiào shénme míngzi?','Bạn tên là gì?','Vẫn dùng được. Lịch sự kiểu người lớn: "怎么称呼？" (Zěnme chēnghu? – Xưng hô thế nào ạ?)'],
@@ -67,8 +69,9 @@ window.COURSE = [
 <p>Trong app, pinyin của 不 và 一 được ghi theo cách đọc thực tế.</p>`,
     words:[
       ['不','bù','không','bất'],['不是','bú shì','không phải','bất thị'],['一','yī','số 1','nhất'],['一个','yí ge','một cái','nhất cá'],
-      ['一起','yìqǐ','cùng nhau','nhất khởi'],['很好','hěn hǎo','rất tốt','ngận hảo'],['朋友','péngyou','bạn bè','bằng hữu'],
-      ['东西','dōngxi','đồ, đồ vật','đông tây'],['什么','shénme','cái gì','thập ma'],['没有','méiyǒu','không có; chưa','một hữu']],
+      ['一起','yìqǐ','cùng nhau','nhất khởi'],['很好','hěn hǎo','rất tốt','ngận hảo'],['朋友','péngyou','bạn bè','bằng hữu'],['东西','dōngxi','đồ, đồ vật','đông tây'],
+      ['没有','méiyǒu','không có; chưa','một hữu'],['吧','ba','nhé, đi (rủ, đoán)',''],['说','shuō','nói',''],['吃饭','chīfàn','ăn cơm','ngật phạn'],
+      ['意思','yìsi','ý nghĩa','ý tứ'],['没事儿','méi shìr','không sao đâu','']],
     phrases:[
       ['不是吧？！','Bú shì ba?!','Không phải chứ?! / Thật hả trời?!','Phản ứng ngạc nhiên cực hay gặp trong phim.'],
       ['不好意思。','Bù hǎoyìsi.','Ngại quá / Xin lỗi (nhẹ).','Đời thường dùng nhiều hơn 对不起. Dùng khi chen ngang, nhờ vả, làm phiền.'],
@@ -85,9 +88,10 @@ window.COURSE = [
   { id:'b1', zh:'打招呼', title:'Chào hỏi', sub:'早 · 吃了吗 · 拜拜',
     desc:'Cách người Trung chào nhau thật sự, không phải "你好吗".',
     words:[
-      ['早','zǎo','sớm; chào buổi sáng','tảo'],['早上好','zǎoshang hǎo','chào buổi sáng','tảo thượng hảo'],['嗨','hāi','hi, chào',''],
-      ['拜拜','báibái','bye bye',''],['回头见','huítóu jiàn','gặp lại sau','hồi đầu kiến'],['晚安','wǎn\'ān','chúc ngủ ngon','vãn an'],
-      ['最近','zuìjìn','dạo này','tối cận'],['怎么样','zěnmeyàng','thế nào','chẩm ma dạng'],['还行','hái xíng','cũng được','hoàn hành'],['忙','máng','bận','mang']],
+      ['早','zǎo','sớm; chào buổi sáng','tảo'],['早上好','zǎoshang hǎo','chào buổi sáng','tảo thượng hảo'],['嗨','hāi','hi, chào',''],['拜拜','báibái','bye bye',''],
+      ['回头见','huítóu jiàn','gặp lại sau','hồi đầu kiến'],['晚安','wǎn\'ān','chúc ngủ ngon','vãn an'],['最近','zuìjìn','dạo này','tối cận'],['怎么样','zěnmeyàng','thế nào','chẩm ma dạng'],
+      ['还行','hái xíng','cũng được','hoàn hành'],['忙','máng','bận','mang'],['了','le','rồi (đã xong / đã đổi)',''],['啊','a','à, nhỉ (cảm thán)',''],
+      ['儿','r','(âm cuối uốn lưỡi, giọng Bắc Kinh)',''],['死','sǐ','chết','']],
     phrases:[
       ['早啊！','Zǎo a!','Chào buổi sáng!','Người Trung chào sáng thường chỉ nói "早" — "早上好" nghe hơi trang trọng.'],
       ['吃了吗？','Chī le ma?','Ăn cơm chưa?','Lời chào xã giao, không phải hỏi thật. Đáp: "吃了，你呢？"'],
@@ -109,7 +113,9 @@ window.COURSE = [
     words:[
       ['三','sān','số 3','tam'],['五','wǔ','số 5','ngũ'],['六','liù','số 6','lục'],['九','jiǔ','số 9','cửu'],
       ['两','liǎng','hai (+ lượng từ)','lưỡng'],['百','bǎi','trăm','bách'],['千','qiān','nghìn','thiên'],['万','wàn','vạn (10.000)','vạn'],
-      ['块','kuài','đồng (tệ, khẩu ngữ)','khối'],['钱','qián','tiền','tiền'],['多少','duōshao','bao nhiêu','đa thiểu'],['贵','guì','đắt','quý']],
+      ['块','kuài','đồng (tệ, khẩu ngữ)','khối'],['钱','qián','tiền','tiền'],['多少','duōshao','bao nhiêu','đa thiểu'],['贵','guì','đắt','quý'],
+      ['太','tài','quá',''],['点儿','diǎnr','một chút',''],['二','èr','số 2',''],['便宜','piányi','rẻ','tiện nghi'],
+      ['杯','bēi','cốc, ly','bôi'],['扫码','sǎomǎ','quét mã','tảo mã']],
     phrases:[
       ['多少钱？','Duōshao qián?','Bao nhiêu tiền?',''],
       ['太贵了吧！','Tài guì le ba!','Đắt quá vậy!','Thêm "吧" nghe như đang mặc cả nhẹ nhàng.'],
@@ -122,9 +128,11 @@ window.COURSE = [
   { id:'b3', zh:'吃喝', title:'Ăn uống', sub:'来一份 · 打包 · 买单',
     desc:'Gọi món, dặn không cay, tính tiền, gói mang về.',
     words:[
-      ['吃饭','chīfàn','ăn cơm','ngật phạn'],['喝','hē','uống','hát'],['水','shuǐ','nước','thủy'],['米饭','mǐfàn','cơm trắng','mễ phạn'],
-      ['面','miàn','mì','miến'],['奶茶','nǎichá','trà sữa','nãi trà'],['好吃','hǎochī','ngon','hảo ngật'],['辣','là','cay','lạt'],
-      ['饿','è','đói','ngạ'],['服务员','fúwùyuán','nhân viên phục vụ','phục vụ viên'],['打包','dǎbāo','gói mang về','đả bao'],['老板','lǎobǎn','ông/bà chủ; sếp','lão bản']],
+      ['喝','hē','uống','hát'],['水','shuǐ','nước','thủy'],['米饭','mǐfàn','cơm trắng','mễ phạn'],['面','miàn','mì','miến'],
+      ['奶茶','nǎichá','trà sữa','nãi trà'],['好吃','hǎochī','ngon','hảo ngật'],['辣','là','cay','lạt'],['饿','è','đói','ngạ'],
+      ['服务员','fúwùyuán','nhân viên phục vụ','phục vụ viên'],['打包','dǎbāo','gói mang về','đả bao'],['老板','lǎobǎn','ông/bà chủ; sếp','lão bản'],['要','yào','muốn, cần','yếu'],
+      ['来','lái','đến',''],['这个','zhège','cái này','giá cá'],['买','mǎi','mua','mãi'],['帮','bāng','giúp','bang'],
+      ['份','fèn','phần, bản',''],['单','dān','đơn','']],
     phrases:[
       ['来一份这个。','Lái yí fèn zhège.','Cho một phần cái này.','Gọi món người ta dùng "来", không ai nói "我要买…".'],
       ['不要辣，谢谢。','Bú yào là, xièxie.','Không cay nhé, cảm ơn.','Cay nhẹ: 微辣 (wēi là). Cay vừa: 中辣 (zhōng là).'],
@@ -137,9 +145,10 @@ window.COURSE = [
   { id:'b4', zh:'买东西', title:'Mua sắm', sub:'这个 · 试一下 · 算了',
     desc:'Xem đồ, hỏi màu, thử đồ, trả giá, mua online.',
     words:[
-      ['买','mǎi','mua','mãi'],['卖','mài','bán','mại'],['这个','zhège','cái này','giá cá'],['那个','nàge','cái kia','na cá'],
-      ['便宜','piányi','rẻ','tiện nghi'],['要','yào','muốn, cần','yếu'],['试','shì','thử','thí'],['大','dà','to, lớn','đại'],
-      ['小','xiǎo','nhỏ','tiểu'],['颜色','yánsè','màu sắc','nhan sắc'],['包邮','bāoyóu','miễn phí ship','bao bưu']],
+      ['卖','mài','bán','mại'],['那个','nàge','cái kia','na cá'],['试','shì','thử','thí'],['大','dà','to, lớn','đại'],
+      ['小','xiǎo','nhỏ','tiểu'],['颜色','yánsè','màu sắc','nhan sắc'],['包邮','bāoyóu','miễn phí ship','bao bưu'],['就','jiù','thì, liền','tựu'],
+      ['有','yǒu','có',''],['看','kàn','xem, nhìn','khán'],['亲','qīn','hôn','thân'],['别的','bié de','cái khác',''],
+      ['算了','suàn le','thôi bỏ đi','toán liễu']],
     phrases:[
       ['我就看看。','Wǒ jiù kànkan.','Mình xem thôi.','Nói khi nhân viên đi theo hỏi han.'],
       ['有别的颜色吗？','Yǒu biéde yánsè ma?','Có màu khác không?',''],
@@ -147,14 +156,16 @@ window.COURSE = [
       ['能便宜点儿吗？','Néng piányi diǎnr ma?','Bớt được chút không?',''],
       ['算了，不要了。','Suàn le, bú yào le.','Thôi, không lấy nữa.','"算了" = thôi bỏ đi — xuất hiện cực nhiều trong phim.'],
       ['亲，包邮吗？','Qīn, bāoyóu ma?','Shop ơi, free ship không?','"亲" là cách gọi nhau trên Taobao.']],
-    chars:'买:mǎi:mua|卖:mài:bán|大:dà:to|小:xiǎo:nhỏ' },
+    chars:'卖:mài:bán|大:dà:to|小:xiǎo:nhỏ' },
 
   { id:'b5', zh:'问路', title:'Hỏi đường', sub:'在哪儿 · 左右 · 师傅',
     desc:'Hỏi đường, đi tàu điện, gọi xe, nói chuyện với tài xế.',
     words:[
       ['在哪儿','zài nǎr','ở đâu','tại na nhi'],['这儿','zhèr','ở đây',''],['左边','zuǒbian','bên trái','tả biên'],['右边','yòubian','bên phải','hữu biên'],
-      ['往前走','wǎng qián zǒu','đi thẳng','vãng tiền tẩu'],['地铁','dìtiě','tàu điện ngầm','địa thiết'],['打车','dǎchē','gọi xe, bắt taxi','đả xa'],
-      ['远','yuǎn','xa','viễn'],['近','jìn','gần','cận'],['到了','dào le','đến rồi','đáo liễu'],['师傅','shīfu','bác tài, thợ','sư phó']],
+      ['往前走','wǎng qián zǒu','đi thẳng','vãng tiền tẩu'],['地铁','dìtiě','tàu điện ngầm','địa thiết'],['打车','dǎchē','gọi xe, bắt taxi','đả xa'],['远','yuǎn','xa','viễn'],
+      ['近','jìn','gần','cận'],['到了','dào le','đến rồi','đáo liễu'],['师傅','shīfu','bác tài, thợ','sư phó'],['走','zǒu','đi, rời đi',''],
+      ['到','dào','đến',''],['行','xíng','được, ổn','hành'],['开','kāi','mở; bật','khai'],['打','dǎ','đánh','đả'],
+      ['站','zhàn','trạm, ga','trạm'],['请问','qǐngwèn','xin hỏi','thỉnh vấn']],
     phrases:[
       ['请问，地铁站怎么走？','Qǐngwèn, dìtiě zhàn zěnme zǒu?','Cho hỏi, ga tàu điện đi thế nào?','"请问" mở đầu lịch sự khi hỏi người lạ.'],
       ['离这儿远吗？','Lí zhèr yuǎn ma?','Cách đây xa không?',''],
@@ -169,7 +180,8 @@ window.COURSE = [
     words:[
       ['现在','xiànzài','bây giờ','hiện tại'],['几点','jǐ diǎn','mấy giờ','kỷ điểm'],['今天','jīntiān','hôm nay','kim thiên'],['明天','míngtiān','ngày mai','minh thiên'],
       ['昨天','zuótiān','hôm qua','tạc thiên'],['周末','zhōumò','cuối tuần','chu mạt'],['半','bàn','rưỡi, một nửa','bán'],['等','děng','đợi','đẳng'],
-      ['马上','mǎshàng','ngay lập tức','mã thượng'],['有空','yǒu kòng','rảnh','hữu không']],
+      ['马上','mǎshàng','ngay lập tức','mã thượng'],['有空','yǒu kòng','rảnh','hữu không'],['出来','chūlai','ra (ngoài)',''],['改天','gǎitiān','hôm khác','cải thiên'],
+      ['玩儿','wánr','chơi','ngoạn']],
     phrases:[
       ['你几点有空？','Nǐ jǐ diǎn yǒu kòng?','Mấy giờ bạn rảnh?',''],
       ['周末出来玩儿啊！','Zhōumò chūlai wánr a!','Cuối tuần ra ngoài chơi đi!',''],
@@ -189,7 +201,9 @@ window.COURSE = [
     words:[
       ['家','jiā','nhà, gia đình','gia'],['父母','fùmǔ','bố mẹ','phụ mẫu'],['孩子','háizi','con, đứa trẻ',''],['哥哥','gēge','anh trai','ca ca'],
       ['姐姐','jiějie','chị gái','tỷ tỷ'],['弟弟','dìdi','em trai','đệ đệ'],['妹妹','mèimei','em gái','muội muội'],['工作','gōngzuò','công việc; làm việc','công tác'],
-      ['学生','xuésheng','học sinh, sinh viên','học sinh'],['结婚','jiéhūn','kết hôn','kết hôn'],['对象','duìxiàng','người yêu, đối tượng','đối tượng'],['老家','lǎojiā','quê','lão gia']],
+      ['学生','xuésheng','học sinh, sinh viên','học sinh'],['结婚','jiéhūn','kết hôn','kết hôn'],['对象','duìxiàng','người yêu, đối tượng','đối tượng'],['老家','lǎojiā','quê','lão gia'],
+      ['的','de','của; (trợ từ nối)',''],['在','zài','ở, tại; đang',''],['多','duō','nhiều',''],['做','zuò','làm',''],
+      ['女','nǚ','nữ','nữ'],['河内','Hénèi','Hà Nội','']],
     phrases:[
       ['你多大了？','Nǐ duō dà le?','Bạn bao nhiêu tuổi?','Hỏi người lớn tuổi lịch sự hơn: "您多大年纪了？"'],
       ['你是做什么的？','Nǐ shì zuò shénme de?','Bạn làm nghề gì?','Tự nhiên hơn "你的工作是什么？".'],
@@ -197,14 +211,15 @@ window.COURSE = [
       ['我老家在河内。','Wǒ lǎojiā zài Hénèi.','Quê mình ở Hà Nội.',''],
       ['我是独生女。','Wǒ shì dúshēngnǚ.','Mình là con gái một.','Con trai một: 独生子 (dúshēngzǐ).'],
       ['我家有四口人。','Wǒ jiā yǒu sì kǒu rén.','Nhà mình có 4 người.','Đếm người trong gia đình dùng lượng từ "口".']],
-    chars:'家:jiā:nhà|爸:bà:bố|妈:mā:mẹ|姐:jiě:chị' },
+    chars:'家:jiā:nhà|姐:jiě:chị|老:lǎo:già' },
 
   { id:'c2', zh:'心情', title:'Cảm xúc', sub:'累死了 · 烦死了',
     desc:'Vui, buồn, mệt, bực — kiểu than thở người Trung hay dùng.',
     words:[
       ['开心','kāixīn','vui','khai tâm'],['高兴','gāoxìng','vui mừng','cao hứng'],['累','lèi','mệt','lụy'],['生气','shēngqì','tức giận','sinh khí'],
       ['难过','nánguò','buồn','nan quá'],['害怕','hàipà','sợ','hại phạ'],['无聊','wúliáo','chán','vô liêu'],['烦','fán','phiền, bực','phiền'],
-      ['担心','dānxīn','lo lắng','đảm tâm'],['感动','gǎndòng','cảm động','cảm động']],
+      ['担心','dānxīn','lo lắng','đảm tâm'],['感动','gǎndòng','cảm động','cảm động'],['别','bié','đừng; khác',''],['呢','ne','thì sao; đang…',''],
+      ['气死','qìsǐ','tức chết','']],
     phrases:[
       ['累死我了！','Lèi sǐ wǒ le!','Mệt chết mất!',''],
       ['烦死了！','Fán sǐ le!','Bực mình quá!','Hay đi kèm giọng than thở trong phim.'],
@@ -219,8 +234,9 @@ window.COURSE = [
     desc:'Kết bạn, nhắn tin, gọi video, hỏi mật khẩu WiFi.',
     words:[
       ['手机','shǒujī','điện thoại','thủ cơ'],['微信','Wēixìn','WeChat','vi tín'],['加','jiā','thêm (kết bạn)','gia'],['发','fā','gửi','phát'],
-      ['消息','xiāoxi','tin nhắn','tiêu tức'],['打电话','dǎ diànhuà','gọi điện','đả điện thoại'],['视频','shìpín','video','thị tần'],
-      ['回','huí','trả lời; về','hồi'],['密码','mìmǎ','mật khẩu','mật mã'],['没电了','méi diàn le','hết pin rồi','']],
+      ['消息','xiāoxi','tin nhắn','tiêu tức'],['打电话','dǎ diànhuà','gọi điện','đả điện thoại'],['视频','shìpín','video','thị tần'],['回','huí','trả lời; về','hồi'],
+      ['密码','mìmǎ','mật khẩu','mật mã'],['没电了','méi diàn le','hết pin rồi',''],['给','gěi','cho; đưa',''],['扫','sǎo','quét (mã)',''],
+      ['晚点','wǎndiǎn','trễ giờ (tàu, xe)','vãn điểm']],
     phrases:[
       ['加个微信吧。','Jiā ge Wēixìn ba.','Kết bạn WeChat nhé.',''],
       ['我扫你还是你扫我？','Wǒ sǎo nǐ háishi nǐ sǎo wǒ?','Mình quét bạn hay bạn quét mình?','Câu quen thuộc khi kết bạn WeChat bằng mã QR.'],
@@ -235,7 +251,8 @@ window.COURSE = [
     words:[
       ['天气','tiānqì','thời tiết','thiên khí'],['冷','lěng','lạnh','lãnh'],['下雨','xià yǔ','mưa','hạ vũ'],['舒服','shūfu','dễ chịu, khỏe','thư phục'],
       ['感冒','gǎnmào','cảm cúm','cảm mạo'],['发烧','fāshāo','sốt','phát thiêu'],['疼','téng','đau','đông'],['药','yào','thuốc','dược'],
-      ['医院','yīyuàn','bệnh viện','y viện'],['休息','xiūxi','nghỉ ngơi','hưu tức']],
+      ['医院','yīyuàn','bệnh viện','y viện'],['休息','xiūxi','nghỉ ngơi','hưu tức'],['带','dài','mang theo','đới'],['头疼','tóuténg','đau đầu','đầu đông'],
+      ['热水','rèshuǐ','nước nóng','nhiệt thủy'],['伞','sǎn','ô, dù','']],
     phrases:[
       ['今天好热啊！','Jīntiān hǎo rè a!','Hôm nay nóng quá!',''],
       ['我有点儿不舒服。','Wǒ yǒudiǎnr bù shūfu.','Mình hơi khó chịu trong người.','"有点儿" + điều không tốt = hơi…'],
@@ -248,9 +265,10 @@ window.COURSE = [
   { id:'c5', zh:'爱好', title:'Sở thích & rủ rê', sub:'追剧 · 我请客',
     desc:'Nói về phim, nhạc, game — rủ đi chơi và mời bao.',
     words:[
-      ['喜欢','xǐhuan','thích','hỉ hoan'],['电影','diànyǐng','phim điện ảnh','điện ảnh'],['电视剧','diànshìjù','phim truyền hình','điện thị kịch'],
-      ['看','kàn','xem, nhìn','khán'],['听','tīng','nghe','thính'],['音乐','yīnyuè','âm nhạc','âm nhạc'],['玩儿','wánr','chơi','ngoạn'],
-      ['游戏','yóuxì','trò chơi, game','du hí'],['追剧','zhuījù','cày phim','truy kịch'],['逛街','guàngjiē','dạo phố, shopping','cuống nhai'],['请客','qǐngkè','mời, bao','thỉnh khách']],
+      ['喜欢','xǐhuan','thích','hỉ hoan'],['电影','diànyǐng','phim điện ảnh','điện ảnh'],['电视剧','diànshìjù','phim truyền hình','điện thị kịch'],['听','tīng','nghe','thính'],
+      ['音乐','yīnyuè','âm nhạc','âm nhạc'],['游戏','yóuxì','trò chơi, game','du hí'],['追剧','zhuījù','cày phim','truy kịch'],['逛街','guàngjiē','dạo phố, shopping','cuống nhai'],
+      ['请客','qǐngkè','mời, bao','thỉnh khách'],['剧','jù','phim (bộ)',''],['没','méi','không, chưa',''],['干嘛','gàn má','làm gì; sao thế',''],
+      ['追','zhuī','theo đuổi','truy'],['问题','wèntí','câu hỏi; vấn đề','vấn đề'],['平时','píngshí','thường ngày','bình thời'],['下次','xià cì','lần sau','hạ thứ']],
     phrases:[
       ['你平时喜欢干嘛？','Nǐ píngshí xǐhuan gàn má?','Bình thường bạn thích làm gì?','"干嘛" là khẩu ngữ của "做什么".'],
       ['最近在追什么剧？','Zuìjìn zài zhuī shénme jù?','Dạo này đang cày phim gì?',''],
@@ -258,7 +276,7 @@ window.COURSE = [
       ['今天我请客！','Jīntiān wǒ qǐngkè!','Hôm nay mình bao!',''],
       ['好啊，没问题！','Hǎo a, méi wèntí!','Được thôi, không vấn đề!',''],
       ['下次吧。','Xià cì ba.','Lần sau nhé.','Từ chối nhẹ nhàng, giống "改天吧".']],
-    chars:'喜:xǐ:vui|看:kàn:xem|听:tīng:nghe|玩:wán:chơi' }
+    chars:'喜:xǐ:vui|听:tīng:nghe|追:zhuī:theo đuổi' }
   ]},
 
 /* ───────────────────────── CHẶNG 4 ───────────────────────── */
@@ -268,10 +286,10 @@ window.COURSE = [
   { id:'d1', zh:'惊讶', title:'Phản ứng & cảm thán', sub:'真的假的 · 完了',
     desc:'Những tiếng "trời ơi", "toang rồi" nghe trong mọi bộ phim.',
     words:[
-      ['真的','zhēn de','thật','chân đích'],['天哪','tiān na','trời ơi','thiên na'],['完了','wán le','xong rồi; toang rồi','hoàn liễu'],
-      ['糟糕','zāogāo','hỏng bét, chết rồi','tao cao'],['哎呀','āiyā','ái chà, ôi',''],['可能','kěnéng','có thể','khả năng'],
-      ['居然','jūrán','vậy mà, thế mà','cư nhiên'],['厉害','lìhai','giỏi, ghê','lệ hại'],['无语','wúyǔ','cạn lời','vô ngữ'],
-      ['奇怪','qíguài','lạ','kỳ quái'],['吓','xià','dọa, làm giật mình','hách']],
+      ['真的','zhēn de','thật','chân đích'],['天哪','tiān na','trời ơi','thiên na'],['完了','wán le','xong rồi; toang rồi','hoàn liễu'],['糟糕','zāogāo','hỏng bét, chết rồi','tao cao'],
+      ['哎呀','āiyā','ái chà, ôi',''],['可能','kěnéng','có thể','khả năng'],['居然','jūrán','vậy mà, thế mà','cư nhiên'],['厉害','lìhai','giỏi, ghê','lệ hại'],
+      ['无语','wúyǔ','cạn lời','vô ngữ'],['奇怪','qíguài','lạ','kỳ quái'],['吓','xià','dọa, làm giật mình','hách'],['也','yě','cũng',''],
+      ['假的','jiǎ de','giả, không thật','']],
     phrases:[
       ['真的假的？','Zhēn de jiǎ de?','Thật hay đùa vậy?','Phản ứng hóng chuyện siêu phổ biến.'],
       ['我的天哪！','Wǒ de tiān na!','Trời đất ơi!',''],
@@ -285,9 +303,10 @@ window.COURSE = [
   { id:'d2', zh:'吵架', title:'Cãi nhau & giận dữ', sub:'凭什么 · 你给我站住',
     desc:'Câu thoại "drama" trong phim tình cảm, gia đình, cung đấu.',
     words:[
-      ['凭什么','píng shénme','dựa vào đâu, tại sao chứ','bằng thập ma'],['闭嘴','bì zuǐ','im miệng','bế chủy'],['够了','gòu le','đủ rồi',''],
-      ['滚','gǔn','cút','cổn'],['讨厌','tǎoyàn','ghét','thảo yếm'],['骗子','piànzi','kẻ lừa đảo','biển tử'],['疯','fēng','điên','phong'],
-      ['解释','jiěshì','giải thích','giải thích'],['分手','fēnshǒu','chia tay','phân thủ'],['管','guǎn','quản, xen vào','quản']],
+      ['凭什么','píng shénme','dựa vào đâu, tại sao chứ','bằng thập ma'],['闭嘴','bì zuǐ','im miệng','bế chủy'],['够了','gòu le','đủ rồi',''],['滚','gǔn','cút','cổn'],
+      ['讨厌','tǎoyàn','ghét','thảo yếm'],['骗子','piànzi','kẻ lừa đảo','biển tử'],['疯','fēng','điên','phong'],['解释','jiěshì','giải thích','giải thích'],
+      ['分手','fēnshǒu','chia tay','phân thủ'],['管','guǎn','quản, xen vào','quản'],['们','men','(số nhiều: 我们, 你们)',''],['事','shì','việc, chuyện',''],
+      ['住','zhù','sống, ở','trú'],['关','guān','đóng; tắt','quan'],['是不是','shì bu shì','có phải… không',''],['少来这套','shǎo lái zhè tào','bớt giở trò đi','']],
     phrases:[
       ['你给我站住！','Nǐ gěi wǒ zhànzhù!','Đứng lại cho tôi!','"给我" làm câu ra lệnh mạnh hơn.'],
       ['关你什么事？','Guān nǐ shénme shì?','Liên quan gì tới anh?',''],
@@ -302,10 +321,9 @@ window.COURSE = [
   { id:'d3', zh:'恋爱', title:'Tình cảm & ngôn tình', sub:'我想你了 · 吃醋',
     desc:'Lời yêu, ghen tuông, "傻瓜" — đặc sản phim ngôn tình.',
     words:[
-      ['爱','ài','yêu','ái'],['想','xiǎng','nhớ; muốn; nghĩ','tưởng'],['宝贝','bǎobèi','cưng, bảo bối','bảo bối'],
-      ['亲爱的','qīn\'ài de','anh/em yêu','thân ái đích'],['吃醋','chīcù','ghen','ngật thố'],['表白','biǎobái','tỏ tình','biểu bạch'],
-      ['约会','yuēhuì','hẹn hò','ước hội'],['心动','xīndòng','rung động','tâm động'],['傻瓜','shǎguā','đồ ngốc','sỏa qua'],
-      ['舍不得','shěbude','không nỡ','xả bất đắc'],['陪','péi','ở bên, đi cùng','bồi']],
+      ['爱','ài','yêu','ái'],['宝贝','bǎobèi','cưng, bảo bối','bảo bối'],['亲爱的','qīn\'ài de','anh/em yêu','thân ái đích'],['吃醋','chīcù','ghen','ngật thố'],
+      ['表白','biǎobái','tỏ tình','biểu bạch'],['约会','yuēhuì','hẹn hò','ước hội'],['心动','xīndòng','rung động','tâm động'],['傻瓜','shǎguā','đồ ngốc','sỏa qua'],
+      ['舍不得','shěbude','không nỡ','xả bất đắc'],['陪','péi','ở bên, đi cùng','bồi'],['都','dōu','đều',''],['着','zhe','đang (kéo dài)','']],
     phrases:[
       ['我想你了。','Wǒ xiǎng nǐ le.','Anh nhớ em rồi.',''],
       ['你吃醋了？','Nǐ chīcù le?','Em ghen à?',''],
@@ -314,16 +332,17 @@ window.COURSE = [
       ['做我女朋友吧。','Zuò wǒ nǚpéngyou ba.','Làm bạn gái anh nhé.','Bạn trai: 男朋友 (nánpéngyou).'],
       ['我舍不得你。','Wǒ shěbude nǐ.','Anh không nỡ xa em.',''],
       ['讨厌～','Tǎoyàn~','Ghét ghê~','Con gái nói giọng nũng nịu = không phải ghét thật 😄']],
-    chars:'爱:ài:yêu|想:xiǎng:nhớ|心:xīn:tim|陪:péi:ở bên' },
+    chars:'爱:ài:yêu|心:xīn:tim|陪:péi:ở bên' },
 
   { id:'d4', zh:'古装剧', title:'Phim cổ trang', sub:'皇上 · 本宫 · 放肆',
     desc:'Xưng hô cung đình, tiên hiệp — gần như trùng Hán Việt!',
     intro:`<p>Tin vui: từ cổ trang gần như <b>trùng Hán Việt</b> — 皇上 = hoàng thượng, 本宫 = bổn cung, 在下 = tại hạ. Người Việt học phần này rất nhanh. Bật hiển thị <b>Hán Việt</b> trong Cài đặt để tận dụng.</p>`,
     words:[
-      ['皇上','huángshang','hoàng thượng','hoàng thượng'],['娘娘','niángniang','nương nương','nương nương'],['本宫','běngōng','bổn cung','bổn cung'],
-      ['奴婢','núbì','nô tỳ','nô tỳ'],['臣','chén','thần (bề tôi)','thần'],['公子','gōngzǐ','công tử','công tử'],['姑娘','gūniang','cô nương','cô nương'],
-      ['师父','shīfu','sư phụ','sư phụ'],['在下','zàixià','tại hạ','tại hạ'],['放肆','fàngsì','láo xược','phóng tứ'],
-      ['遵命','zūnmìng','tuân lệnh','tuân mệnh'],['大胆','dàdǎn','to gan','đại đảm']],
+      ['皇上','huángshang','hoàng thượng','hoàng thượng'],['娘娘','niángniang','nương nương','nương nương'],['本宫','běngōng','bổn cung','bổn cung'],['奴婢','núbì','nô tỳ','nô tỳ'],
+      ['臣','chén','thần (bề tôi)','thần'],['公子','gōngzǐ','công tử','công tử'],['姑娘','gūniang','cô nương','cô nương'],['师父','shīfu','sư phụ','sư phụ'],
+      ['在下','zàixià','tại hạ','tại hạ'],['放肆','fàngsì','láo xược','phóng tứ'],['遵命','zūnmìng','tuân lệnh','tuân mệnh'],['大胆','dàdǎn','to gan','đại đảm'],
+      ['平身','píngshēn','bình thân','bình thân'],['多谢','duōxiè','đa tạ',''],['救','jiù','cứu','cứu'],['驾到','jiàdào','giá lâm (vua đến)',''],
+      ['免礼','miǎnlǐ','miễn lễ',''],['相','xiāng','lẫn nhau','']],
     phrases:[
       ['来人啊！','Lái rén a!','Người đâu!',''],
       ['大胆！','Dàdǎn!','To gan!',''],
@@ -339,7 +358,9 @@ window.COURSE = [
     words:[
       ['总裁','zǒngcái','tổng tài, CEO','tổng tài'],['加班','jiābān','tăng ca','gia ban'],['开会','kāihuì','họp','khai hội'],['辞职','cízhí','nghỉ việc','từ chức'],
       ['项目','xiàngmù','dự án','hạng mục'],['客户','kèhù','khách hàng','khách hộ'],['合同','hétong','hợp đồng','hợp đồng'],['搞定','gǎodìng','xử lý xong','cảo định'],
-      ['靠谱','kàopǔ','đáng tin, ổn','kháo phổ'],['压力','yālì','áp lực','áp lực'],['摸鱼','mōyú','lười việc, "trốn việc"','']],
+      ['靠谱','kàopǔ','đáng tin, ổn','kháo phổ'],['压力','yālì','áp lực','áp lực'],['摸鱼','mōyú','lười việc, "trốn việc"',''],['上班','shàngbān','đi làm','thượng ban'],
+      ['成功','chénggōng','thành công','thành công'],['干','gàn','làm',''],['老子','lǎozi','tao, bố mày (ngông)',''],['发现','fāxiàn','phát hiện','phát hiện'],
+      ['引起','yǐnqǐ','gây ra',''],['注意','zhùyì','chú ý','']],
     phrases:[
       ['今天又要加班。','Jīntiān yòu yào jiābān.','Hôm nay lại phải tăng ca.',''],
       ['搞定了！','Gǎodìng le!','Xong rồi! / Xử đẹp rồi!',''],
@@ -359,8 +380,10 @@ window.COURSE = [
     desc:'Lối ra, đẩy/kéo, nam/nữ, nhà vệ sinh, cấm hút thuốc.',
     words:[
       ['出口','chūkǒu','lối ra','xuất khẩu'],['入口','rùkǒu','lối vào','nhập khẩu'],['推','tuī','đẩy','thôi'],['拉','lā','kéo','lạp'],
-      ['男','nán','nam','nam'],['女','nǚ','nữ','nữ'],['洗手间','xǐshǒujiān','nhà vệ sinh','tẩy thủ gian'],['厕所','cèsuǒ','toilet','xí sở'],
-      ['禁止吸烟','jìnzhǐ xīyān','cấm hút thuốc','cấm chỉ hấp yên'],['小心','xiǎoxīn','cẩn thận','tiểu tâm'],['安全出口','ānquán chūkǒu','lối thoát hiểm','an toàn xuất khẩu']],
+      ['男','nán','nam','nam'],['洗手间','xǐshǒujiān','nhà vệ sinh','tẩy thủ gian'],['厕所','cèsuǒ','toilet','xí sở'],['禁止吸烟','jìnzhǐ xīyān','cấm hút thuốc','cấm chỉ hấp yên'],
+      ['小心','xiǎoxīn','cẩn thận','tiểu tâm'],['安全出口','ānquán chūkǒu','lối thoát hiểm','an toàn xuất khẩu'],['进','jìn','vào',''],['地','de','một cách (…地 + động từ); đất',''],
+      ['排队','páiduì','xếp hàng','bài đội'],['滑','huá','trơn',''],['勿','wù','chớ, cấm',''],['吸烟','xīyān','hút thuốc',''],
+      ['闲','xián','rảnh',''],['免','miǎn','miễn','']],
     phrases:[
       ['洗手间在哪儿？','Xǐshǒujiān zài nǎr?','Nhà vệ sinh ở đâu?','Nói "厕所在哪儿？" cũng tự nhiên, không bất lịch sự.'],
       ['小心地滑','Xiǎoxīn dì huá','Cẩn thận sàn trơn','Biển vàng gặp khắp nơi.'],
@@ -368,14 +391,16 @@ window.COURSE = [
       ['闲人免进','Xiánrén miǎn jìn','Người không phận sự miễn vào',''],
       ['请排队','Qǐng páiduì','Vui lòng xếp hàng',''],
       ['小心碰头','Xiǎoxīn pèng tóu','Cẩn thận cụng đầu','']],
-    chars:'出:chū:ra|入:rù:vào|男:nán:nam|女:nǚ:nữ' },
+    chars:'出:chū:ra|入:rù:vào|男:nán:nam' },
 
   { id:'e2', zh:'店铺', title:'Cửa hàng & thanh toán', sub:'营业中 · 八折 · 扫码',
     desc:'Đọc bảng giá, khuyến mãi, quét mã gọi món.',
     words:[
-      ['营业中','yíngyè zhōng','đang mở cửa','doanh nghiệp trung'],['收银台','shōuyíntái','quầy thu ngân','thu ngân đài'],['扫码','sǎomǎ','quét mã','tảo mã'],
-      ['支付','zhīfù','thanh toán','chi phó'],['支付宝','Zhīfùbǎo','Alipay','chi phó bảo'],['打折','dǎzhé','giảm giá','đả chiết'],['特价','tèjià','giá đặc biệt','đặc giá'],
-      ['外卖','wàimài','đồ ăn giao tận nơi','ngoại mại'],['菜单','càidān','thực đơn','thái đơn'],['免费','miǎnfèi','miễn phí','miễn phí'],['现金','xiànjīn','tiền mặt','hiện kim']],
+      ['营业中','yíngyè zhōng','đang mở cửa','doanh nghiệp trung'],['收银台','shōuyíntái','quầy thu ngân','thu ngân đài'],['支付','zhīfù','thanh toán','chi phó'],['支付宝','Zhīfùbǎo','Alipay','chi phó bảo'],
+      ['打折','dǎzhé','giảm giá','đả chiết'],['特价','tèjià','giá đặc biệt','đặc giá'],['外卖','wàimài','đồ ăn giao tận nơi','ngoại mại'],['菜单','càidān','thực đơn','thái đơn'],
+      ['免费','miǎnfèi','miễn phí','miễn phí'],['现金','xiànjīn','tiền mặt','hiện kim'],['送','sòng','tặng; tiễn','tống'],['店','diàn','cửa hàng',''],
+      ['全','quán','toàn bộ',''],['欢迎','huānyíng','hoan nghênh','hoan nghênh'],['场','chǎng','bãi, sân',''],['折','zhé','giảm giá (打九折 = giảm 10%)',''],
+      ['本','běn','quyển','bản'],['点餐','diǎn cān','gọi món','']],
     phrases:[
       ['扫码点餐','Sǎo mǎ diǎn cān','Quét mã để gọi món','Nhiều quán không còn menu giấy.'],
       ['全场八折','Quánchǎng bā zhé','Toàn bộ giảm 20%','⚠️ 八折 = trả 80% giá, KHÔNG phải giảm 80%!'],
@@ -388,9 +413,11 @@ window.COURSE = [
   { id:'e3', zh:'交通', title:'Giao thông & thành phố', sub:'东南西北 · 换乘',
     desc:'Đọc bảng tàu điện, tên ga, phương hướng.',
     words:[
-      ['站','zhàn','trạm, ga','trạm'],['公交','gōngjiāo','xe buýt','công giao'],['火车站','huǒchēzhàn','ga tàu hỏa','hỏa xa trạm'],['机场','jīchǎng','sân bay','cơ trường'],
-      ['号线','hào xiàn','tuyến số…','hiệu tuyến'],['换乘','huànchéng','chuyển tuyến','hoán thừa'],['东','dōng','đông','đông'],['南','nán','nam (hướng)','nam'],
-      ['西','xī','tây','tây'],['北','běi','bắc','bắc'],['路','lù','đường','lộ'],['酒店','jiǔdiàn','khách sạn','tửu điếm']],
+      ['公交','gōngjiāo','xe buýt','công giao'],['火车站','huǒchēzhàn','ga tàu hỏa','hỏa xa trạm'],['机场','jīchǎng','sân bay','cơ trường'],['号线','hào xiàn','tuyến số…','hiệu tuyến'],
+      ['换乘','huànchéng','chuyển tuyến','hoán thừa'],['东','dōng','đông','đông'],['南','nán','nam (hướng)','nam'],['西','xī','tây','tây'],
+      ['北','běi','bắc','bắc'],['路','lù','đường','lộ'],['酒店','jiǔdiàn','khách sạn','tửu điếm'],['下','xià','dưới; xuống',''],
+      ['外','wài','ngoài',''],['候','hòu','chờ',''],['北京','Běijīng','Bắc Kinh','Bắc Kinh'],['民','mín','dân',''],
+      ['广场','guǎngchǎng','quảng trường',''],['黄线','huáng xiàn','vạch vàng','']],
     phrases:[
       ['下一站：人民广场','Xià yí zhàn: Rénmín Guǎngchǎng','Ga tiếp theo: Quảng trường Nhân Dân','Câu loa trên tàu điện ngầm.'],
       ['请在黄线外等候','Qǐng zài huáng xiàn wài děnghòu','Vui lòng đứng sau vạch vàng',''],
@@ -404,7 +431,9 @@ window.COURSE = [
     words:[
       ['登录','dēnglù','đăng nhập','đăng lục'],['注册','zhùcè','đăng ký','chú sách'],['确定','quèdìng','xác nhận, OK','xác định'],['取消','qǔxiāo','hủy','thủ tiêu'],
       ['设置','shèzhì','cài đặt','thiết trí'],['搜索','sōusuǒ','tìm kiếm','sưu tác'],['下载','xiàzài','tải xuống','hạ tải'],['分享','fēnxiǎng','chia sẻ','phân hưởng'],
-      ['字幕','zìmù','phụ đề','tự mạc'],['会员','huìyuán','thành viên VIP','hội viên'],['保质期','bǎozhìqī','hạn sử dụng','bảo chất kỳ'],['弹幕','dànmù','bình luận chạy trên video','đạn mạc']],
+      ['字幕','zìmù','phụ đề','tự mạc'],['会员','huìyuán','thành viên VIP','hội viên'],['保质期','bǎozhìqī','hạn sử dụng','bảo chất kỳ'],['弹幕','dànmù','bình luận chạy trên video','đạn mạc'],
+      ['中文','Zhōngwén','tiếng Trung','Trung văn'],['见','jiàn','gặp, thấy',''],['第','dì','thứ (第二 = thứ hai)',''],['更新','gēngxīn','cập nhật (tập mới)','canh tân'],
+      ['包装','bāozhuāng','đóng gói, bao bì','bao trang'],['输入','shūrù','nhập (dữ liệu)','']],
     phrases:[
       ['请输入密码','Qǐng shūrù mìmǎ','Vui lòng nhập mật khẩu',''],
       ['中文字幕','Zhōngwén zìmù','Phụ đề tiếng Trung','Mẹo: xem phim bật phụ đề Trung để luyện đọc chữ.'],
@@ -412,7 +441,7 @@ window.COURSE = [
       ['会员专享','Huìyuán zhuānxiǎng','Chỉ dành cho VIP',''],
       ['更新至第20集','Gēngxīn zhì dì èrshí jí','Cập nhật đến tập 20','"集" = tập phim.','更新至第二十集'],
       ['生产日期见包装','Shēngchǎn rìqī jiàn bāozhuāng','Ngày sản xuất xem trên bao bì','']],
-    chars:'取:qǔ:lấy|消:xiāo:tiêu|确:què:xác|集:jí:tập' }
+    chars:'取:qǔ:lấy|消:xiāo:tiêu|确:què:xác' }
   ]},
 
 /* ───────────────────────── CHẶNG 6 ───────────────────────── */
@@ -429,8 +458,8 @@ window.COURSE = [
 <li><b>呗 bei</b> – "thì… thôi", kiểu bất cần: 不行就算了呗.</li>
 <li><b>啦 la</b> – nhẹ nhàng, dỗ dành: 好啦好啦.</li></ul>`,
     words:[
-      ['吧','ba','nhé, đi (rủ, đoán)',''],['呢','ne','thì sao; đang…',''],['啊','a','à, nhỉ (cảm thán)',''],['嘛','ma','mà (hiển nhiên)',''],
-      ['呗','bei','thì… thôi',''],['啦','la','mà, rồi (mềm mỏng)',''],['哦','ò','ồ, à (hiểu rồi)',''],['嗯','èn','ừ, ừm',''],['原来','yuánlái','hóa ra','nguyên lai']],
+      ['嘛','ma','mà (hiển nhiên)',''],['呗','bei','thì… thôi',''],['啦','la','mà, rồi (mềm mỏng)',''],['哦','ò','ồ, à (hiểu rồi)',''],
+      ['嗯','èn','ừ, ừm',''],['原来','yuánlái','hóa ra','nguyên lai'],['挺','tǐng','khá, khá là','đĩnh'],['这样','zhèyàng','như thế này','']],
     phrases:[
       ['走吧！','Zǒu ba!','Đi thôi!',''],
       ['我挺好的，你呢？','Wǒ tǐng hǎo de, nǐ ne?','Mình ổn, còn bạn?',''],
@@ -439,14 +468,14 @@ window.COURSE = [
       ['好啦好啦，别生气了。','Hǎo la hǎo la, bié shēngqì le.','Thôi được rồi, đừng giận nữa mà.',''],
       ['哦～原来是这样！','Ò~ yuánlái shì zhèyàng!','À~ hóa ra là vậy!',''],
       ['嗯嗯，知道了。','Èn en, zhīdào le.','Ừ ừ, biết rồi.','Nhắn tin hay gõ "嗯嗯" — chỉ một chữ "嗯" có thể bị coi là lạnh lùng!']],
-    chars:'吧:ba:nhé|呢:ne:thì sao|啊:a:à|嘛:ma:mà' },
+    chars:'嘛:ma:mà|呗:bei:thì… thôi|啦:la:mà' },
 
   { id:'f2', zh:'口头禅', title:'Khẩu ngữ hằng ngày', sub:'随便 · 咋了 · 啥意思',
     desc:'Những từ cửa miệng người Trung nói cả trăm lần mỗi ngày.',
     words:[
-      ['随便','suíbiàn','tùy','tùy tiện'],['算了','suàn le','thôi bỏ đi','toán liễu'],['行','xíng','được, ổn','hành'],['干嘛','gàn má','làm gì; sao thế',''],
-      ['咋','zǎ','sao (khẩu ngữ miền Bắc)',''],['啥','shá','gì (khẩu ngữ)',''],['挺','tǐng','khá, khá là','đĩnh'],['超','chāo','siêu','siêu'],
-      ['其实','qíshí','thật ra','kỳ thực'],['反正','fǎnzhèng','dù sao thì','phản chính'],['得了','dé le','thôi đi, được rồi','đắc liễu']],
+      ['随便','suíbiàn','tùy','tùy tiện'],['咋','zǎ','sao (khẩu ngữ miền Bắc)',''],['啥','shá','gì (khẩu ngữ)',''],['超','chāo','siêu','siêu'],
+      ['其实','qíshí','thật ra','kỳ thực'],['反正','fǎnzhèng','dù sao thì','phản chính'],['得了','dé le','thôi đi, được rồi','đắc liễu'],['这么','zhème','như vậy','giá ma'],
+      ['白','bái','trắng','bạch'],['定','dìng','định','']],
     phrases:[
       ['随便，你定吧。','Suíbiàn, nǐ dìng ba.','Tùy, bạn quyết đi.','Câu "ăn gì cũng được" muôn thuở.'],
       ['行，就这么定了！','Xíng, jiù zhème dìng le!','Được, chốt vậy nhé!',''],
@@ -456,16 +485,16 @@ window.COURSE = [
       ['挺好的。','Tǐng hǎo de.','Khá ổn đấy.',''],
       ['得了吧你！','Dé le ba nǐ!','Thôi đi ông!','Khi không tin lời ai đó khoe khoang.'],
       ['说白了，就是没钱。','Shuō bái le, jiù shì méi qián.','Nói thẳng ra là không có tiền.','']],
-    chars:'行:xíng:được|算:suàn:tính|啥:shá:gì|超:chāo:siêu' },
+    chars:'啥:shá:gì|超:chāo:siêu|便:biàn:liền' },
 
   { id:'f3', zh:'网络用语', title:'Tiếng lóng mạng', sub:'躺平 · 吃瓜 · yyds',
     desc:'Ngôn ngữ Douyin, Weibo, bình luận phim — giới trẻ dùng hằng ngày.',
     words:[
-      ['内卷','nèijuǎn','cạnh tranh khốc liệt vô nghĩa','nội quyển'],['躺平','tǎngpíng','nằm im, buông xuôi','thảng bình'],['摆烂','bǎilàn','mặc kệ, buông bỏ luôn','bãi lạn'],
-      ['破防','pòfáng','vỡ òa, bị "chạm" cảm xúc','phá phòng'],['社死','shèsǐ','quê độ, "chết" vì xấu hổ','xã tử'],['吃瓜','chīguā','hóng drama','ngật qua'],
-      ['打卡','dǎkǎ','check-in',''],['种草','zhòngcǎo','bị "dụ" muốn mua','chủng thảo'],['凡尔赛','Fán\'ěrsài','khoe khéo (giả vờ than)',''],
-      ['绝绝子','juéjuézǐ','đỉnh của chóp',''],['yyds','yǒngyuǎn de shén','"thần thánh mãi mãi", đỉnh nhất','vĩnh viễn đích thần','永远的神'],
-      ['666','liù liù liù','giỏi quá, pro ghê','','六六六']],
+      ['内卷','nèijuǎn','cạnh tranh khốc liệt vô nghĩa','nội quyển'],['躺平','tǎngpíng','nằm im, buông xuôi','thảng bình'],['摆烂','bǎilàn','mặc kệ, buông bỏ luôn','bãi lạn'],['破防','pòfáng','vỡ òa, bị "chạm" cảm xúc','phá phòng'],
+      ['社死','shèsǐ','quê độ, "chết" vì xấu hổ','xã tử'],['吃瓜','chīguā','hóng drama','ngật qua'],['打卡','dǎkǎ','check-in',''],['种草','zhòngcǎo','bị "dụ" muốn mua','chủng thảo'],
+      ['凡尔赛','Fán\'ěrsài','khoe khéo (giả vờ than)',''],['绝绝子','juéjuézǐ','đỉnh của chóp',''],['yyds','yǒngyuǎn de shén','"thần thánh mãi mãi", đỉnh nhất','vĩnh viễn đích thần','永远的神'],['666','liù liù liù','giỏi quá, pro ghê','','六六六'],
+      ['这','zhè','này, đây',''],['想','xiǎng','nhớ; muốn; nghĩ','tưởng'],['直','zhí','thẳng; cứ',''],['只','zhī','con (thú nhỏ)','chích'],
+      ['接','jiē','đón','tiếp'],['群','qún','nhóm chat','quần']],
     phrases:[
       ['我只是个吃瓜群众。','Wǒ zhǐ shì ge chīguā qúnzhòng.','Tôi chỉ là quần chúng hóng drama thôi.',''],
       ['这波操作666！','Zhè bō cāozuò liù liù liù!','Pha xử lý này đỉnh quá!','','这波操作六六六'],
@@ -479,11 +508,11 @@ window.COURSE = [
   { id:'f4', zh:'成语', title:'Thành ngữ hay dùng', sub:'好久不见 · 莫名其妙',
     desc:'Thành ngữ, câu chúc — nhiều câu trùng Hán Việt.',
     words:[
-      ['好久不见','hǎojiǔ bú jiàn','lâu rồi không gặp','hảo cửu bất kiến'],['加油','jiāyóu','cố lên','gia du'],['马马虎虎','mǎmǎhūhū','tàm tạm; cẩu thả','mã mã hổ hổ'],
-      ['一见钟情','yíjiàn-zhōngqíng','yêu từ cái nhìn đầu tiên','nhất kiến chung tình'],['乱七八糟','luànqībāzāo','lộn xộn, bừa bộn','loạn thất bát tao'],
-      ['莫名其妙','mòmíng-qímiào','khó hiểu, vô lý','mạc danh kỳ diệu'],['不可思议','bùkě-sīyì','không thể tin nổi','bất khả tư nghị'],
-      ['一路顺风','yílù-shùnfēng','thượng lộ bình an','nhất lộ thuận phong'],['心想事成','xīnxiǎng-shìchéng','muốn gì được nấy','tâm tưởng sự thành'],
-      ['恭喜发财','gōngxǐ fācái','chúc phát tài','cung hỷ phát tài'],['入乡随俗','rùxiāng-suísú','nhập gia tùy tục','nhập hương tùy tục'],['没办法','méi bànfǎ','hết cách','một biện pháp']],
+      ['好久不见','hǎojiǔ bú jiàn','lâu rồi không gặp','hảo cửu bất kiến'],['加油','jiāyóu','cố lên','gia du'],['马马虎虎','mǎmǎhūhū','tàm tạm; cẩu thả','mã mã hổ hổ'],['一见钟情','yíjiàn-zhōngqíng','yêu từ cái nhìn đầu tiên','nhất kiến chung tình'],
+      ['乱七八糟','luànqībāzāo','lộn xộn, bừa bộn','loạn thất bát tao'],['莫名其妙','mòmíng-qímiào','khó hiểu, vô lý','mạc danh kỳ diệu'],['不可思议','bùkě-sīyì','không thể tin nổi','bất khả tư nghị'],['一路顺风','yílù-shùnfēng','thượng lộ bình an','nhất lộ thuận phong'],
+      ['心想事成','xīnxiǎng-shìchéng','muốn gì được nấy','tâm tưởng sự thành'],['恭喜发财','gōngxǐ fācái','chúc phát tài','cung hỷ phát tài'],['入乡随俗','rùxiāng-suísú','nhập gia tùy tục','nhập hương tùy tục'],['没办法','méi bànfǎ','hết cách','một biện pháp'],
+      ['真','zhēn','thật',''],['新','xīn','mới','tân'],['房间','fángjiān','phòng','phòng gian'],['乐','lè','vui',''],
+      ['变','biàn','thay đổi','biến']],
     phrases:[
       ['好久不见！你一点儿没变。','Hǎojiǔ bú jiàn! Nǐ yìdiǎnr méi biàn.','Lâu rồi không gặp! Bạn chẳng thay đổi gì cả.',''],
       ['加油！你可以的！','Jiāyóu! Nǐ kěyǐ de!','Cố lên! Bạn làm được mà!',''],
@@ -498,7 +527,7 @@ window.COURSE = [
     words:[
       ['因为','yīnwèi','bởi vì','nhân vị'],['所以','suǒyǐ','cho nên','sở dĩ'],['但是','dànshì','nhưng','đãn thị'],['不过','búguò','có điều, nhưng','bất quá'],
       ['然后','ránhòu','sau đó','nhiên hậu'],['而且','érqiě','hơn nữa','nhi thả'],['如果','rúguǒ','nếu','như quả'],['虽然','suīrán','tuy','tuy nhiên'],
-      ['结果','jiéguǒ','kết quả là, rốt cuộc','kết quả'],['本来','běnlái','vốn dĩ','bổn lai'],['还是','háishi','hay là; vẫn','hoàn thị'],['就','jiù','thì, liền','tựu']],
+      ['结果','jiéguǒ','kết quả là, rốt cuộc','kết quả'],['本来','běnlái','vốn dĩ','bổn lai'],['很','hěn','rất','']],
     phrases:[
       ['然后呢？','Ránhòu ne?','Rồi sao nữa?','Câu hóng chuyện thần thánh.'],
       ['我本来想去的，结果下雨了。','Wǒ běnlái xiǎng qù de, jiéguǒ xià yǔ le.','Mình định đi, rốt cuộc trời mưa.',''],
